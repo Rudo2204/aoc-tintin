@@ -52,6 +52,7 @@
 #ALIAS {ud} {unlock door}
 #ALIAS {eh} {enter hole}
 #ALIAS {et} {enter tunnel}
+#ALIAS {ep} {enter portal}
 
 #NOP ==[NIGERUNDAYO!!!]==
 #ALIAS {f} {flee}
@@ -84,6 +85,14 @@
     #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {get id cap; hold id; recite id %1; hold lexicon;};
 }
 #ALIAS {heal} {weave 'heal crit'}
+#ALIAS {nf} {weave 'nature fury'}
+#ALIAS {hm} {weave 'harmony'}
+#ALIAS {sense} {weave 'sense life'}
+#ALIAS {fs} {weave 'fireshield'}
+#ALIAS {pfe} {weave 'protection from evil'}
+#ALIAS {pfg} {weave 'protection from good'}
+#ALIAS {pfc} {weave 'protection from cold'}
+#ALIAS {pfh} {weave 'protection from heat'}
 #ALIAS {sanc} {weave 'sanc'}
 #ALIAS {haste} {weave 'haste'}
 #ALIAS {armor} {weave 'armor'}
