@@ -30,6 +30,7 @@
 #READ {src/speedwalks.tin}
 
 #EVENT {SESSION CONNECTED} {
+    #FORMAT {session_start_time} {%t} {%s};
     #delay 1 {#split 2 1};
 }
 
