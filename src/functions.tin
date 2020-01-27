@@ -1,35 +1,39 @@
 #CLASS {functions} {kill};
 #CLASS {functions} {open};
 
+#NOP two dashes means the function does not take in any args;
+#NOP one dash means otherwise;
+
 #FUNCTION {get_real_name} {
     #REGEX {%1} {The %w %w} {#FORMAT {tmp} &2;} {#FORMAT {tmp} {%1}};
     #RETURN $tmp
 }
 
-#FUNCTION {log_line_to_chat} {
+#ALIAS {__log_line_to_chat__} {
     #script {ts} {date +"%I:%M%P"};
     #line {log} {$chat_file} {$ts[1] \};
     #line {log} {$chat_file}
 };
 
-#ALIAS {show_noti} {
-    #FORMAT {tmp} {%t} {%s};
-    #MATH {t_noti} {$tmp - $t_last_noti};
-    #SHOWME {Notification: $c_noti ------ $t_noti seconds ago: $last_noti} {1};
+#ALIAS {_update_buff_status_ %w %w} {
+    #format {tmp} {%l} {${CURRENT_CHAR}};
+    #CLASS {$tmp} {open};
+    #IF {"%2" == "on"} {#var {${tmp}_%1} {1};};
+    #ELSE {#var {${tmp}_%1} {0};}
+    #CLASS {$tmp} {close};
 };
 
-#FUNCTION {update_noti} {
+#ALIAS {_update_noti_ %*} {
     #VAR {last_noti} {${c_noti}};
     #FORMAT {t_last_noti} {%t} {%s};
     #VAR {c_noti} {%1};
-    #LINE {log} {$status_file} {%1};
 };
 
 #TICKER {auto_show_noti} {
     #FORMAT {tmp} {%t} {%s};
     #MATH {t_noti} {$tmp - $t_last_noti};
     #FORMAT {uptime[hours]} {%m} {($tmp - $session_start_time) / 60 / 60};
-    #FORMAT {uptime[minutes]} {%m} {($tmp - $start_tisession_start_timeme) / 60 % 60};
+    #FORMAT {uptime[minutes]} {%m} {($tmp - $session_start_time) / 60 % 60};
     #FORMAT {uptime[display]} {%th %tm} {$uptime[hours]} {$uptime[minutes]};
     #SHOWME {Notification: $c_noti --- $t_noti seconds ago: $last_noti --- Uptime: $uptime[display]} {1};
 } {1};
