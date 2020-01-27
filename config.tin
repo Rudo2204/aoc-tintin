@@ -21,6 +21,7 @@
 #CONFIG {VERBOSE}  {OFF}
 #CONFIG {WORDWRAP}  {ON}
 
+#READ {src/functions.tin}
 #READ {src/variables.tin}
 #READ {src/channels.tin}
 #READ {src/actions.tin}

@@ -1,11 +1,6 @@
 #CLASS {actions} {kill};
 #CLASS {actions} {open};
 
-#FUNCTION {get_real_name} {
-    #REGEX {%1} {The %w %w} {#FORMAT {tmp} &2;} {#FORMAT {tmp} {%1}};
-    #RETURN $tmp
-}
-
 #NOP ==[HEARTSTONE]==
 #ACTION {%1 notices a heartstone} {
     gs HEARTSTONE!!! HEARTSTONE!!!;

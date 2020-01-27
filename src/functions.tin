@@ -1,0 +1,11 @@
+#FUNCTION {get_real_name} {
+    #REGEX {%1} {The %w %w} {#FORMAT {tmp} &2;} {#FORMAT {tmp} {%1}};
+    #RETURN $tmp
+}
+
+#FUNCTION {log_line_to_chat} {
+    #script {ts} {date +"%I:%M%P"};
+    #line {log} {$chat_file} {$ts[1] \};
+    #line {log} {$chat_file}
+};
+

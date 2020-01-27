@@ -7,12 +7,6 @@
 #HIGHLIGHT {^You clan-say %1}  {light pink}  {5}
 #HIGHLIGHT {%1 clan-says %1}  {light pink}  {5}
 
-#FUNCTION {log_line_to_chat} {
-    #script {ts} {date +"%I:%M%P"};
-    #line {log} {$chat_file} {$ts[1] \};
-    #line {log} {$chat_file}
-};
-
 #ACTION {You group-say '%1'} {
     #IF {"%1" == "check hs"} {
         gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
