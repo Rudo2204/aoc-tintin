@@ -91,9 +91,9 @@
 }
 #ACTION {You receive %1 experience points.} {
     #IF {"${AUTO_LOOT}" == "1"} {get coin all.corp;};
-    #math soloxp (${groupxp} + %1);
+    #math soloxp (${soloxp} + %1);
     #math totalxp (${totalxp} + %1);
-    #math soloxpcount (${groupxpcount} + 1);
+    #math soloxpcount (${soloxpcount} + 1);
     #math totalxpcount (${totalxpcount} + 1);
     #var assist_fired 0;
 }
