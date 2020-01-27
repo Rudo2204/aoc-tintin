@@ -1,0 +1,191 @@
+#CLASS {actions} {kill};
+#CLASS {actions} {open};
+
+#FUNCTION {get_real_name} {
+    #REGEX {%1} {The %w %w} {#FORMAT {tmp} &2;} {#FORMAT {tmp} {%1}};
+    #RETURN $tmp
+}
+
+#NOP ==[HEARTSTONE]==
+#ACTION {%1 notices a heartstone} {
+    gs HEARTSTONE!!! HEARTSTONE!!!;
+    #math hscount (${hscount} + 1);
+    #math avghscount ((${totalxpcount}/${hscount}*10)*0.1);
+    gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
+}
+#ACTION {You see the glint of a heartstone!!} {
+    gs I POPED A HEARTSTONE!!!;
+    #math hscount (${hscount} + 1);
+    #math avghscount ((${totalxpcount}/${hscount}*10)*0.1);
+    gs Heartstone counter: ${hscount}, avg mobs per hs: %{avghscount};
+
+    #ACTION {(Terrible) : %1 Heartstone} {#var lasths %1};
+    inventory;
+    gs The hearstone I just poped is ${lasths} one!;
+    #DELAY 5 {#UNACTION {(Terrible) : %1 Heartstone}};
+}
+#HIGHLIGHT {You see the glint of a heartstone!!} {bold red underscore}
+#HIGHLIGHT {%1 notices a heartstone%*} {bold red underscore}
+
+#NOP ==[Auto Assist]== TODO
+#ACTION {{^The \w+ (.*?) \w.* blast.*$}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {4};
+#ACTION {{^The \w+ (.*?) \w.* crush.*$}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {4};
+#ACTION {{^The \w+ (.*?) \w.* hit.*$}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {4};
+#ACTION {{^The \w+ (.*?) \w.* pierce.*$}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {4};
+#ACTION {{^The \w+ (.*?) \w.* pound.*$}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {4};
+#ACTION {{^The \w+ (.*?) \w.* slash.*$}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {4};
+#ACTION {{^The \w+ (.*?) \w.* whip.*$}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {4};
+
+#ACTION {{(.*?) \w.* blast.*}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {5};
+#ACTION {{(.*?) \w.* crush.*}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {5};
+#ACTION {{(.*?) \w.* hit.*}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {5};
+#ACTION {{(.*?) \w.* pierce.*}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {5};
+#ACTION {{(.*?) \w.* pound.*}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {5};
+#ACTION {{(.*?) \w.* slash.*}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {5};
+#ACTION {{(.*?) \w.* whip.*}} {
+    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
+} {5};
+
+#NOP ==[Stat Tracker]==
+#ACTION {You receive your share of experience -- %1 points.} {
+    #IF {"${AUTO_LOOT}" == "1"} {get coin all.corp;};
+    #math groupxp (${groupxp} + %1);
+    #math totalxp (${totalxp} + %1);
+    #math groupxpcount (${groupxpcount} + 1);
+    #math totalxpcount (${totalxpcount} + 1);
+    #var assist_fired 0;
+}
+#ACTION {You receive your share of experience -- 1 measly little point.} {
+    #IF {"${AUTO_LOOT}" == "1"} {get coin all.corp;};
+    #math groupxp (${groupxp} + 1);
+    #math totalxp (${totalxp} + 1);
+    #math groupxpcount (${groupxpcount} + 1);
+    #math totalxpcount (${totalxpcount} + 1);
+    #var assist_fired 0;
+}
+#ACTION {You receive %1 experience points.} {
+    #IF {"${AUTO_LOOT}" == "1"} {get coin all.corp;};
+    #math soloxp (${groupxp} + %1);
+    #math totalxp (${totalxp} + %1);
+    #math soloxpcount (${groupxpcount} + 1);
+    #math totalxpcount (${totalxpcount} + 1);
+    #var assist_fired 0;
+}
+
+#NOP ==[Group Helper]==
+#ACTION {You are now a member of %*'s group.} {
+    #FORMAT {assist} {@get_real_name{%1}};
+    #SHOWME {\e[91m===== CURRENT ASSITING: $assist =====};
+    #if {"${assist}" != "Shuu"} {
+        gs gs 'shuu trigs' to check my trigs;
+    };
+    #else {#var assist shuu};
+}
+#ACTION {There were %1 coins.} {split %1}
+
+#NOP ==[End Session On Quit]==
+#ACTION {%1 stores your belongings and helps you into your private chamber.} {
+    #CLASS variables open;
+    #CLASS variables write {src/variables.tin};
+    #end;
+}
+
+#NOP ==[Auction Checker]==
+#ACTION {[Auto-Auc] : %1 auctioning %2, min is %3.} {bid ?}
+
+#NOP ==[Misc]==
+#ACTION {You have been idle, and are pulled into a void.} {rub}
+#ACTION {You stop following %*} {group me}
+
+#NOP ==[Loot Alert]==
+#HIGHLIGHT {%*essence crystallizes into a soul-riven shard!} {b red}
+#HIGHLIGHT {You discover the Cipher of %1 on the corpse of %2!} {b red}
+
+#NOP ==[World Highlighter]==
+#HIGHLIGHT {A gold coin is floating here.} {\e[36m}
+#HIGHLIGHT {An air bubble%*} {b red}
+#HIGHLIGHT {A small pile of gem shards sits here%*} {\e[91m}
+#HIGHLIGHT {One miserable gold sovereign is lying here.} {\e[91m}
+#HIGHLIGHT {You manage to %* the last of the %*} {\e[91m}
+#HIGHLIGHT {You spot something shiny!  Dig more!} {b red}
+#HIGHLIGHT {%*you manage to salvage part of %* body!} {b red}
+#HIGHLIGHT {The corpse of the Spiralborn decays in your hands.} {b red}
+
+#NOP ==[Game Alert]==
+#HIGHLIGHT {A great sandstorm rages across the desert, carrying a hazy city with it.} {b red}
+#HIGHLIGHT {A chaodyn rises up, apparently resurrected from his death.} {b red}
+#HIGHLIGHT {As the Spiralborn dies, %*.} {b red}
+#HIGHLIGHT {Namegi the Betrayer's shield of fire flairs up to full strength!} {b red}
+#HIGHLIGHT {You feel an evil mist surround you.} {b red}
+#HIGHLIGHT {Vzikronys, The Worm-Who-Walks screeches and spills out onto the floor as a mass of vermin!} {b red}
+#HIGHLIGHT {You feel the world fall out beneath you, %* has summoned you!} {b red}
+#HIGHLIGHT {You wish that your wounds would stop BLEEDING so much!} {b red}
+#ACTION {You drive %1 forward in exhaustion!} {gs mount is dead!}
+#ACTION {You feel like you can fight with some effectiveness now..} {stand}
+#ACTION {You wish that your wounds would stop BLEEDING so much!} {#IF {"${CURRENT_CHAR}" == "Shuu"} {recall};}
+
+#NOP ==[Buff Alert]==
+#ACTION {The affects of the Bard's song dissipate.} {#showme \e[91m===Bard Song OUT!===; gs Bard Song OUT!;}
+#ACTION {The tower of mortal will around you fades.} {#showme \e[91m===TOWER OUT!===; gs TOWER OUT!;}
+#ACTION {The white aura around your body fades.} {#showme \e[91m===SANC OUT!===; gs SANC OUT!;}
+#ACTION {You feel an evil mist surround you.} {#showme \e[91m===DESSED!!!===;}
+#ACTION {You feel yourself exposed.} {#showme \e[91m===Improved Invis OUT!===; gs II OUT!;}
+#ACTION {You lose your focus.} {#showme \e[91m===FOCUS OUT!===; gs FOCUS OUT!;}
+#ACTION {You no longer feel in tune with nature.} {#showme \e[91m===NATFURY OUT!===; gs NATFURY OUT!;}
+#ACTION {Your body and mind return to their normal speed.} {#showme \e[91m===HASTE OUT!===; gs HASTE OUT!;}
+#ACTION {Your body stops absorbing light%*} {#showme \e[91m===VS OUT!===;}
+#ACTION {Your cloak of darkness dissolves.} {#showme \e[91m===CLOAK OF DARKNESS OUT!===;}
+#ACTION {You feel calm and your lust for blood lessens.} {#showme \e[36mBlood Lust OUT!;}
+#ACTION {You feel less protected.} {#showme \e[36mArmor Out!;}
+#ACTION {You feel less righteous.} {#showme \e[36mBless Out!;}
+#ACTION {You feel the aiding deity reclaim its donated strength.} {#showme \e[36mAid Out!;}
+#ACTION {You feel vulnerable to the elements again.} {#showme \e[36mEndure Out!;}
+#ACTION {Your body loses its fiery glow.} {#showme \e[36mFSHIELD OUT!;}
+#ACTION {You stop your war-like chanting.} {#showme \e[91mWAR CHANT OUT!;}
+#ACTION {Your mantle of chaos explodes in a burst of light!} {#showme \e[36mMantle Out!;}
+#ACTION {Your skin doesn't feel quite so tough anymore.} {#showme \e[36mBarkSkin Out!;}
+
+#NOP ==[Double highlight?]==
+#NOP #HIGHLIGHT {The affects of the Bard's song dissipate.} {\e[91m}
+#NOP #HIGHLIGHT {The tower of mortal will around you fades.} {\e[91m}
+#NOP #HIGHLIGHT {The white aura around your body fades.} {\e[91m}
+#NOP #HIGHLIGHT {You feel an evil mist surround you.} {\e[91m}
+#NOP #HIGHLIGHT {You feel yourself exposed.} {\e[91m}
+#NOP #HIGHLIGHT {You lose your focus.} {\e[91m}
+#NOP #HIGHLIGHT {You no longer feel in tune with nature.} {\e[91m}
+#NOP #HIGHLIGHT {Your body and mind return to their normal speed.} {\e[91m}
+#NOP #HIGHLIGHT {Your body stops absorbing light%*} {\e[91m}
+#NOP #HIGHLIGHT {Your cloak of darkness dissolves.} {\e[91m}
+#NOP #HIGHLIGHT {You feel calm and your lust for blood lessens.} {\e[91m}
+
+#NOP ==[Game Helper]==
+#ACTION {You are knocked from your feet and fall hard to the ground!} {stand}
+#ACTION {You are knocked from your mount and fall hard to the ground!} {stand}
+
+#CLASS {actions} {close};

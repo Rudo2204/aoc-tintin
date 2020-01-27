@@ -1,0 +1,88 @@
+#CLASS {channels} {kill};
+#CLASS {channels} {open};
+
+#VARIABLE {pub_channel} {0};
+
+#NOP ==[Chat Highlighter]==
+#HIGHLIGHT {^You clan-say %1}  {light pink}  {5}
+#HIGHLIGHT {%1 clan-says %1}  {light pink}  {5}
+
+#FUNCTION {log_line_to_chat} {
+    #script {ts} {date +"%I:%M%P"};
+    #line {log} {$chat_file} {$ts[1] \};
+    #line {log} {$chat_file}
+};
+
+#ACTION {You group-say '%1'} {
+    #IF {"%1" == "check hs"} {
+        gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
+        gs The last hearstone I just poped was ${lasths} one!;
+    };
+    #ELSEIF {"%1" == "stats"} {
+        #MATH avgsoloxp ((${soloxp}/${soloxpcount}*10)*0.1);
+        #MATH avggroupxp ((${groupxp}/${groupxpcount}*10)*0.1);
+        #MATH avgtotalxp ((${totalxp}/${totalxpcount}*10)*0.1);
+        gs This is my stats as of ${date_started} till now!;
+        gs I have killed ${soloxpcount} enemies alone, gained a total of ${soloxp} xp, average xp per mob (solo) is ${avgsoloxp};
+        gs I have killed ${groupxpcount} enemies with friends, gained a total of ${groupxp} xp, average xp per mob (grouped) is $avggroupxp;
+        gs Total enemies I have killed is ${totalxpcount}, gained a total of ${totalxp} xp, average xp per mob (total) is ${avgtotalxp};
+        gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
+        gs The last hearstone I just poped was ${lasths} one!;
+    };
+    #return @log_line_to_chat{};
+};
+#ACTION {You clan-say '%1'} {#return @log_line_to_chat{};};
+#ACTION {%1 clan-says '%2'} {
+    #IF {"%2" == "clanrank"} {follow %1};
+    #ELSEIF {"%2" == "summon"} {
+        #IF {"${CLANSAY_SUMMON}" == "1"} {weave 'summon' %1};
+    };
+    #return @log_line_to_chat{};
+};
+
+#ACTION {%1 replies to you, '%2'} {#return @log_line_to_chat{};};
+#ACTION {%1 tells you, '%2'} {#return @log_line_to_chat{};};
+#ACTION {%1 group-says '%2'} {
+    #FORMAT {tmp} {@get_real_name{%1}};
+    #IF {"%2" == "ent %*"} {#regex {%2} {ent %*} {enter &1};};
+    #ELSEIF {"%2" == "recall"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {recall; south; south;};
+        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'word of recall'; south; south;};
+    };
+    #ELSEIF {"%2" == "say %*"} {#regex {%2} {say %*} {say &1};};
+    #ELSEIF {"%2" == "phase %*"} {#regex {%2} {phase %*} {weave 'phase door' &1};};
+    #ELSEIF {"%2" == "pay" || "%2" == "pay thae"} {give 50 coins thae};
+    #ELSEIF {"%2" == "haste"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'haste' $tmp};};
+    #ELSEIF {"%2" == "heal"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'heal crit' $tmp};};
+    #ELSEIF {"%2" == "bw"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'breath' $tmp};};
+    #ELSEIF {"%2" == "ii"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' $tmp};};
+    #ELSEIF {"%2" == "sanc"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'sanc' $tmp};};
+    #ELSEIF {"%2" == "summon"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'summon' $tmp};};
+    #ELSEIF {"%2" == "haste %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {haste %*} {weave 'haste' &1};};};
+    #ELSEIF {"%2" == "heal %*"} {#IF {"${GROUP_SPELLUP}" == "1"} {#REGEX {%2} {heal %*} {weave 'heal crit' &1};};};
+    #ELSEIF {"%2" == "bw %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {bw %*} {weave 'breath' &1};};};
+    #ELSEIF {"%2" == "ii %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {ii %*} {weave 'ii' &1};};};
+    #ELSEIF {"%2" == "sanc %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {sanc %*} {weave 'sanc' &1};};};
+    #ELSEIF {"%2" == "summon %*"} {#IF {"${GROUP_SPELLUP}" == "1"} {#REGEX {%2} {summon %*} {weave 'summon' &1};};};
+    #ELSEIF {"%2" == "des %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Aldrich"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {#REGEX {%2} {summon %*} {weave 'summon' &1};};};
+    };
+    #return @log_line_to_chat{};
+}
+
+#ACTION {[Gossip] %1} {
+    #if {${talker_log_toggle} = 1} {#return @log_line_to_chat{};};
+};
+
+#ALIAS {pub_channel %1} {
+    #if {"%1" == "on"} {
+        #echo {<149>Now logging public channels chat to monitor.<099>};
+        #var {pub_channel} {1};
+    };
+    #if {"%1" == "off"} {
+        #echo {<149>No longer logging public channels chat to monitor.<099>};
+        #var {pub_channel} {0};
+    };
+};
+
+#CLASS {channels} {close};

@@ -1,0 +1,109 @@
+#ALIAS {RESET ALL VARIABLES} {
+    #VARIABLE {CLANSAY_SUMMON}  {1}
+    #VARIABLE {CURRENT_CHAR}  {Shuu}
+    #VARIABLE {ame}  {0}
+    #VARIABLE {assist}  {Valar}
+    #VARIABLE {assist_fired}  {0}
+    #VARIABLE {avghscount}  {0}
+    #VARIABLE {date_started}  {2020-25-1}
+    #VARIABLE {dia}  {0}
+    #VARIABLE {eme}  {0}
+    #VARIABLE {groupxp}  {0}
+    #VARIABLE {groupxpcount}  {0}
+    #VARIABLE {hscount}  {0}
+    #VARIABLE {lasths}  {a Fiery Red}
+    #VARIABLE {rub}  {0}
+    #VARIABLE {sap}  {0}
+    #VARIABLE {soloxp}  {0}
+    #VARIABLE {soloxpcount}  {0}
+    #VARIABLE {target}  {guard}
+    #VARIABLE {totalxpcount}  {0}
+    #VARIABLE {AUTO_LOOT} {0}
+    #VARIABLE {GROUP_SPELLUP} {1}
+}
+
+#ALIAS {save vars} {
+    #CLASS variables open;
+    #CLASS variables write {src/variables.tin};
+}
+
+#ALIAS {rst} {
+    #CLASS variables open;
+    #CLASS variables write {src/variables.tin};
+    #READ config.tin;
+};
+
+#ALIAS {clc} {
+    clear;
+    #DELAY 1 {#split 0 1};
+};
+
+#NOP ==[Loot]==
+#ALIAS {es} {exa corpse}
+#ALIAS {es2} {exa 2.corpse}
+#ALIAS {gg} {get coin all.corpse}
+#ALIAS {ta} {take all all.corpse}
+#ALIAS {getje} {enter hole; open chest; get je chest; up;}
+
+#NOP ==[Doors and Keys]==
+#ALIAS {op} {open door}
+#ALIAS {dk} {drop key}
+#ALIAS {ud} {unlock door}
+#ALIAS {eh} {enter hole}
+#ALIAS {et} {enter tunnel}
+
+#NOP ==[NIGERUNDAYO!!!]==
+#ALIAS {f} {flee}
+
+#NOP ==[Fighting]==
+#ALIAS {k} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill $target};
+    #ELSE {kill $target};
+};
+#ALIAS {k %w} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill %1};
+    #ELSE {kill %1};
+};
+#ALIAS {a} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill $target};
+} {5};
+#ALIAS {a %w} {
+    #VAR {assist} {%1};
+    #SHOWME {\e[91m===== CURRENT ASSITING: $assist =====};
+} {4};
+#ALIAS {t} {
+    #VAR {target} {%1};
+    #SHOWME {\e[91m===== CURRENT TARGET: $target =====};
+};
+
+#NOP ==[Spells]==
+#ALIAS {pd} {weave 'phase door'}
+#ALIAS {id} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'identify'};
+    #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {get id cap; hold id; recite id %1; hold lexicon;};
+}
+#ALIAS {heal} {weave 'heal crit'}
+#ALIAS {sanc} {weave 'sanc'}
+#ALIAS {haste} {weave 'haste'}
+#ALIAS {armor} {weave 'armor'}
+#ALIAS {ii} {weave 'improved invis'}
+#ALIAS {bw} {weave 'breath'}
+#ALIAS {vs} {weave 'vengeance shroud'}
+#ALIAS {cod} {weave 'cloak of darkness'}
+#ALIAS {mech} {weave 'mechanical hand'}
+#ALIAS {animal} {weave 'create animal'}
+#ALIAS {c} {constrict $target}
+#ALIAS {b} {bash}
+#ALIAS {bless} {weave 'bless'}
+#ALIAS {vt} {weave 'vampiric touch'}
+#ALIAS {wc} {weave 'war chant'}
+#ALIAS {aid} {weave 'aid'}
+#ALIAS {ed} {weave 'energy drain'}
+#ALIAS {vital} {weave 'vitalize' me}
+#ALIAS {dispel} {weave 'dispel magic'}
+#ALIAS {vig} {weave 'vigorize serious'}
+#ALIAS {knock} {weave 'knock'}
+#ALIAS {locate} {weave 'locate'}
+#ALIAS {des} {weave 'des' $target}
+#ALIAS {wor} {weave 'word of recall'}
+#ALIAS {pay} {give 50 coins thae}

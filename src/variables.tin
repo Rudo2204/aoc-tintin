@@ -1,0 +1,26 @@
+#CLASS {variables} OPEN
+
+#VARIABLE         {AUTO_LOOT}  {0}
+#VARIABLE         {CLANSAY_SUMMON}  {1}
+#VARIABLE         {CURRENT_CHAR}  {Shuu}
+#VARIABLE         {GROUP_SPELLUP}  {1}
+#VARIABLE         {ame}  {0}
+#VARIABLE         {assist}  {The Dragon Istvani}
+#VARIABLE         {assist_fired}  {0}
+#VARIABLE         {avghscount}  {891.5}
+#VARIABLE         {date_started}  {2020-25-1}
+#VARIABLE         {dia}  {0}
+#VARIABLE         {eme}  {0}
+#VARIABLE         {groupxp}  {259990}
+#VARIABLE         {groupxpcount}  {1819}
+#VARIABLE         {hscount}  {2}
+#VARIABLE         {lasths}  {a Fiery Red}
+#VARIABLE         {rub}  {0}
+#VARIABLE         {sap}  {0}
+#VARIABLE         {soloxp}  {0}
+#VARIABLE         {soloxpcount}  {0}
+#VARIABLE         {target}  {guard}
+#VARIABLE         {totalxp}  {259990}
+#VARIABLE         {totalxpcount}  {1819}
+
+#CLASS {variables} CLOSE

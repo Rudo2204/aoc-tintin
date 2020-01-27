@@ -1,0 +1,43 @@
+#CLASS {speedwalks} KILL
+#CLASS {speedwalks} OPEN
+
+#NOP ==[Speedwalk with dot (.)]==
+#ALIAS {.%0}
+{
+    #local cnt {};
+    #local char {};
+
+    #parse {%0} {char}
+    {
+        #if {"$char" >= "0" && "$char" <= "9"}
+        {
+            #var cnt $cnt$char
+        };
+        #elseif {"$cnt" == ""}
+        {
+            $char
+        };
+        #else
+        {
+            #loop $cnt 1 cnt
+            {
+                $char
+            };
+            #var cnt {}
+        }
+    }
+}
+
+#NOP ==[Reverse speedwalk with r.]==
+#ALIAS {r.%0} {
+    #var tmp %0;
+    #path load tmp;
+    #path unzip tmp;
+    #path swap;
+    #path run;
+}
+
+#NOP ==[All of the speedwalks]==
+#ALIAS {back candrel} {.es2esene4s2e9s}
+#ALIAS {go candrel} {.9n2w4nwswn2wnw}
+#CLASS {speedwalks} CLOSE
