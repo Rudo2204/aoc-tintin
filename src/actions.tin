@@ -146,38 +146,74 @@
 #ACTION {You wish that your wounds would stop BLEEDING so much!} {#IF {"${CURRENT_CHAR}" == "Shuu"} {recall};}
 
 #NOP ==[Buff Alert]==
-#ACTION {The affects of the Bard's song dissipate.} {#showme \e[91m===Bard Song OUT!===; gs Bard Song OUT!;}
-#ACTION {The tower of mortal will around you fades.} {#showme \e[91m===TOWER OUT!===; gs TOWER OUT!;}
-#ACTION {The white aura around your body fades.} {#showme \e[91m===SANC OUT!===; gs SANC OUT!;}
-#ACTION {You feel an evil mist surround you.} {#showme \e[91m===DESSED!!!===;}
-#ACTION {You feel yourself exposed.} {#showme \e[91m===Improved Invis OUT!===; gs II OUT!;}
-#ACTION {You lose your focus.} {#showme \e[91m===FOCUS OUT!===; gs FOCUS OUT!;}
-#ACTION {You no longer feel in tune with nature.} {#showme \e[91m===NATFURY OUT!===; gs NATFURY OUT!;}
-#ACTION {Your body and mind return to their normal speed.} {#showme \e[91m===HASTE OUT!===; gs HASTE OUT!;}
-#ACTION {Your body stops absorbing light%*} {#showme \e[91m===VS OUT!===;}
-#ACTION {Your cloak of darkness dissolves.} {#showme \e[91m===CLOAK OF DARKNESS OUT!===;}
-#ACTION {You feel calm and your lust for blood lessens.} {#showme \e[36mBlood Lust OUT!;}
-#ACTION {You feel less protected.} {#showme \e[36mArmor Out!;}
-#ACTION {You feel less righteous.} {#showme \e[36mBless Out!;}
-#ACTION {You feel the aiding deity reclaim its donated strength.} {#showme \e[36mAid Out!;}
-#ACTION {You feel vulnerable to the elements again.} {#showme \e[36mEndure Out!;}
-#ACTION {Your body loses its fiery glow.} {#showme \e[36mFSHIELD OUT!;}
-#ACTION {You stop your war-like chanting.} {#showme \e[91mWAR CHANT OUT!;}
-#ACTION {Your mantle of chaos explodes in a burst of light!} {#showme \e[36mMantle Out!;}
-#ACTION {Your skin doesn't feel quite so tough anymore.} {#showme \e[36mBarkSkin Out!;}
+#ACTION {The affects of the Bard's song dissipate.} {
+    gs Bard Song OUT!;
+    #return @update_noti{\e[91m===Bard Song OUT!===\e[0m};
+};
+#ACTION {The tower of mortal will around you fades.} {
+    gs TOWER OUT!;
+    #return @update_noti{\e[91m===TOWER OUT!===\e[0m};
+};
 
-#NOP ==[Double highlight?]==
-#NOP #HIGHLIGHT {The affects of the Bard's song dissipate.} {\e[91m}
-#NOP #HIGHLIGHT {The tower of mortal will around you fades.} {\e[91m}
-#NOP #HIGHLIGHT {The white aura around your body fades.} {\e[91m}
-#NOP #HIGHLIGHT {You feel an evil mist surround you.} {\e[91m}
-#NOP #HIGHLIGHT {You feel yourself exposed.} {\e[91m}
-#NOP #HIGHLIGHT {You lose your focus.} {\e[91m}
-#NOP #HIGHLIGHT {You no longer feel in tune with nature.} {\e[91m}
-#NOP #HIGHLIGHT {Your body and mind return to their normal speed.} {\e[91m}
-#NOP #HIGHLIGHT {Your body stops absorbing light%*} {\e[91m}
-#NOP #HIGHLIGHT {Your cloak of darkness dissolves.} {\e[91m}
-#NOP #HIGHLIGHT {You feel calm and your lust for blood lessens.} {\e[91m}
+#ACTION {The white aura around your body fades.} {
+    gs SANC OUT!;
+    #return @update_noti{\e[91m===SANC OUT!===\e[0m};
+}
+#ACTION {You feel an evil mist surround you.} {
+    gs DESSED!
+    #return @update_noti{\e[91m===DESSED!!!===\e[0m};
+};
+#ACTION {You feel yourself exposed.} {
+    gs II OUT!;
+    #return @update_noti{\e[91m===Improved Invis OUT!===\e[0m};
+};
+#ACTION {You lose your focus.} {
+    gs FOCUS OUT!;
+    #return @update_noti{\e[91m===FOCUS OUT!===\e[0m};
+};
+#ACTION {You no longer feel in tune with nature.} {
+    gs NATFURY OUT!;
+    #return @update_noti{\e[91m===NATFURY OUT!===\e[0m};
+};
+#ACTION {Your body and mind return to their normal speed.} {
+    gs HASTE OUT!;
+    #return @update_noti{\e[91m===HASTE OUT!===\e[0m};
+};
+#ACTION {Your body stops absorbing light%*} {
+    gs VS OUT!;
+    #return @update_noti{\e[91m===VS OUT!===\e[0m};
+};
+#ACTION {Your cloak of darkness dissolves.} {
+    gs COD OUT!;
+    #return @update_noti{\e[91m===CLOAK OF DARKNESS OUT!===\e[0m};
+};
+#ACTION {You feel calm and your lust for blood lessens.} {
+    #return @update_noti{\e[36m===Blood Lust OUT!===};
+};
+#ACTION {You feel less protected.} {
+    #return @update_noti{\e[36m===Armor Out!===\e[0m};
+};
+#ACTION {You feel less righteous.} {
+    #return @update_noti{\e[36m===Bless Out!===\e[0m};
+};
+#ACTION {You feel the aiding deity reclaim its donated strength.} {
+    #return @update_noti{\e[36m===Aid Out!===\e[0m};
+};
+#ACTION {You feel vulnerable to the elements again.} {
+    #return @update_noti{\e[36m===Endure Out!===\e[0m};
+};
+#ACTION {Your body loses its fiery glow.} {
+    #return @update_noti{\e[36m===FSHIELD OUT!===\e[0m};
+};
+#ACTION {You stop your war-like chanting.} {
+    #return @update_noti{\e[91m===WAR CHANT OUT!===\e[0m};
+};
+#ACTION {Your mantle of chaos explodes in a burst of light!} {
+    #return @update_noti{\e[36m===Mantle Out!===\e[0m};
+};
+#ACTION {Your skin doesn't feel quite so tough anymore.} {
+    #return @update_noti{\e[36m===BarkSkin Out!===\e[0m};
+};
 
 #NOP ==[Game Helper]==
 #ACTION {You are knocked from your feet and fall hard to the ground!} {stand}
