@@ -1,4 +1,5 @@
 #VARIABLE {chat_file} {logs/chat.log}
+#VARIABLE {status_file} {logs/status.log}
 
 #CONFIG {256 COLORS}  {ON}
 #CONFIG {AUTO TAB}  {5000}
@@ -29,7 +30,7 @@
 #READ {src/speedwalks.tin}
 
 #EVENT {SESSION CONNECTED} {
-    #delay 1 {#split};
+    #delay 1 {#split 2 1};
 }
 
 #SESSION aoc {aoc.pandapub.com} {4000}
