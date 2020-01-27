@@ -25,11 +25,9 @@
 #ALIAS {save vars} {
     #CLASS variables open;
     #CLASS variables write {src/variables.tin};
-}
+};
 
 #ALIAS {rst} {
-    #CLASS variables open;
-    #CLASS variables write {src/variables.tin};
     #READ config.tin;
 };
 
@@ -45,7 +43,10 @@
 #ALIAS {ta} {take all all.corpse}
 #ALIAS {getje} {enter hole; open chest; get je chest; up;}
 
-#NOP ==[Doors and Keys]==
+#NOP ==[Misc]==
+#ALIAS {emogs} {emo group-says '%1'};
+
+#NOP ==[World interaction]==
 #ALIAS {op} {open door}
 #ALIAS {dk} {drop key}
 #ALIAS {ud} {unlock door}
