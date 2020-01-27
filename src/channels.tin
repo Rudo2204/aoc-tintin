@@ -23,19 +23,19 @@
         gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
         gs The last hearstone I just poped was ${lasths} one!;
     };
-    #return @log_line_to_chat{};
+    __log_line_to_chat__;
 };
-#ACTION {You clan-say '%1'} {#return @log_line_to_chat{};};
+#ACTION {You clan-say '%1'} {__log_line_to_chat__;};
 #ACTION {%1 clan-says '%2'} {
     #IF {"%2" == "clanrank"} {follow %1};
     #ELSEIF {"%2" == "summon"} {
         #IF {"${CLANSAY_SUMMON}" == "1"} {weave 'summon' %1};
     };
-    #return @log_line_to_chat{};
+    __log_line_to_chat__;
 };
 
-#ACTION {%1 replies to you, '%2'} {#return @log_line_to_chat{};};
-#ACTION {%1 tells you, '%2'} {#return @log_line_to_chat{};};
+#ACTION {%1 replies to you, '%2'} {__log_line_to_chat__;};
+#ACTION {%1 tells you, '%2'} {__log_line_to_chat__;};
 #ACTION {%1 group-says '%2'} {
     #FORMAT {tmp} {@get_real_name{%1}};
     #IF {"%2" == "ent %*"} {#regex {%2} {ent %*} {enter &1};};
@@ -61,11 +61,11 @@
     #ELSEIF {"%2" == "des %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Aldrich"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {#REGEX {%2} {summon %*} {weave 'summon' &1};};};
     };
-    #return @log_line_to_chat{};
+    __log_line_to_chat__;
 }
 
 #ACTION {[Gossip] %1} {
-    #if {${talker_log_toggle} = 1} {#return @log_line_to_chat{};};
+    #if {${talker_log_toggle} = 1} {__log_line_to_chat__;};
 };
 
 #ALIAS {pub_channel %1} {
