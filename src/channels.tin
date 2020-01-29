@@ -4,7 +4,7 @@
 #VARIABLE {pub_channel} {0};
 
 #NOP ==[Chat Highlighter]==
-#HIGHLIGHT {^You clan-say %1}  {light pink}  {5}
+#HIGHLIGHT {You clan-say %1}  {light pink}  {5}
 #HIGHLIGHT {%1 clan-says %1}  {light pink}  {5}
 
 #ACTION {You group-say '%1'} {
@@ -34,6 +34,8 @@
     __log_line_to_chat__;
 };
 
+#ACTION {You tell %1, '%2'} {__log_line_to_chat__;};
+#ACTION {You replies to %1 '%2'} {__log_line_to_chat__;};
 #ACTION {%1 replies to you, '%2'} {__log_line_to_chat__;};
 #ACTION {%1 tells you, '%2'} {__log_line_to_chat__;};
 #ACTION {%1 group-says '%2'} {
@@ -45,6 +47,7 @@
     };
     #ELSEIF {"%2" == "say %*"} {#regex {%2} {say %*} {say &1};};
     #ELSEIF {"%2" == "phase %*"} {#regex {%2} {phase %*} {weave 'phase door' &1};};
+    #ELSEIF {"%2" == "mounts"} {buy geld; n; mount geld;};
     #ELSEIF {"%2" == "pay" || "%2" == "pay thae"} {give 50 coins thae};
     #ELSEIF {"%2" == "haste"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'haste' $tmp};};
     #ELSEIF {"%2" == "heal"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'heal crit' $tmp};};
