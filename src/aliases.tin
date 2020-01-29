@@ -1,26 +1,5 @@
-#ALIAS {RESET ALL VARIABLES} {
-    #VARIABLE {CLANSAY_SUMMON}  {1}
-    #VARIABLE {CURRENT_CHAR}  {Shuu}
-    #VARIABLE {ame}  {0}
-    #VARIABLE {assist}  {Valar}
-    #VARIABLE {assist_fired}  {0}
-    #VARIABLE {avghscount}  {0}
-    #VARIABLE {date_started}  {2020-25-1}
-    #VARIABLE {dia}  {0}
-    #VARIABLE {eme}  {0}
-    #VARIABLE {groupxp}  {0}
-    #VARIABLE {groupxpcount}  {0}
-    #VARIABLE {hscount}  {0}
-    #VARIABLE {lasths}  {a Fiery Red}
-    #VARIABLE {rub}  {0}
-    #VARIABLE {sap}  {0}
-    #VARIABLE {soloxp}  {0}
-    #VARIABLE {soloxpcount}  {0}
-    #VARIABLE {target}  {guard}
-    #VARIABLE {totalxpcount}  {0}
-    #VARIABLE {AUTO_LOOT} {0}
-    #VARIABLE {GROUP_SPELLUP} {1}
-}
+#CLASS {aliases} {kill};
+#CLASS {aliases} {open};
 
 #ALIAS {save vars} {
     #CLASS variables open;
@@ -44,7 +23,12 @@
 #ALIAS {getje} {enter hole; open chest; get je chest; up;}
 
 #NOP ==[Misc]==
-#ALIAS {emogs} {emo group-says '%1'};
+#ALIAS {emogs} {emo group-says '%0'};
+#ALIAS {pay} {give 50 coins thae}
+#ALIAS {buy geld} {
+    buy geld;
+    mount 1.geld;
+};
 
 #NOP ==[World interaction]==
 #ALIAS {op} {open door}
@@ -53,6 +37,12 @@
 #ALIAS {eh} {enter hole}
 #ALIAS {et} {enter tunnel}
 #ALIAS {ep} {enter portal}
+#ALIAS {tk} {take all.key all.corpse}
+#ALIAS {udk %w} {unlock door %1; drop key; %1;}
+#ALIAS {ent %w} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {o fol ent %1;};
+    gs ent %1; enter %1
+};
 
 #NOP ==[NIGERUNDAYO!!!]==
 #ALIAS {f} {flee}
@@ -78,14 +68,19 @@
     #SHOWME {\e[91m===== CURRENT TARGET: $target =====};
 };
 
-#NOP ==[Spells]==
+#NOP =====[ALL OF THE SKILLS & SPELLS]======
+#NOP ==[Ultility skills/spells]==
 #ALIAS {pd} {weave 'phase door'}
+#ALIAS {knock} {weave 'knock'}
+#ALIAS {locate} {weave 'locate'}
+#ALIAS {bd} {bash door}
 #ALIAS {id} {
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'identify'};
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'identify' %1};
     #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {get id cap; hold id; recite id %1; hold lexicon;};
 }
-#ALIAS {heal} {weave 'heal crit'}
-#ALIAS {nf} {weave 'nature fury'}
+
+#NOP ==[Simple skills/spells]==
+#ALIAS {nf} {weave 'nature fury';};
 #ALIAS {hm} {weave 'harmony'}
 #ALIAS {sense} {weave 'sense life'}
 #ALIAS {fs} {weave 'fireshield'}
@@ -93,27 +88,99 @@
 #ALIAS {pfg} {weave 'protection from good'}
 #ALIAS {pfc} {weave 'protection from cold'}
 #ALIAS {pfh} {weave 'protection from heat'}
-#ALIAS {sanc} {weave 'sanc'}
-#ALIAS {haste} {weave 'haste'}
-#ALIAS {armor} {weave 'armor'}
-#ALIAS {ii} {weave 'improved invis'}
-#ALIAS {bw} {weave 'breath'}
 #ALIAS {vs} {weave 'vengeance shroud'}
 #ALIAS {cod} {weave 'cloak of darkness'}
 #ALIAS {mech} {weave 'mechanical hand'}
-#ALIAS {animal} {weave 'create animal'}
-#ALIAS {c} {constrict $target}
-#ALIAS {b} {bash}
-#ALIAS {bless} {weave 'bless'}
-#ALIAS {vt} {weave 'vampiric touch'}
+#ALIAS {ca} {weave 'create animal'};
 #ALIAS {wc} {weave 'war chant'}
-#ALIAS {aid} {weave 'aid'}
-#ALIAS {ed} {weave 'energy drain'}
-#ALIAS {vital} {weave 'vitalize' me}
-#ALIAS {dispel} {weave 'dispel magic'}
-#ALIAS {vig} {weave 'vigorize serious'}
-#ALIAS {knock} {weave 'knock'}
-#ALIAS {locate} {weave 'locate'}
-#ALIAS {des} {weave 'des' $target}
-#ALIAS {wor} {weave 'word of recall'}
-#ALIAS {pay} {give 50 coins thae}
+#ALIAS {wor} {weave 'word of recall';};
+
+#NOP ==[Complex skills/spells]==
+#ALIAS {endure} {
+    #IF {"%1" != ""} {weave 'endure' %1;};
+    #ELSE {weave 'endure' me};
+};
+#ALIAS {heal} {
+    #IF {"%1" != ""} {weave 'heal crit' %1;};
+    #ELSE {weave 'heal crit' me};
+};
+#ALIAS {sanc} {
+    #IF {"%1" != ""} {weave 'sanc' %1;};
+    #ELSE {weave 'sanc' me};
+};
+#ALIAS {haste} {
+    #IF {"%1" != ""} {weave 'haste' %1;};
+    #ELSE {weave 'haste' me};
+};
+#ALIAS {armor} {
+    #IF {"%1" != ""} {weave 'armor' %1;};
+    #ELSE {weave 'armor' me};
+};
+#ALIAS {ii} {
+    #IF {"%1" != ""} {weave 'improved invis' %1;};
+    #ELSE {weave 'improved invis' me};
+};
+#ALIAS {bw} {
+    #IF {"%1" != ""} {weave 'breath' %1;};
+    #ELSE {weave 'breath' me};
+};
+#ALIAS {c} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {
+        #IF {"%1" != ""} {constrict %1;};
+        #ELSE {constrict $target;};
+    };
+    #ELSE {#SHOWME \e[91mBut you are not playing Aldrich!\e[0m};
+};
+#ALIAS {b} {
+    #IF {"${CURRENT_CHAR}" == "Ilia"} {
+        #IF {"%1" != ""} {bash %1;};
+        #ELSE {bash $target;};
+    };
+    #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {
+        #IF {"%1" != ""} {weave 'blind' %1;};
+        #ELSE {weave 'blind' $target;};
+    };
+    #ELSE {#SHOWME \e[91mThis command is not available for the current character!\e[0m};
+};
+#ALIAS {bless} {
+    #IF {"%1" != ""} {weave 'bless' %1;};
+    #ELSE {weave 'bless' me};
+};
+#ALIAS {vt} {
+    #IF {"%1" != ""} {weave 'vampiric touch' %1;};
+    #ELSE {weave 'vampiric touch' $target};
+};
+#ALIAS {aid} {
+    #IF {"%1" != ""} {weave 'aid' %1;};
+    #ELSE {weave 'aid' me};
+};
+#ALIAS {ed} {
+    #IF {"%1" != ""} {weave 'energy drain' %1;};
+    #ELSE {weave 'energy drain' $target};
+};
+#ALIAS {de} {
+    #IF {"%1" != ""} {weave 'drain essence' %1;};
+    #ELSE {weave 'drain essence' $target;};
+};
+#ALIAS {vm} {
+    #IF {"%1" != ""} {weave 'vitalize mana' %1;};
+    #ELSE {weave 'vitalize mana' me};
+};
+#ALIAS {dm} {
+    #IF {"%1" != ""} {weave 'dispel magic' %1;};
+    #ELSE {weave 'dispel magic' $target};
+};
+#ALIAS {vig} {
+    #IF {"%1" != ""} {weave 'vigorize serious' %1;};
+    #ELSE {weave 'vigorize serious' me};
+};
+#ALIAS {des} {
+    #IF {"%1" != ""} {weave 'des' %1;};
+    #ELSE {weave 'des' $target;};
+};
+#ALIAS {ss} {
+    #IF {"%1" != ""} {weave 'soul shatter' %1;};
+    #ELSE {weave 'soul shatter' $target;};
+};
+
+#CLASS {aliases} {close};
