@@ -35,7 +35,7 @@
     #FORMAT {uptime[hours]} {%m} {($tmp - $session_start_time) / 60 / 60};
     #FORMAT {uptime[minutes]} {%m} {($tmp - $session_start_time) / 60 % 60};
     #FORMAT {uptime[display]} {%th %tm} {$uptime[hours]} {$uptime[minutes]};
-    #SHOWME {Notification: $c_noti --- $t_noti seconds ago: $last_noti --- Uptime: $uptime[display]} {1};
+    #SHOWME {Notification: $c_noti --- ${t_noti}s ago: $last_noti --- Target: $target --- Assist: $assist --- Uptime: $uptime[display]} {1};
 } {1};
 
 #CLASS {functions} {close};
