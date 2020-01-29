@@ -22,48 +22,11 @@
 #HIGHLIGHT {You see the glint of a heartstone!!} {bold red underscore}
 #HIGHLIGHT {%1 notices a heartstone%*} {bold red underscore}
 
-#NOP ==[Auto Assist]== TODO
-#ACTION {{^The \w+ (.*?) \w.* blast.*$}} {
+#NOP ==[Auto Assist]==
+#ACTION {{The \w+ (.*?) \w.* (blast|crush|hit|pierce|pound|slash|whip).*}} {
     #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
 } {4};
-#ACTION {{^The \w+ (.*?) \w.* crush.*$}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {4};
-#ACTION {{^The \w+ (.*?) \w.* hit.*$}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {4};
-#ACTION {{^The \w+ (.*?) \w.* pierce.*$}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {4};
-#ACTION {{^The \w+ (.*?) \w.* pound.*$}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {4};
-#ACTION {{^The \w+ (.*?) \w.* slash.*$}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {4};
-#ACTION {{^The \w+ (.*?) \w.* whip.*$}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {4};
-
-#ACTION {{(.*?) \w.* blast.*}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {5};
-#ACTION {{(.*?) \w.* crush.*}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {5};
-#ACTION {{(.*?) \w.* hit.*}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {5};
-#ACTION {{(.*?) \w.* pierce.*}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {5};
-#ACTION {{(.*?) \w.* pound.*}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {5};
-#ACTION {{(.*?) \w.* slash.*}} {
-    #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
-} {5};
-#ACTION {{(.*?) \w.* whip.*}} {
+#ACTION {{(.*?) \w.* (blast|crush|hit|pierce|pound|slash|whip).*}} {
     #if {"%2" == "${assist}" && "${assist_fired}" == "0"} {assist; #var assist_fired 1;};
 } {5};
 
@@ -97,11 +60,15 @@
 #ACTION {You are now a member of %*'s group.} {
     #FORMAT {assist} {@get_real_name{%1}};
     #SHOWME {\e[91m===== CURRENT ASSITING: $assist =====};
-    #if {"${assist}" != "Shuu"} {
+    #if {"${assist}" != "Shuu" && "${CURRENT_CHAR}" == "Shuu"} {
         gs gs 'shuu trigs' to check my trigs;
     };
     #else {#var assist shuu};
-}
+};
+#ACTION {%* beckons for you to follow.} {
+    #FORMAT {tmp} {@get_real_name{%1}};
+    #IF {"${tmp}" == "{Istvani|Aelloir|Lyzivex|Azil}"} {follow $tmp;};
+};
 #ACTION {There were %1 coins.} {split %1}
 
 #NOP ==[End Session On Quit]==
@@ -148,75 +115,143 @@
 #NOP ==[Buff Alert]==
 #ACTION {The affects of the Bard's song dissipate.} {
     gs Bard Song OUT!;
-    #return @update_noti{\e[91m===Bard Song OUT!===\e[0m};
+    _update_noti_ \e[91m===Bard Song OUT!===\e[0m;
 };
 #ACTION {The tower of mortal will around you fades.} {
     gs TOWER OUT!;
-    #return @update_noti{\e[91m===TOWER OUT!===\e[0m};
+    _update_noti_ \e[91m===TOWER OUT!===\e[0m;
 };
-
 #ACTION {The white aura around your body fades.} {
     gs SANC OUT!;
-    #return @update_noti{\e[91m===SANC OUT!===\e[0m};
-}
+    _update_buff_status_ sanc off;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'sanc' me};
+    _update_noti_ \e[91m===SANC OUT!===\e[0m;
+};
 #ACTION {You feel an evil mist surround you.} {
     gs DESSED!
-    #return @update_noti{\e[91m===DESSED!!!===\e[0m};
+    _update_noti_ \e[91m===DESSED!!!===\e[0m;
 };
 #ACTION {You feel yourself exposed.} {
     gs II OUT!;
-    #return @update_noti{\e[91m===Improved Invis OUT!===\e[0m};
+    _update_buff_status_ ii off;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' me};
+    _update_noti_ \e[91m===II OUT!===\e[0m;
 };
 #ACTION {You lose your focus.} {
     gs FOCUS OUT!;
-    #return @update_noti{\e[91m===FOCUS OUT!===\e[0m};
+    _update_buff_status_ focus off;
+    _update_noti_ \e[91m===FOCUS OUT!===\e[0m;
 };
 #ACTION {You no longer feel in tune with nature.} {
     gs NATFURY OUT!;
-    #return @update_noti{\e[91m===NATFURY OUT!===\e[0m};
+    _update_buff_status_ nf off;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury'};
+    _update_noti_ \e[91m===NATFURY OUT!===\e[0m;
 };
 #ACTION {Your body and mind return to their normal speed.} {
     gs HASTE OUT!;
-    #return @update_noti{\e[91m===HASTE OUT!===\e[0m};
+    _update_buff_status_ haste off;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste'};
+    _update_noti_ \e[91m===HASTE OUT!===\e[0m;
 };
 #ACTION {Your body stops absorbing light%*} {
     gs VS OUT!;
-    #return @update_noti{\e[91m===VS OUT!===\e[0m};
+    _update_noti_ \e[91m===VS OUT!===\e[0m;
 };
 #ACTION {Your cloak of darkness dissolves.} {
     gs COD OUT!;
-    #return @update_noti{\e[91m===CLOAK OF DARKNESS OUT!===\e[0m};
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness'};
+    _update_noti_ \e[91m===COD OUT!===\e[0m;
 };
 #ACTION {You feel calm and your lust for blood lessens.} {
-    #return @update_noti{\e[36m===Blood Lust OUT!===};
+    _update_noti_ \e[36m===Blood Lust OUT!===;
 };
 #ACTION {You feel less protected.} {
-    #return @update_noti{\e[36m===Armor Out!===\e[0m};
+    _update_buff_status_ armor off;
+    _update_noti_ \e[36m===Armor Out!===\e[0m;
 };
 #ACTION {You feel less righteous.} {
-    #return @update_noti{\e[36m===Bless Out!===\e[0m};
+    _update_buff_status_ bless off;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'bless' me};
+    _update_noti_ \e[36m===Bless Out!===\e[0m;
 };
 #ACTION {You feel the aiding deity reclaim its donated strength.} {
-    #return @update_noti{\e[36m===Aid Out!===\e[0m};
+    _update_buff_status_ aid off;
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {weave 'aid' me};
+    _update_noti_ \e[36m===Aid Out!===\e[0m;
 };
 #ACTION {You feel vulnerable to the elements again.} {
-    #return @update_noti{\e[36m===Endure Out!===\e[0m};
+    _update_buff_status_ endure off;
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Ilia}"} {weave 'endure' me};
+    _update_noti_ \e[36m===Endure Out!===\e[0m;
 };
 #ACTION {Your body loses its fiery glow.} {
-    #return @update_noti{\e[36m===FSHIELD OUT!===\e[0m};
+    _update_noti_ \e[36m===FShield OUT!===\e[0m;
 };
 #ACTION {You stop your war-like chanting.} {
-    #return @update_noti{\e[91m===WAR CHANT OUT!===\e[0m};
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'war chant'};
+    _update_noti_ \e[91m===WarChant OUT!===\e[0m;
 };
 #ACTION {Your mantle of chaos explodes in a burst of light!} {
-    #return @update_noti{\e[36m===Mantle Out!===\e[0m};
+    _update_noti_ \e[36m===Mantle Out!===\e[0m;
 };
 #ACTION {Your skin doesn't feel quite so tough anymore.} {
-    #return @update_noti{\e[36m===BarkSkin Out!===\e[0m};
+    _update_noti_ \e[36m===BarkSkin Out!===\e[0m;
+};
+
+#ACTION {You feel strengthened by the power of the Creator!} {
+    _update_buff_status_ aid on;
+};
+#ACTION {You start glowing.} {
+    _update_buff_status_ sanc on;
+};
+#ACTION {You feel fast!} {
+    _update_buff_status_ haste on;
+};
+#ACTION {You vanish.} {
+    _update_buff_status_ ii on;
+};
+#ACTION {You become the ultimate embodiment of the destructive power of nature!} {
+    _update_buff_status_ nf on;
+};
+#ACTION {You feel as if you can breathe under water!} {
+    _update_buff_status_ bw on;
+};
+#ACTION {You begin to focus your energies into yourself.} {
+    _update_buff_status_ focus on;
+};
+#ACTION {You feel someone protecting you.} {
+    _update_buff_status_ armor on;
+};
+#ACTION {You feel righteous.} {
+    _update_buff_status_ bless on;
+};
+#ACTION {You feel a shield of energy surround your body.} {
+    _update_buff_status_ endure on;
 };
 
 #NOP ==[Game Helper]==
 #ACTION {You are knocked from your feet and fall hard to the ground!} {stand}
 #ACTION {You are knocked from your mount and fall hard to the ground!} {stand}
+#ACTION {You awaken from your deep sleep.} {
+    #FORMAT {tmp} {%t} {%s};
+}
+
+#NOP ==[Scoreaff]==
+#ACTION {You are invisible (improved).} {
+    _update_buff_status_ ii on;
+};
+#ACTION {You are protected by Sanctuary.} {
+    _update_buff_status_ sanc on;
+};
+#ACTION {You are fast!} {
+    _update_buff_status_ haste on;
+};
+#ACTION {You are protected from elements.} {
+    _update_buff_status_ endure on;
+};
+#ACTION {You are focused!} {
+    _update_buff_status_ focus on;
+};
 
 #CLASS {actions} {close};
