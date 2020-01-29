@@ -59,11 +59,13 @@
 #NOP ==[Group Helper]==
 #ACTION {You are now a member of %*'s group.} {
     #FORMAT {assist} {@get_real_name{%1}};
-    #SHOWME {\e[91m===== CURRENT ASSITING: $assist =====};
-    #if {"${assist}" != "Shuu" && "${CURRENT_CHAR}" == "Shuu"} {
-        gs gs 'shuu trigs' to check my trigs;
-    };
-    #else {#var assist shuu};
+    #IF {"${assist}" == "{Shuu|Aldrich}"} {#VAR assist $CURRENT_CHAR;};
+    #ELSE {
+        #SHOWME {\e[91m===== CURRENT ASSITING: $assist =====};
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {
+            gs gs 'shuu trigs' to check my trigs;
+        };
+    }
 };
 #ACTION {%* beckons for you to follow.} {
     #FORMAT {tmp} {@get_real_name{%1}};
@@ -114,120 +116,179 @@
 
 #NOP ==[Buff Alert]==
 #ACTION {The affects of the Bard's song dissipate.} {
-    gs Bard Song OUT!;
-    _update_noti_ \e[91m===Bard Song OUT!===\e[0m;
+    #SHOWME \e[91m===Bard Song OUT!===\e[0m;
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {gs psalm' OUT!;};
+    #ELSE {gs bal' OUT!;};
+    _update_noti_ \e[91mBardSong OUT!\e[0m;
 };
 #ACTION {The tower of mortal will around you fades.} {
+    #SHOWME  \e[91m===TOWER OUT!===\e[0m;
     gs TOWER OUT!;
-    _update_noti_ \e[91m===TOWER OUT!===\e[0m;
+    _update_noti_ \e[91mTOWER OUT!\e[0m;
 };
 #ACTION {The white aura around your body fades.} {
-    gs SANC OUT!;
+    gs sanc' OUT!;
     _update_buff_status_ sanc off;
+    #SHOWME  \e[91m===SANC OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'sanc' me};
-    _update_noti_ \e[91m===SANC OUT!===\e[0m;
+    _update_noti_ \e[91mSANC OUT!\e[0m;
 };
 #ACTION {You feel an evil mist surround you.} {
-    gs DESSED!
-    _update_noti_ \e[91m===DESSED!!!===\e[0m;
+    #SHOWME  \e[91m===DESSED===\e[0m;
+    gs DESSED!;
+    _update_noti_ \e[1m\e[4m\e[91m!!!DESSED!!!\e[0m;
 };
 #ACTION {You feel yourself exposed.} {
-    gs II OUT!;
+    gs ii' OUT!;
     _update_buff_status_ ii off;
+    #SHOWME \e[91m===II OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' me};
-    _update_noti_ \e[91m===II OUT!===\e[0m;
+    _update_noti_ \e[91mII OUT!\e[0m;
 };
 #ACTION {You lose your focus.} {
     gs FOCUS OUT!;
+    #SHOWME \e[91m===FOCUS OUT!===\e[0m;
     _update_buff_status_ focus off;
-    _update_noti_ \e[91m===FOCUS OUT!===\e[0m;
+    _update_noti_ \e[91mFOCUS OUT!\e[0m;
 };
 #ACTION {You no longer feel in tune with nature.} {
     gs NATFURY OUT!;
     _update_buff_status_ nf off;
+    #SHOWME \e[91m===NATFURY OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury'};
-    _update_noti_ \e[91m===NATFURY OUT!===\e[0m;
+    _update_noti_ \e[91mNATFURY OUT!\e[0m;
 };
 #ACTION {Your body and mind return to their normal speed.} {
-    gs HASTE OUT!;
+    gs haste' OUT!;
     _update_buff_status_ haste off;
+    #SHOWME \e[91m===HASTE OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste'};
-    _update_noti_ \e[91m===HASTE OUT!===\e[0m;
+    _update_noti_ \e[91mHASTE OUT!\e[0m;
 };
 #ACTION {Your body stops absorbing light%*} {
+    #SHOWME \e[91m===VS OUT!===\e[0m;
     gs VS OUT!;
-    _update_noti_ \e[91m===VS OUT!===\e[0m;
+    _update_noti_ \e[91mVS OUT!\e[0m;
 };
 #ACTION {Your cloak of darkness dissolves.} {
     gs COD OUT!;
+    #SHOWME \e[91m===COD OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness'};
-    _update_noti_ \e[91m===COD OUT!===\e[0m;
+    _update_noti_ \e[91mCOD OUT!\e[0m;
 };
 #ACTION {You feel calm and your lust for blood lessens.} {
-    _update_noti_ \e[36m===Blood Lust OUT!===;
+    #SHOWME \e[93m===Blood Lust OUT!===;
+    _update_noti_ \e[93mBlood Lust OUT!;
 };
 #ACTION {You feel less protected.} {
+    #SHOWME \e[93m===Armor Out!===\e[0m;
     _update_buff_status_ armor off;
-    _update_noti_ \e[36m===Armor Out!===\e[0m;
+    _update_noti_ \e[93mArmor Out!\e[0m;
 };
 #ACTION {You feel less righteous.} {
+    gs bless' OUT!;
     _update_buff_status_ bless off;
+    #SHOWME \e[93m===Bless Out!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'bless' me};
-    _update_noti_ \e[36m===Bless Out!===\e[0m;
+    _update_noti_ \e[93mBless Out!\e[0m;
 };
 #ACTION {You feel the aiding deity reclaim its donated strength.} {
+    gs aid' OUT!;
     _update_buff_status_ aid off;
+    #SHOWME \e[93m===Aid Out!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {weave 'aid' me};
-    _update_noti_ \e[36m===Aid Out!===\e[0m;
+    _update_noti_ \e[93mAid Out!\e[0m;
 };
 #ACTION {You feel vulnerable to the elements again.} {
     _update_buff_status_ endure off;
+    #SHOWME \e[93m===Endure Out!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Ilia}"} {weave 'endure' me};
-    _update_noti_ \e[36m===Endure Out!===\e[0m;
+    _update_noti_ \e[93mEndure Out!\e[0m;
 };
 #ACTION {Your body loses its fiery glow.} {
-    _update_noti_ \e[36m===FShield OUT!===\e[0m;
+    #SHOWME \e[91m===FShield OUT!===\e[0m;
+    _update_noti_ \e[91mFShield OUT!\e[0m;
 };
 #ACTION {You stop your war-like chanting.} {
+    #SHOWME \e[91m===WarChant OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'war chant'};
-    _update_noti_ \e[91m===WarChant OUT!===\e[0m;
+    _update_noti_ \e[93mWarChant OUT!\e[0m;
+};
+#ACTION {You no longer feel shielded.} {
+    #SHOWME \e[93m===Shield out!===\e[0m;
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me};
+    #ELSE {gs shield' out!;};
+    _update_noti_ \e[93mShield out!\e[0m;
 };
 #ACTION {Your mantle of chaos explodes in a burst of light!} {
-    _update_noti_ \e[36m===Mantle Out!===\e[0m;
+    _update_noti_ \e[93mMantle Out!\e[0m;
 };
 #ACTION {Your skin doesn't feel quite so tough anymore.} {
-    _update_noti_ \e[36m===BarkSkin Out!===\e[0m;
+    _update_noti_ \e[93mBarkSkin Out!\e[0m;
 };
 
 #ACTION {You feel strengthened by the power of the Creator!} {
+    #SHOWME \e[92mAid UP!;
+    _update_noti_ \e[92mAid UP!\e[0m;
     _update_buff_status_ aid on;
 };
+#ACTION {You feel shielded.} {
+    #SHOWME \e[92mShield up!;
+    _update_noti_ \e[92mShield up!\e[0m;
+    _update_buff_status_ shield on;
+};
 #ACTION {You start glowing.} {
+    #SHOWME \e[92mSanc UP!;
+    _update_noti_ \e[92mSanc UP!\e[0m;
     _update_buff_status_ sanc on;
 };
 #ACTION {You feel fast!} {
+    #SHOWME \e[92mHaste UP!;
+    _update_noti_ \e[92mHaste UP!\e[0m;
     _update_buff_status_ haste on;
 };
 #ACTION {You vanish.} {
+    #SHOWME \e[92mII UP!;
+    _update_noti_ \e[92mII UP!\e[0m;
     _update_buff_status_ ii on;
 };
 #ACTION {You become the ultimate embodiment of the destructive power of nature!} {
+    #SHOWME \e[92mNF UP!;
+    _update_noti_ \e[92mNF UP!\e[0m;
     _update_buff_status_ nf on;
 };
 #ACTION {You feel as if you can breathe under water!} {
     _update_buff_status_ bw on;
 };
 #ACTION {You begin to focus your energies into yourself.} {
+    #SHOWME \e[92mFocus UP!;
+    _update_noti_ \e[92mFocus UP!\e[0m;
     _update_buff_status_ focus on;
 };
 #ACTION {You feel someone protecting you.} {
+    #SHOWME \e[92mArmor up!;
+    _update_noti_ \e[92mArmor up!\e[0m;
     _update_buff_status_ armor on;
 };
 #ACTION {You feel righteous.} {
+    #SHOWME \e[92mBless up!;
+    _update_noti_ \e[92mBless up!\e[0m;
     _update_buff_status_ bless on;
 };
 #ACTION {You feel a shield of energy surround your body.} {
+    #SHOWME \e[92mEndure up!;
+    _update_noti_ \e[92mEndure up!\e[0m;
     _update_buff_status_ endure on;
+};
+#ACTION {You are now protected by a wall of force!!} {
+    #SHOWME \e[92mForceWall up!;
+    _update_noti_ \e[92mForceWall up!\e[0m;
+    _update_buff_status_ wof on;
+};
+#ACTION {You are now protected by a wall of swords!!} {
+    #SHOWME \e[92mWOS UP!;
+    _update_noti_ \e[92mWOS up!\e[0m;
+    _update_buff_status_ wos on;
 };
 
 #NOP ==[Game Helper]==
