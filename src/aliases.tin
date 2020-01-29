@@ -7,7 +7,8 @@
 };
 
 #ALIAS {rst} {
-    #READ config.tin;
+    #IF {"%1" != ""} {#READ src/%1.tin};
+    #ELSE {#READ config.tin;};
 };
 
 #ALIAS {clc} {
@@ -17,7 +18,7 @@
 
 #NOP ==[Loot]==
 #ALIAS {es} {exa corpse}
-#ALIAS {es2} {exa 2.corpse}
+#ALIAS {es%d} {exa %1.corpse}
 #ALIAS {gg} {get coin all.corpse}
 #ALIAS {ta} {take all all.corpse}
 #ALIAS {getje} {enter hole; open chest; get je chest; up;}
@@ -39,6 +40,7 @@
 #ALIAS {ep} {enter portal}
 #ALIAS {tk} {take all.key all.corpse}
 #ALIAS {udk %w} {unlock door %1; drop key; %1;}
+#ALIAS {tkd %w} {take key; udk %1};
 #ALIAS {ent %w} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {o fol ent %1;};
     gs ent %1; enter %1
@@ -50,14 +52,14 @@
 #NOP ==[Fighting]==
 #ALIAS {k} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill $target};
-    #ELSE {kill $target};
-};
-#ALIAS {k %w} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill %1};
-    #ELSE {kill %1};
+    #ELSE {
+        #IF {"%1" != ""} {kill %1;};
+        #ELSE {kill $target;};
+    };
 };
 #ALIAS {a} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill $target};
+    #ELSE {assist};
 } {5};
 #ALIAS {a %w} {
     #VAR {assist} {%1};
@@ -119,6 +121,10 @@
 #ALIAS {ii} {
     #IF {"%1" != ""} {weave 'improved invis' %1;};
     #ELSE {weave 'improved invis' me};
+};
+#ALIAS {shield} {
+    #IF {"%1" != ""} {weave 'shield' %1;};
+    #ELSE {weave 'shield' me};
 };
 #ALIAS {bw} {
     #IF {"%1" != ""} {weave 'breath' %1;};
