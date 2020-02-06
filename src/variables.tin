@@ -5,26 +5,33 @@
 #VARIABLE         {CURRENT_CHAR}  {Aldrich}
 #VARIABLE         {GROUP_SPELLUP}  {1}
 #VARIABLE         {ame}  {0}
-#VARIABLE         {assist}  {shuu}
-#VARIABLE         {assist_fired}  {0}
-#VARIABLE         {avghscount}  {628.0}
-#VARIABLE         {c_noti}  {\e[36m===Armor Out!===\e[0m}
+#VARIABLE         {assist}  {Lyzivex}
+#VARIABLE         {assist_fired}  {1}
+#VARIABLE         {avghscount}  {1741.0}
+#VARIABLE         {c_noti}  {\e[92mWarChant UP!\e[0m}
 #VARIABLE         {date_started}  {2020-25-01}
 #VARIABLE         {dia}  {0}
 #VARIABLE         {eme}  {0}
-#VARIABLE         {groupxp}  {23902379}
-#VARIABLE         {groupxpcount}  {3336}
-#VARIABLE         {hscount}  {5}
-#VARIABLE         {last_noti}  {\e[36m===Aid Out!===\e[0m}
+#VARIABLE         {groupxp}  {157748117}
+#VARIABLE         {groupxpcount}  {16134}
+#VARIABLE         {hscount}  {9}
+#VARIABLE         {last_noti}  {\e[93mWarChant OUT!\e[0m}
 #VARIABLE         {lasths}  {nothing}
+#VARIABLE         {p_dmg}  {?}
+#VARIABLE         {p_endurance}  {319}
+#VARIABLE         {p_hp}  {681}
+#VARIABLE         {p_mana}  {802}
+#VARIABLE         {p_mv}  {319}
+#VARIABLE         {p_stamina}  {100}
+#VARIABLE         {p_xp}  {3963420}
 #VARIABLE         {rub}  {0}
 #VARIABLE         {sap}  {0}
-#VARIABLE         {soloxp}  {12525}
-#VARIABLE         {soloxpcount}  {2}
-#VARIABLE         {t_last_noti}  {1580284349}
-#VARIABLE         {t_noti}  {2544}
-#VARIABLE         {target}  {ist}
-#VARIABLE         {totalxp}  {23914904}
-#VARIABLE         {totalxpcount}  {3338}
+#VARIABLE         {soloxp}  {2386765}
+#VARIABLE         {soloxpcount}  {78}
+#VARIABLE         {t_last_noti}  {1580957692}
+#VARIABLE         {t_noti}  {291}
+#VARIABLE         {target}  {pre}
+#VARIABLE         {totalxp}  {160134882}
+#VARIABLE         {totalxpcount}  {16212}
 
 #CLASS {variables} CLOSE
