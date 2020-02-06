@@ -9,6 +9,8 @@
     #RETURN $tmp
 }
 
+#ALIAS {__update_prompt__} {#SHOWME {<\e[91m${p_hp}H \e[92m${p_mana}M \e[93m${p_mv}V \e[36m${p_xp}X \e[36m${p_dmg}%D \e[91m${p_stamina}S \e[36m${p_endurance}E\e[0m> --- Target: $target --- Assist: $assist\e[0m} {-2} {1};};
+
 #ALIAS {__log_line_to_chat__} {
     #script {ts} {date +"%I:%M%P"};
     #line {log} {$chat_file} {$ts[1] \};
@@ -35,7 +37,11 @@
     #FORMAT {uptime[hours]} {%m} {($tmp - $session_start_time) / 60 / 60};
     #FORMAT {uptime[minutes]} {%m} {($tmp - $session_start_time) / 60 % 60};
     #FORMAT {uptime[display]} {%th %tm} {$uptime[hours]} {$uptime[minutes]};
-    #SHOWME {Notification: $c_noti --- ${t_noti}s ago: $last_noti --- Target: $target --- Assist: $assist --- Uptime: $uptime[display]} {1};
+    #SHOWME {\e[0mNotification: $c_noti --- ${t_noti}s ago: $last_noti --- Uptime: $uptime[display]} {1};
 } {1};
+
+#TICKER {auto_save_vars} {
+    #CLASS variables write {src/variables.tin};
+} {3600};
 
 #CLASS {functions} {close};
