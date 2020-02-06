@@ -1,5 +1,5 @@
-#CLASS {speedwalks} KILL
-#CLASS {speedwalks} OPEN
+#CLASS {speedwalks} {KILL}
+#CLASS {speedwalks} {OPEN}
 
 #NOP ==[Speedwalk with dot (.)]==
 #ALIAS {.%0}
@@ -39,5 +39,14 @@
 
 #NOP ==[All of the speedwalks]==
 #ALIAS {back candrel} {.es2esene4s2e9s}
+#ALIAS {back clan} {.6s5e; enter portal; .2s}
+#ALIAS {back coffin} {.wn3wus2w; ep; .ws2w2s2w4s}
+#ALIAS {back zedd} {.2d2n2w14s}
 #ALIAS {go candrel} {.9n2w4nwswn2wnw}
-#CLASS {speedwalks} CLOSE
+#ALIAS {go coffin} {.4n2e2n2en4end3ese}
+#ALIAS {go karaonwa} {.4s2e3s6e4se2sw2se4s8w22n7w}
+#ALIAS {go thae} {.4s2w2s; give 50 coins thae}
+#ALIAS {go tv} {.4s2w3s10e4se2sw2se4s10e4nw2n2e2n2wsw3n2e4ne3nenwn}
+#ALIAS {go zedd} {.14n2e2s2u}
+
+#CLASS {speedwalks} {CLOSE}
