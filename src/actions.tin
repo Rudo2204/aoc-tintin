@@ -75,7 +75,6 @@
 
 #NOP ==[End Session On Quit]==
 #ACTION {%1 stores your belongings and helps you into your private chamber.} {
-    #CLASS variables open;
     #CLASS variables write {src/variables.tin};
     #end;
 }
@@ -166,8 +165,9 @@
     _update_noti_ \e[91mHASTE OUT!\e[0m;
 };
 #ACTION {Your body stops absorbing light%*} {
-    #SHOWME \e[91m===VS OUT!===\e[0m;
     gs VS OUT!;
+    #SHOWME \e[91m===VS OUT!===\e[0m;
+    #IF {"$CURRENT_CHAR" == "Aldrich"} {mimic veng slif;};
     _update_noti_ \e[91mVS OUT!\e[0m;
 };
 #ACTION {Your cloak of darkness dissolves.} {
@@ -203,6 +203,7 @@
     _update_buff_status_ endure off;
     #SHOWME \e[93m===Endure Out!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Ilia}"} {weave 'endure' me};
+    #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {mimic endure lyz};
     _update_noti_ \e[93mEndure Out!\e[0m;
 };
 #ACTION {Your body loses its fiery glow.} {
@@ -213,6 +214,7 @@
     #SHOWME \e[91m===WarChant OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'war chant'};
     _update_noti_ \e[93mWarChant OUT!\e[0m;
+    _update_buff_status_ wc out;
 };
 #ACTION {You no longer feel shielded.} {
     #SHOWME \e[93m===Shield out!===\e[0m;
@@ -226,7 +228,30 @@
 #ACTION {Your skin doesn't feel quite so tough anymore.} {
     _update_noti_ \e[93mBarkSkin Out!\e[0m;
 };
+#ACTION {The wall of force around you recedes.} {
+    #SHOWME \e[93m===WOF out!===\e[0m;
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force'};
+    #ELSE {gs wof' out!;};
+    _update_noti_ \e[93mForceWall out!\e[0m;
+};
+#ACTION {The wall of swords around you fades.} {
+    gs wos' OUT!;
+    #SHOWME \e[91m===WOS OUT!===;
+    _update_noti_ \e[91mWOS OUT!\e[0m;
+    _update_buff_status_ wos out;
+};
+#ACTION {Your feet no longer glide slightly above the ground.} {
+    gs air' OUT!;
+    #SHOWME \e[93m===AirWalk OUT!===;
+    _update_noti_ \e[93mAirWalk OUT!\e[0m;
+};
 
+
+#ACTION {You begin a low, rhythmic chanting.} {
+    #SHOWME \e[92mWarChant UP!;
+    _update_noti_ \e[92mWarChant UP!\e[0m;
+    _update_buff_status_ wc on;
+};
 #ACTION {You feel strengthened by the power of the Creator!} {
     #SHOWME \e[92mAid UP!;
     _update_noti_ \e[92mAid UP!\e[0m;
@@ -280,7 +305,7 @@
     _update_noti_ \e[92mEndure up!\e[0m;
     _update_buff_status_ endure on;
 };
-#ACTION {You are now protected by a wall of force!!} {
+#ACTION {A wall of force surrounds you!} {
     #SHOWME \e[92mForceWall up!;
     _update_noti_ \e[92mForceWall up!\e[0m;
     _update_buff_status_ wof on;
@@ -289,6 +314,11 @@
     #SHOWME \e[92mWOS UP!;
     _update_noti_ \e[92mWOS up!\e[0m;
     _update_buff_status_ wos on;
+};
+#ACTION {You begin to absorb light.} {
+    #SHOWME \e[92mVS UP!;
+    _update_noti_ \e[92mVS up!\e[0m;
+    _update_buff_status_ vs on;
 };
 
 #NOP ==[Game Helper]==
