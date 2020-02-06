@@ -1,0 +1,3 @@
+rm *.log
+touch chat.log
+touch status.log
