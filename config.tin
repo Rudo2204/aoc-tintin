@@ -29,9 +29,11 @@
 #READ {src/aliases.tin}
 #READ {src/speedwalks.tin}
 
+#READ {src/prompt.tin}
+
 #EVENT {SESSION CONNECTED} {
     #FORMAT {session_start_time} {%t} {%s};
-    #delay 1 {#split 2 1};
+    #delay 1 {#split 2 2};
 };
 
 #SESSION aoc {aoc.pandapub.com} {4000}
