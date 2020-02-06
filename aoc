@@ -1,0 +1,46 @@
+cd ~/src/aoc-tintin
+
+# No existing discworld session? Then create one
+if [[ ! $(tmux ls -F '#S') =~ aoc ]]; then
+    # Flag that we've just created a session
+    AOC_SESSION_CREATE=1
+
+    # Zero out log files to keep size down
+    # rm logs/chat.log && touch logs/chat.log
+    # rm logs/status.log && touch logs/status.log
+
+    # Start a new tmux session named "aoc"
+    tmux new-session -d -A -D -s aoc
+fi
+
+# If we're in TMUX, or we just created a new session, make a layout
+if [ -n "$TMUX" ] || [ "$AOC_SESSION_CREATE" = "1" ]; then
+
+    # Kill any existing panes but the one we're "starting" in if in tmux already
+    if [ -n "$TMUX" ]; then
+        tmux kill-pane -a -t aoc:0.0
+    fi
+
+    # Create the chat monitor window on top
+    tmux split-window -v -b -l 4
+    tmux send-keys 'clear && tail -fs .5 logs/chat.log' 'C-m'
+
+    # Cut back to main window, vertical split again for status update and death timer windows
+    tmux select-pane -t aoc:0.1
+    tmux split-window -h -l 30
+
+    # Split to get death timer windows and run the death timer script
+    tmux split-window -v
+
+    # Select the status update and run the script
+    tmux select-pane -t aoc:0.2
+
+    # Select main pane and load TinTin++ with our config
+    tmux select-pane -t aoc:0.1
+    tmux send-keys 'clear && tt++ config.tin' 'C-m'
+fi
+
+if [ -z "$TMUX" ]; then
+    # If we aren't already inside of TMUX, then attach to our session
+    tmux -2 attach-session -t aoc -d
+fi
