@@ -13,7 +13,7 @@
 
 #ALIAS {clc} {
     clear;
-    #DELAY 1 {#split 2 1};
+    #DELAY 1 {#split 2 2; __update_prompt__};
 };
 
 #NOP ==[Loot]==
@@ -24,12 +24,10 @@
 #ALIAS {getje} {enter hole; open chest; get je chest; up;}
 
 #NOP ==[Misc]==
+#ALIAS {wk} {wake; stand;};
 #ALIAS {emogs} {emo group-says '%0'};
 #ALIAS {pay} {give 50 coins thae}
-#ALIAS {buy geld} {
-    buy geld;
-    mount 1.geld;
-};
+#ALIAS {buy geld} {buy gelding; mount 1.geld;};
 
 #NOP ==[World interaction]==
 #ALIAS {op} {open door}
@@ -39,11 +37,12 @@
 #ALIAS {et} {enter tunnel}
 #ALIAS {ep} {enter portal}
 #ALIAS {tk} {take all.key all.corpse}
-#ALIAS {udk %w} {unlock door %1; drop key; %1;}
-#ALIAS {tkd %w} {take key; udk %1};
-#ALIAS {ent %w} {
+#ALIAS {cd} {close door};
+#ALIAS {ud%w} {unlock door %1; open door %1; %1};
+#ALIAS {tkd} {take key; ud%1};
+#ALIAS {ent} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {o fol ent %1;};
-    gs ent %1; enter %1
+    gs ent %1; enter %1;
 };
 
 #NOP ==[NIGERUNDAYO!!!]==
@@ -66,8 +65,11 @@
     #SHOWME {\e[91m===== CURRENT ASSITING: $assist =====};
 } {4};
 #ALIAS {t} {
-    #VAR {target} {%1};
-    #SHOWME {\e[91m===== CURRENT TARGET: $target =====};
+    #IF {"%1" == ""} {#ECHO {\e[91m===== DID NOT CHANGE TARGET! =====};};
+    #ELSE {
+        #VAR {target} {%1};
+        #SHOWME {\e[91m===== CURRENT TARGET: $target =====};
+    };
 };
 
 #NOP =====[ALL OF THE SKILLS & SPELLS]======
@@ -85,7 +87,6 @@
 #ALIAS {nf} {weave 'nature fury';};
 #ALIAS {hm} {weave 'harmony'}
 #ALIAS {sense} {weave 'sense life'}
-#ALIAS {fs} {weave 'fireshield'}
 #ALIAS {pfe} {weave 'protection from evil'}
 #ALIAS {pfg} {weave 'protection from good'}
 #ALIAS {pfc} {weave 'protection from cold'}
@@ -95,9 +96,21 @@
 #ALIAS {mech} {weave 'mechanical hand'}
 #ALIAS {ca} {weave 'create animal'};
 #ALIAS {wc} {weave 'war chant'}
-#ALIAS {wor} {weave 'word of recall';};
+#ALIAS {wor} {weave 'word of recall'};
+#ALIAS {wof} {weave 'wall of force';};
 
 #NOP ==[Complex skills/spells]==
+#ALIAS {fs} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'fireshield';};
+    #ELSE {
+        #IF {"%1" != ""} {weave 'flamestrike' %1;};
+        #ELSE {weave 'flamestrike' $target;};
+    };
+}
+#ALIAS {ww} {
+    #IF {"%1" != ""} {weave 'waterwalk' %1;};
+    #ELSE {weave 'waterwalk' me};
+};
 #ALIAS {endure} {
     #IF {"%1" != ""} {weave 'endure' %1;};
     #ELSE {weave 'endure' me};
@@ -152,6 +165,18 @@
     #IF {"%1" != ""} {weave 'bless' %1;};
     #ELSE {weave 'bless' me};
 };
+#ALIAS {si} {
+    #IF {"%1" != ""} {weave 'silence' %1;};
+    #ELSE {weave 'silence' $target};
+};
+#ALIAS {dp} {
+    #IF {"%1" != ""} {weave 'despair' %1;};
+    #ELSE {weave 'despair' $target};
+};
+#ALIAS {sl} {
+    #IF {"%1" != ""} {weave 'sleep' %1;};
+    #ELSE {weave 'sleep' $target};
+};
 #ALIAS {vt} {
     #IF {"%1" != ""} {weave 'vampiric touch' %1;};
     #ELSE {weave 'vampiric touch' $target};
@@ -187,6 +212,10 @@
 #ALIAS {ss} {
     #IF {"%1" != ""} {weave 'soul shatter' %1;};
     #ELSE {weave 'soul shatter' $target;};
+};
+#ALIAS {cu} {
+    #IF {"%1" != ""} {weave 'curse' %1;};
+    #ELSE {weave 'curse' $target;};
 };
 
 #CLASS {aliases} {close};
