@@ -12,12 +12,14 @@
     gs I POPED A HEARTSTONE!!!;
     #math hscount (${hscount} + 1);
     #math avghscount ((${totalxpcount}/${hscount}*10)*0.1);
-    gs Heartstone counter: ${hscount}, avg mobs per hs: %{avghscount};
+    gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
 
     #ACTION {(Terrible) : %1 Heartstone} {#var lasths %1};
     inventory;
-    gs The hearstone I just poped is ${lasths} one!;
-    #DELAY 5 {#UNACTION {(Terrible) : %1 Heartstone}};
+    #DELAY 3 {
+        gs The hearstone I just poped is ${lasths} one!;
+        #UNACTION {(Terrible) : %1 Heartstone}
+    };
 }
 #HIGHLIGHT {You see the glint of a heartstone!!} {bold red underscore}
 #HIGHLIGHT {%1 notices a heartstone%*} {bold red underscore}
