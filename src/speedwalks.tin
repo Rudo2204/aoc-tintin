@@ -48,5 +48,6 @@
 #ALIAS {go thae} {.4s2w2s; give 50 coins thae}
 #ALIAS {go tv} {.4s2w3s10e4se2sw2se4s10e4nw2n2e2n2wsw3n2e4ne3nenwn}
 #ALIAS {go zedd} {.14n2e2s2u}
+#ALIAS {go argos} {.4s2e4s6e3se2sw2se4s7wnw4n2es2ese2sw2sw}
 
 #CLASS {speedwalks} {CLOSE}
