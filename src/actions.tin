@@ -247,8 +247,20 @@
     #SHOWME \e[93m===AirWalk OUT!===;
     _update_noti_ \e[93mAirWalk OUT!\e[0m;
 };
+#ACTION {The magical vest slowly fades from around your body.} {
+    gs MagVest' OUT!;
+    weave 'magical vestment';
+    #SHOWME \e[91m===MagVest OUT!===;
+    _update_noti_ \e[91mMagVest OUT!\e[0m;
+    _update_buff_status_ magvest out;
+};
 
 
+#ACTION {You wear a shirt of glowing armor on your body.} {
+    #SHOWME \e[92mMagVest UP!;
+    _update_noti_ \e[92mMagVest UP!\e[0m;
+    _update_buff_status_ magvest on;
+};
 #ACTION {You begin a low, rhythmic chanting.} {
     #SHOWME \e[92mWarChant UP!;
     _update_noti_ \e[92mWarChant UP!\e[0m;

@@ -98,6 +98,7 @@
 #ALIAS {wc} {weave 'war chant'}
 #ALIAS {wor} {weave 'word of recall'};
 #ALIAS {wof} {weave 'wall of force';};
+#ALIAS {mv} {weave 'magical vestment';};
 
 #NOP ==[Complex skills/spells]==
 #ALIAS {fs} {
