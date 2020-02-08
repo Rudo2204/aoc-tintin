@@ -5,7 +5,7 @@
 #NOP one dash means otherwise;
 
 #FUNCTION {get_real_name} {
-    #REGEX {%1} {The %w %w} {#FORMAT {tmp} &2;} {#FORMAT {tmp} {%1}};
+    #REGEX {%1} {{(the|The) \w+ (\w+)}} {#FORMAT {tmp} &3;} {#FORMAT {tmp} {%1}};
     #RETURN $tmp
 }
 
