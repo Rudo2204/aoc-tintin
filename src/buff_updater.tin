@@ -1,0 +1,151 @@
+#CLASS {buff_updater} {kill};
+#CLASS {buff_updater} {open};
+#NOP the following regex is meant to be triggered with `group` to check group status
+#NOP #ACTION {{^\s*\[\s?\d+\(\s?\d+\)H\s*\d+\(\s\d+\)M\s*\d+\(\s\d+\)V\]\s*\[\d+\s\w+\]\s*((\w+)\s?(\w+)?\s?(\w+)?)\s?(\(Head of group\))?$}};
+
+#NOP Can use this also;
+#NOP #ACTION {{^(\w+\s?(\w+)?\s?(\w+)?)\s*?\:.*\[.*\]$}};
+#ACTION {{^(\w+\s?(\w+)\s?(\w+))\s*:\s*(\-?\d+ to (\w+|1\/2-Att))\s*\[\s*(\d+)\s(hours|hour\s)\]\s.*?$}} {
+    #IF {"%2" == "aid"} {_update_buff_status_ aid on;};
+    #ELSEIF {"%2" == "armor"} {_update_buff_status_ armor on;};
+    #ELSEIF {"%2" == "airwalk"} {_update_buff_status_ fleet on;};
+    #ELSEIF {"%2" == "barkskin"} {_update_buff_status_ bskin on;};
+    #ELSEIF {"%2" == "bless"} {_update_buff_status_ bless on;};
+    #ELSEIF {"%2" == "endure element"} {_update_buff_status_ endure on;};
+    #ELSEIF {"%2" == "fleetfeet"} {_update_buff_status_ fleet on;};
+    #ELSEIF {"%2" == "haste"} {_update_buff_status_ haste on;};
+    #NOP the following is correct, do not add the extra 'y';
+    #ELSEIF {"%2" == "improved invisibilit"} {_update_buff_status_ ii on;};
+    #ELSEIF {"%2" == "magical vestment"} {_update_buff_status_ magvest on;};
+    #ELSEIF {"%2" == "mechanical hand"} {_update_buff_status_ mech on;};
+    #ELSEIF {"%2" == "sanctuary"} {_update_buff_status_ sanc on;};
+    #ELSEIF {"%2" == "shield"} {_update_buff_status_ shield on;};
+    #ELSEIF {"%2" == "vengeance shroud"} {_update_buff_status_ vs on;};
+    #ELSEIF {"%2" == "war chant"} {_update_buff_status_ wc on;};
+    #ELSEIF {"%2" == "wall of force"} {_update_buff_status_ wof on;};
+    #ELSEIF {"%2" == "wall of swords"} {_update_buff_status_ wos on;};
+};
+
+#ACTION {{You feel slightly different(\!|\.)}} {
+    _update_noti_ \e[91mDISPELLED!\e[0m;
+    __set_all_buffs_off__;
+    #IF {"${AUTO_REBUFF}" == "1"} {
+        #UNTICKER {auto_rebuff_self};
+        affects;
+        #delay {3} {__rebuff_self__;};
+        #delay {10} {
+            #TICKER {auto_rebuff_self} {
+                #NOP Quick check if we are in combat or not;
+                #IF {"${p_dmg}" == "?" && "${AUTO_REBUFF}" == "1"} {__rebuff_self__;};
+            } {10};
+        };
+    };
+};
+
+#ACTION {You have no spell affects right now.} {__set_all_buffs_off__;};
+
+#ALIAS {__rebuff_self__} {
+    #format {tmp} {%l} {${CURRENT_CHAR}};
+    #IF {"${${tmp}_aid}" == "0"} {weave 'aid' me;};
+    #IF {"${${tmp}_armor}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'armor' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay armor};};
+    };
+    #IF {"${${tmp}_bskin}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'barkskin' me;};
+        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_bskin}" == "1"} {mimic barkskin ${mimic_bskin_target};};
+    };
+    #IF {"${${tmp}_bless}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'bless' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay bless};};
+    };
+    #IF {"${${tmp}_endure}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_endure}" == "1"} {mimic endure ${mimic_endure_target};};
+        #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {weave 'endure' me};
+        #NOP #ELSE {gsay endure};
+    };
+    #IF {"${${tmp}_fleet}" == "0"} {
+        #IF {"${BOT_ON}" == "1"} {gsay air;};
+        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_fleet}" == "1"} {mimic fleetfeet ${mimic_fleet_target};};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay bless};};
+    };
+    #IF {"${${tmp}_haste}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay haste};};
+    };
+    #IF {"${${tmp}_sanc}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'sanc' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay sanc};};
+    };
+    #IF {"${${tmp}_ii}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay ii};};
+    };
+    #IF {"${${tmp}_shield}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me;};
+        #NOP #ELSE {gsay shield};
+    };
+    #IF {"${${tmp}_magvest}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
+    };
+    #IF {"${${tmp}_mech}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'mechanical hand';};
+    };
+    #IF {"${${tmp}_vs}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
+    };
+    #IF {"${${tmp}_wc}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'war chant';};
+        #NOP #ELSE {gsay <++>};
+    };
+    #IF {"${${tmp}_wof}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
+        #NOP #ELSE {gsay <++>};
+    };
+    #IF {"${${tmp}_wos}" == "0"} {
+        #NOP #IF {"${CURRENT_CHAR}" == "<++>"} {weave 'wall of swords';};
+        #NOP #ELSE {gsay <++>};
+    };
+};
+
+#ALIAS {__set_all_buffs_off__} {
+   _update_buff_status_ aid off;
+   _update_buff_status_ armor off;
+   _update_buff_status_ bskin off;
+   _update_buff_status_ bless off;
+   _update_buff_status_ endure off;
+   _update_buff_status_ fleet off;
+   _update_buff_status_ haste off;
+   _update_buff_status_ ii off;
+   _update_buff_status_ sanc off;
+   _update_buff_status_ shield off;
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {
+        _update_buff_status_ magvest off;
+        _update_buff_status_ mech off;
+        _update_buff_status_ vs off;
+        _update_buff_status_ wc off;
+        _update_buff_status_ wof off;
+        _update_buff_status_ wos off;
+    };
+};
+
+#TICKER {auto_rebuff_self} {
+    #NOP Quick check if we are in combat or not;
+    #IF {"${p_dmg}" == "?" && "${AUTO_REBUFF}" == "1"} {__rebuff_self__;};
+} {10};
+
+#TICKER {auto_fix_rebuff_self} {
+    #IF {"${AUTO_REBUFF}" == "1"} {
+        #UNTICKER {auto_rebuff_self};
+        __set_all_buffs_off__;
+        affects;
+        #delay {3} {__rebuff_self__;};
+        #delay {10} {
+            #TICKER {auto_rebuff_self} {
+                #NOP Quick check if we are in combat or not;
+                #IF {"${p_dmg}" == "?" && "${AUTO_REBUFF}" == "1"} {__rebuff_self__;};
+            } {10};
+        };
+    };
+} {300};
+#CLASS {buff_updater} {close};

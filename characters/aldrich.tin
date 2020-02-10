@@ -1,0 +1,28 @@
+#CLASS {aldrich} OPEN
+
+#VARIABLE         {aldrich_aid}  {1}
+#VARIABLE         {aldrich_armor}  {1}
+#VARIABLE         {aldrich_bless}  {1}
+#VARIABLE         {aldrich_bskin}  {1}
+#VARIABLE         {aldrich_endure}  {1}
+#VARIABLE         {aldrich_fleet}  {1}
+#VARIABLE         {aldrich_haste}  {1}
+#VARIABLE         {aldrich_ii}  {1}
+#VARIABLE         {aldrich_magvest}  {1}
+#VARIABLE         {aldrich_mech}  {1}
+#VARIABLE         {aldrich_sanc}  {1}
+#VARIABLE         {aldrich_shield}  {1}
+#VARIABLE         {aldrich_vs}  {0}
+#VARIABLE         {aldrich_wc}  {1}
+#VARIABLE         {aldrich_wof}  {1}
+#VARIABLE         {aldrich_wos}  {1}
+#VARIABLE         {mimic_bskin}  {1}
+#VARIABLE         {mimic_bskin_target}  {lyz}
+#VARIABLE         {mimic_endure}  {1}
+#VARIABLE         {mimic_endure_target}  {lyz}
+#VARIABLE         {mimic_fleet}  {1}
+#VARIABLE         {mimic_fleet_target}  {lyz}
+#VARIABLE         {mimic_vs}  {0}
+#VARIABLE         {mimic_vs_target}  {slif}
+
+#CLASS {aldrich} CLOSE
