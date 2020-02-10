@@ -50,6 +50,9 @@
 #ACTION {%1 group-says '%2'} {
     #FORMAT {tmp} {@get_real_name{%1}};
     #IF {"%2" == "ent %*"} {#regex {%2} {ent %*} {enter &1};};
+    #ELSEIF {"%2" == "sit"} {sit};
+    #ELSEIF {"%2" == "stand"} {stand};
+    #ELSEIF {"%2" == "wake"} {wake};
     #ELSEIF {"%2" == "recall"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {recall; south; south;};
         #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'word of recall'; south; south;};
