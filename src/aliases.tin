@@ -152,8 +152,8 @@
     gsay ent coffin;
     #DELAY 3 {
         take coffin;
-        home 1;
-        weave 'word of recall';
+        weave 'word of recall' clantown;
+        back clan;
         put coffin haver;
     };
 };
@@ -163,7 +163,6 @@
     gsay ent sigil;
     #DELAY 3 {
         take sigil;
-        home 2;
         weave 'word of recall';
         put sigil haver;
     };
