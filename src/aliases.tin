@@ -62,7 +62,7 @@
         #ELSE {#var {mimic_vs} {1}};
     };
     #ELSE {#var {mimic_vs_target} {%1}};
-    #SHOWME \e[91m===Mimic status: $mimic_vs, target: $mimic_vs_target!===\e[0m;
+    #SHOWME \e[91m===VS mimic status: $mimic_vs, target: $mimic_vs_target!===\e[0m;
     #class {aldrich} {close};
 };
 #ALIAS {aldr me} {
@@ -72,7 +72,7 @@
         #ELSE {#var {mimic_endure} {1}};
     };
     #ELSE {#var {mimic_endure_target} {%1}};
-    #SHOWME \e[91m===Endure status: $mimic_endure, target: $mimic_endure_target!===\e[0m;
+    #SHOWME \e[91m===Endure mimic status: $mimic_endure, target: $mimic_endure_target!===\e[0m;
     #class {aldrich} {close};
 };
 #ALIAS {aldr mf} {
@@ -82,7 +82,7 @@
         #ELSE {#var {mimic_fleet} {1}};
     };
     #ELSE {#var {mimic_fleet_target} {%1}};
-    #SHOWME \e[91m===Fleet status: $mimic_fleet, target: $mimic_fleet_target!===\e[0m;
+    #SHOWME \e[91m===Fleet mimic status: $mimic_fleet, target: $mimic_fleet_target!===\e[0m;
     #class {aldrich} {close};
 };
 #ALIAS {aldr mb} {
@@ -92,7 +92,7 @@
         #ELSE {#var {mimic_bskin} {1}};
     };
     #ELSE {#var {mimic_bskin_target} {%1}};
-    #SHOWME \e[91m===BarkSkin status: $mimic_bskin, target: $mimic_bskin_target!===\e[0m;
+    #SHOWME \e[91m===BarkSkin mimic status: $mimic_bskin, target: $mimic_bskin_target!===\e[0m;
     #class {aldrich} {close};
 };
 
