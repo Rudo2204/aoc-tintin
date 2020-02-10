@@ -71,13 +71,15 @@
 };
 #ACTION {%* beckons for you to follow.} {
     #FORMAT {tmp} {@get_real_name{%1}};
-    #IF {"${tmp}" == "{Istvani|Aelloir|Lyzivex|Azil}"} {follow $tmp;};
+    #IF {"${tmp}" == "{Ilisyx|Istvani|Aelloir|Lyzivex|Azil|Slif}"} {follow $tmp;};
 };
 #ACTION {There were %1 coins.} {split %1}
 
 #NOP ==[End Session On Quit]==
 #ACTION {%1 stores your belongings and helps you into your private chamber.} {
     #CLASS variables write {src/variables.tin};
+    #format {tmp} {%l} {${CURRENT_CHAR}};
+    #CLASS {$tmp} {write} {characters/$tmp.tin};
     #end;
 }
 
@@ -87,6 +89,7 @@
 #NOP ==[Misc]==
 #ACTION {You have been idle, and are pulled into a void.} {rub}
 #ACTION {You stop following %*} {group me}
+#ACTION {You are no longer a member of Aldrich's group!} {group me};
 
 #NOP ==[Loot Alert]==
 #HIGHLIGHT {%*essence crystallizes into a soul-riven shard!} {b red}
@@ -171,12 +174,14 @@
     #SHOWME \e[91m===VS OUT!===\e[0m;
     #IF {"$CURRENT_CHAR" == "Aldrich"} {mimic veng slif;};
     _update_noti_ \e[91mVS OUT!\e[0m;
+    _update_buff_status_ vs off;
 };
 #ACTION {Your cloak of darkness dissolves.} {
     gs COD OUT!;
     #SHOWME \e[91m===COD OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness'};
     _update_noti_ \e[91mCOD OUT!\e[0m;
+    _update_buff_status_ cod off;
 };
 #ACTION {You feel calm and your lust for blood lessens.} {
     #SHOWME \e[93m===Blood Lust OUT!===;
@@ -228,13 +233,16 @@
     _update_noti_ \e[93mMantle Out!\e[0m;
 };
 #ACTION {Your skin doesn't feel quite so tough anymore.} {
-    _update_noti_ \e[93mBarkSkin Out!\e[0m;
+    #SHOWME \e[91m===BSkin OUT!===;
+    _update_noti_ \e[91mBSkin OUT!\e[0m;
+    _update_buff_status_ bskin out;
 };
 #ACTION {The wall of force around you recedes.} {
     #SHOWME \e[93m===WOF out!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force'};
     #ELSE {gs wof' out!;};
-    _update_noti_ \e[93mForceWall out!\e[0m;
+    _update_noti_ \e[93mWOF out!\e[0m;
+    _update_buff_status_ wof out;
 };
 #ACTION {The wall of swords around you fades.} {
     gs wos' OUT!;
@@ -244,18 +252,41 @@
 };
 #ACTION {Your feet no longer glide slightly above the ground.} {
     gs air' OUT!;
-    #SHOWME \e[93m===AirWalk OUT!===;
-    _update_noti_ \e[93mAirWalk OUT!\e[0m;
+    #SHOWME \e[93m===Fleet OUT!===;
+    _update_noti_ \e[93mFleet OUT!\e[0m;
+    _update_buff_status_ fleet out;
 };
 #ACTION {The magical vest slowly fades from around your body.} {
-    gs MagVest' OUT!;
+    gs MagVest OUT!;
     weave 'magical vestment';
     #SHOWME \e[91m===MagVest OUT!===;
     _update_noti_ \e[91mMagVest OUT!\e[0m;
     _update_buff_status_ magvest out;
 };
+#ACTION {Your mechanical hand opens to reveal its palm and fades away..} {
+    gs Mech OUT!;
+    weave 'mechanical hand';
+    #SHOWME \e[91m===Mech OUT!===;
+    _update_noti_ \e[91mMech OUT!\e[0m;
+    _update_buff_status_ mech out;
+};
 
 
+#ACTION {Your skin turns into bark!} {
+    #SHOWME \e[92mBSkin UP!;
+    _update_noti_ \e[92mBSkin UP!\e[0m;
+    _update_buff_status_ bskin on;
+};
+#ACTION {Your feet feel swift.} {
+    #SHOWME \e[92mFleet UP!;
+    _update_noti_ \e[92mFleet UP!\e[0m;
+    _update_buff_status_ fleet on;
+};
+#ACTION {You create a large metallic hand and flex it into a fist!} {
+    #SHOWME \e[92mMech UP!;
+    _update_noti_ \e[92mMech UP!\e[0m;
+    _update_buff_status_ mech on;
+};
 #ACTION {You wear a shirt of glowing armor on your body.} {
     #SHOWME \e[92mMagVest UP!;
     _update_noti_ \e[92mMagVest UP!\e[0m;
@@ -297,7 +328,7 @@
     _update_buff_status_ nf on;
 };
 #ACTION {You feel as if you can breathe under water!} {
-    _update_buff_status_ bw on;
+    #SHOWME \e[92mBWater UP!;
 };
 #ACTION {You begin to focus your energies into yourself.} {
     #SHOWME \e[92mFocus UP!;
@@ -320,8 +351,8 @@
     _update_buff_status_ endure on;
 };
 #ACTION {A wall of force surrounds you!} {
-    #SHOWME \e[92mForceWall up!;
-    _update_noti_ \e[92mForceWall up!\e[0m;
+    #SHOWME \e[92mWOF up!;
+    _update_noti_ \e[92mWOF up!\e[0m;
     _update_buff_status_ wof on;
 };
 #ACTION {You are now protected by a wall of swords!!} {
