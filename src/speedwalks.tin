@@ -40,7 +40,7 @@
 #NOP ==[All of the speedwalks]==
 #ALIAS {back candrel} {.es2esene4s2e9s}
 #ALIAS {back clan} {.6s5e; enter portal; .2s}
-#ALIAS {back coffin} {.wn3wus2w; ep; .ws2w2s2w4s}
+#ALIAS {back coffin} {.wn3wus2w; gsay ent gate; #delay 3 {enter gate; .ws2w2s2w4s};}
 #ALIAS {back zedd} {.2d2n2w14s}
 #ALIAS {go candrel} {.9n2w4nwswn2wnw}
 #ALIAS {go coffin} {.4n2e2n2en4end3ese}
