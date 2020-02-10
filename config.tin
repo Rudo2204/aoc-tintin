@@ -33,6 +33,7 @@
 #READ {src/buff_updater.tin}
 
 #EVENT {SESSION CONNECTED} {
+    #VAR {AUTO_REBUFF} {0};
     #format {tmp} {%l} {${CURRENT_CHAR}};
     #READ {characters/$tmp.tin};
     #FORMAT {session_start_time} {%t} {%s};
