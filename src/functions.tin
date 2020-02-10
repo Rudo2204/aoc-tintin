@@ -37,7 +37,7 @@
     #FORMAT {uptime[hours]} {%m} {($tmp - $session_start_time) / 60 / 60};
     #FORMAT {uptime[minutes]} {%m} {($tmp - $session_start_time) / 60 % 60};
     #FORMAT {uptime[display]} {%th %tm} {$uptime[hours]} {$uptime[minutes]};
-    #SHOWME {\e[0mNotification: $c_noti - ${t_noti}s ago: $last_noti - Uptime: $uptime[display] - Rebuff: ${AUTO_REBUFF} - BOT_ON: ${BOT_ON}} {1};
+    #SHOWME {\e[0mNotification: $c_noti - ${t_noti}s ago: $last_noti - Uptime: $uptime[display] - Rebuff: ${AUTO_REBUFF} - BOT_ON: ${BOT_ON}} {1} - Mode: $mode;
 } {1};
 
 #TICKER {auto_save_vars} {
