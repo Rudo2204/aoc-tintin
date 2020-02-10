@@ -2,8 +2,9 @@
 #CLASS {aliases} {open};
 
 #ALIAS {save vars} {
-    #CLASS variables open;
     #CLASS variables write {src/variables.tin};
+    #format {tmp} {%l} {${CURRENT_CHAR}};
+    #CLASS {$tmp} {write} {characters/$tmp.tin};
 };
 
 #ALIAS {rst} {
@@ -14,6 +15,48 @@
 #ALIAS {clc} {
     clear;
     #DELAY 1 {#split 2 2; __update_prompt__};
+};
+
+#NOP ==[Specific character aliases]==
+#ALIAS {aldr mvs} {
+    #class {aldrich} {open};
+    #IF {"%1" == ""} {
+        #IF {"${mimic_vs}" == "1"} {#var {mimic_vs} {0}};
+        #ELSE {#var {mimic_vs} {1}};
+    };
+    #ELSE {#var {mimic_vs_target} {%1}};
+    #SHOWME \e[91m===Mimic status: $mimic_vs, target: $mimic_vs_target!===\e[0m;
+    #class {aldrich} {close};
+};
+#ALIAS {aldr me} {
+    #class {aldrich} {open};
+    #IF {"%1" == ""} {
+        #IF {"${mimic_endure}" == "1"} {#var {mimic_endure} {0}};
+        #ELSE {#var {mimic_endure} {1}};
+    };
+    #ELSE {#var {mimic_endure_target} {%1}};
+    #SHOWME \e[91m===Endure status: $mimic_endure, target: $mimic_endure_target!===\e[0m;
+    #class {aldrich} {close};
+};
+#ALIAS {aldr mf} {
+    #class {aldrich} {open};
+    #IF {"%1" == ""} {
+        #IF {"${mimic_fleet}" == "1"} {#var {mimic_fleet} {0}};
+        #ELSE {#var {mimic_fleet} {1}};
+    };
+    #ELSE {#var {mimic_fleet_target} {%1}};
+    #SHOWME \e[91m===Fleet status: $mimic_fleet, target: $mimic_fleet_target!===\e[0m;
+    #class {aldrich} {close};
+};
+#ALIAS {aldr mb} {
+    #class {aldrich} {open};
+    #IF {"%1" == ""} {
+        #IF {"${mimic_bskin}" == "1"} {#var {mimic_bskin} {0}};
+        #ELSE {#var {mimic_bskin} {1}};
+    };
+    #ELSE {#var {mimic_bskin_target} {%1}};
+    #SHOWME \e[91m===BarkSkin status: $mimic_bskin, target: $mimic_bskin_target!===\e[0m;
+    #class {aldrich} {close};
 };
 
 #NOP ==[Loot]==
@@ -28,6 +71,28 @@
 #ALIAS {emogs} {emo group-says '%0'};
 #ALIAS {pay} {give 50 coins thae}
 #ALIAS {buy geld} {buy gelding; mount 1.geld;};
+#ALIAS {scoreaff} {
+    #UNACTION {Your feet feel swift.};
+    scoreaf;
+    #DELAY {2} {
+        #ACTION {Your feet feel swift.} {
+            #SHOWME \e[92mFleet UP!;
+            _update_noti_ \e[92mFleet UP!\e[0m;
+            _update_buff_status_ fleet on;
+        };
+    };
+};
+#ALIAS {sco} {
+    #UNACTION {Your feet feel swift.};
+    score;
+    #DELAY {2} {
+        #ACTION {Your feet feel swift.} {
+            #SHOWME \e[92mFleet UP!;
+            _update_noti_ \e[92mFleet UP!\e[0m;
+            _update_buff_status_ fleet on;
+        };
+    };
+};
 
 #NOP ==[World interaction]==
 #ALIAS {op} {open door}
@@ -43,6 +108,28 @@
 #ALIAS {ent} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {o fol ent %1;};
     gs ent %1; enter %1;
+};
+#ALIAS {coffin} {
+    get coffin haver;
+    drop coffin;
+    gsay ent coffin;
+    #DELAY 3 {
+        take coffin;
+        home 1;
+        weave 'word of recall';
+        put coffin haver;
+    };
+};
+#ALIAS {sigil} {
+    get sigil haver;
+    drop sigil;
+    gsay ent sigil;
+    #DELAY 3 {
+        take sigil;
+        home 2;
+        weave 'word of recall';
+        put sigil haver;
+    };
 };
 
 #NOP ==[NIGERUNDAYO!!!]==
@@ -75,7 +162,7 @@
 #NOP =====[ALL OF THE SKILLS & SPELLS]======
 #NOP ==[Ultility skills/spells]==
 #ALIAS {pd} {weave 'phase door'}
-#ALIAS {knock} {weave 'knock'}
+#ALIAS {kn} {weave 'knock'}
 #ALIAS {locate} {weave 'locate'}
 #ALIAS {bd} {bash door}
 #ALIAS {id} {
@@ -84,6 +171,7 @@
 }
 
 #NOP ==[Simple skills/spells]==
+#ALIAS {summon} {weave 'summon'};
 #ALIAS {nf} {weave 'nature fury';};
 #ALIAS {hm} {weave 'harmony'}
 #ALIAS {sense} {weave 'sense life'}
@@ -91,7 +179,6 @@
 #ALIAS {pfg} {weave 'protection from good'}
 #ALIAS {pfc} {weave 'protection from cold'}
 #ALIAS {pfh} {weave 'protection from heat'}
-#ALIAS {vs} {weave 'vengeance shroud'}
 #ALIAS {cod} {weave 'cloak of darkness'}
 #ALIAS {mech} {weave 'mechanical hand'}
 #ALIAS {ca} {weave 'create animal'};
@@ -101,6 +188,10 @@
 #ALIAS {mv} {weave 'magical vestment';};
 
 #NOP ==[Complex skills/spells]==
+#ALIAS {vs} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {mimic veng %1 me;};
+    #ELSE {weave 'vengeance shroud'};
+};
 #ALIAS {fs} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'fireshield';};
     #ELSE {
@@ -113,8 +204,11 @@
     #ELSE {weave 'waterwalk' me};
 };
 #ALIAS {endure} {
-    #IF {"%1" != ""} {weave 'endure' %1;};
-    #ELSE {weave 'endure' me};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+        #IF {"%1" != ""} {weave 'endure' %1;};
+        #ELSE {weave 'endure' me};
+    };
+    #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {mimic endure %1 me;};
 };
 #ALIAS {heal} {
     #IF {"%1" != ""} {weave 'heal crit' %1;};
