@@ -21,24 +21,26 @@
 #ALIAS {aldr mode} {
     #IF {"%1" != ""} {
         #var {mode} {%1};
-        #IF {"$mode" == "AFK"}; {
+        #IF {"$mode" == "AFK"} {
             #class {aldrich} {open};
             #var {mimic_vs} {0};
             #var {mimic_endure} {0};
             #var {mimic_bskin} {0};
+            #var {mimic_fleet} {0};
             #class {aldrich} {close};
             #var {BOT_ON} {0};
             #SHOWME \e[91m===Mimic status: $mimic_vs, target: $mimic_vs_target!===\e[0m;
             #SHOWME \e[91m===Endure status: $mimic_endure, target: $mimic_endure_target!===\e[0m;
             #SHOWME \e[91m===BarkSkin status: $mimic_bskin, target: $mimic_bskin_target!===\e[0m;
             #SHOWME \e[91m===Fleet mimic status: $mimic_fleet, target: $mimic_fleet_target!===\e[0m;
-            #SHOWME \e[93m===\e[91mAFK\e[93m mode is now ON! Stopped mimicking and asking for bot buffs!===\e[0m;
+            #SHOWME {\e[93m===\e[91mAFK\e[93m mode is now ON! Stopped mimicking and asking for bot buffs!===\e[0m};
         };
         #ELSEIF {"$mode" == "Normal"} {
             #class {aldrich} {open};
             #var {mimic_vs} {1};
             #var {mimic_endure} {1};
             #var {mimic_bskin} {1};
+            #var {mimic_fleet} {1};
             #class {aldrich} {close};
             #var {BOT_ON} {1};
             #SHOWME \e[91m===VS mimic status: $mimic_vs, target: $mimic_vs_target!===\e[0m;
