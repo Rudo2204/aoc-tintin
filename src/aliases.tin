@@ -95,6 +95,14 @@
     #SHOWME \e[91m===BarkSkin mimic status: $mimic_bskin, target: $mimic_bskin_target!===\e[0m;
     #class {aldrich} {close};
 };
+#NOP =======================================;
+#ALIAS {shuu bskin} {
+    #class {shuu} {open};
+    #IF {"${shuu_weave_bskin}" == "1"} {#var {shuu_weave_bskin} {0}};
+    #ELSE {#var {shuu_weave_bskin} {1}};
+    #SHOWME \e[91m===BarkSkin weave status: $shuu_weave_bskin===;
+    #class {shuu} {close};
+};
 
 #NOP ==[Loot]==
 #ALIAS {es} {exa corpse}
