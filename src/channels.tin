@@ -66,6 +66,7 @@
     #ELSEIF {"%2" == "bw"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'breath' $tmp};};
     #ELSEIF {"%2" == "ii"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' $tmp};};
     #ELSEIF {"%2" == "sanc"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'sanc' $tmp};};
+    #ELSEIF {"%2" == "bless"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'bless' $tmp};};
     #ELSEIF {"%2" == "summon"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'summon' $tmp};};
     #ELSEIF {"%2" == "armor"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'armor' $tmp};};
     #ELSEIF {"%2" == "shield"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' $tmp};};
