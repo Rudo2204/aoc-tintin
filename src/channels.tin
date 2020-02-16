@@ -71,7 +71,10 @@
     #ELSEIF {"%2" == "armor"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'armor' $tmp};};
     #ELSEIF {"%2" == "shield"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' $tmp};};
     #ELSEIF {"%2" == "haste %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {haste %*} {weave 'haste' &1};};};
-    #ELSEIF {"%2" == "vig %*"} {#IF {"${GROUP_SPELLUP}" == "1"} {#REGEX {%2} {vig %*} {weave 'vigorize serious' &1};};};
+    #ELSEIF {"%2" == "vig %*"} {#IF {"${GROUP_SPELLUP}" == "1"} {#REGEX {%2} {vig %*} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'vigorize critical' &1;};
+        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'vigorize serious' &1;};
+    };};};
     #ELSEIF {"%2" == "heal %*"} {#IF {"${GROUP_SPELLUP}" == "1"} {#REGEX {%2} {heal %*} {weave 'heal crit' &1};};};
     #ELSEIF {"%2" == "bw %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {bw %*} {weave 'breath' &1};};};
     #ELSEIF {"%2" == "ii %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {ii %*} {weave 'ii' &1};};};
