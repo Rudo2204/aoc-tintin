@@ -132,7 +132,7 @@
 #NOP ==[Misc]==
 #ACTION {You have been idle, and are pulled into a void.} {rub}
 #ACTION {You stop following %*} {group me}
-#ACTION {You are no longer a member of Aldrich's group!} {group me};
+#ACTION {You are no longer a member of {Aldrich|Shuu}'s group!} {group me};
 
 #NOP ==[Loot Alert]==
 #HIGHLIGHT {%*essence crystallizes into a soul-riven shard!} {b red}
