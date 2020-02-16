@@ -131,10 +131,10 @@
     _update_noti_ \e[91mTOWER OUT!\e[0m;
 };
 #ACTION {The white aura around your body fades.} {
-    gs sanc' OUT!;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay Sanc OUT!; weave 'sanc' me};
+    #ELSE {gs sanc' OUT!;};
     _update_buff_status_ sanc off;
     #SHOWME  \e[91m===SANC OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'sanc' me};
     _update_noti_ \e[91mSANC OUT!\e[0m;
 };
 #ACTION {You feel an evil mist surround you.} {
@@ -143,10 +143,10 @@
     _update_noti_ \e[1m\e[4m\e[91m!!!DESSED!!!\e[0m;
 };
 #ACTION {You feel yourself exposed.} {
-    gs ii' OUT!;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay II OUT!; weave 'improved invis' me};
+    #ELSE {gs ii' OUT!};
     _update_buff_status_ ii off;
     #SHOWME \e[91m===II OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' me};
     _update_noti_ \e[91mII OUT!\e[0m;
 };
 #ACTION {You lose your focus.} {
@@ -157,29 +157,29 @@
 };
 #ACTION {You no longer feel in tune with nature.} {
     gs NATFURY OUT!;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury'};
     _update_buff_status_ nf off;
     #SHOWME \e[91m===NATFURY OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury'};
     _update_noti_ \e[91mNATFURY OUT!\e[0m;
 };
 #ACTION {Your body and mind return to their normal speed.} {
-    gs haste' OUT!;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay Haste OUT!; weave 'haste' me};
+    #ELSE {gs haste' OUT!;};
     _update_buff_status_ haste off;
     #SHOWME \e[91m===HASTE OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste'};
     _update_noti_ \e[91mHASTE OUT!\e[0m;
 };
 #ACTION {Your body stops absorbing light%*} {
     gs VS OUT!;
     #SHOWME \e[91m===VS OUT!===\e[0m;
-    #IF {"$CURRENT_CHAR" == "Aldrich"} {mimic veng slif;};
+    #IF {"$CURRENT_CHAR" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng $mimic_vs_target;};
     _update_noti_ \e[91mVS OUT!\e[0m;
     _update_buff_status_ vs off;
 };
 #ACTION {Your cloak of darkness dissolves.} {
     gs COD OUT!;
     #SHOWME \e[91m===COD OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness'};
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness';};
     _update_noti_ \e[91mCOD OUT!\e[0m;
     _update_buff_status_ cod off;
 };
@@ -193,24 +193,25 @@
     _update_noti_ \e[93mArmor Out!\e[0m;
 };
 #ACTION {You feel less righteous.} {
-    gs bless' OUT!;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay Bless OUT!; weave 'bless' me};
+    #ELSE {gs bless' OUT!;};
     _update_buff_status_ bless off;
     #SHOWME \e[93m===Bless Out!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'bless' me};
     _update_noti_ \e[93mBless Out!\e[0m;
 };
 #ACTION {You feel the aiding deity reclaim its donated strength.} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {weave 'aid' me};
     gs aid' OUT!;
     _update_buff_status_ aid off;
     #SHOWME \e[93m===Aid Out!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {weave 'aid' me};
     _update_noti_ \e[93mAid Out!\e[0m;
 };
 #ACTION {You feel vulnerable to the elements again.} {
+    gs Endure OUT!;
     _update_buff_status_ endure off;
     #SHOWME \e[93m===Endure Out!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Ilia}"} {weave 'endure' me};
-    #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {mimic endure lyz};
+    #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_endure}" == "1"} {mimic endure $mimic_endure_target};
     _update_noti_ \e[93mEndure Out!\e[0m;
 };
 #ACTION {Your body loses its fiery glow.} {
@@ -271,7 +272,16 @@
     _update_buff_status_ mech out;
 };
 
-
+#ACTION {You feel your awareness improve.} {
+    #SHOWME \e[92mSenseLife UP!;
+    _update_noti_ \e[92mSenseLife UP!\e[0m;
+    _update_buff_status_ senselife on;
+};
+#ACTION {Your body is surrounded by a mist of opaque light.} {
+    #SHOWME \e[92mCOD UP!;
+    _update_noti_ \e[92mCOD UP!\e[0m;
+    _update_buff_status_ cod on;
+};
 #ACTION {Your skin turns into bark!} {
     #SHOWME \e[92mBSkin UP!;
     _update_noti_ \e[92mBSkin UP!\e[0m;
