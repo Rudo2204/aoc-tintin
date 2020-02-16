@@ -3,38 +3,39 @@
 #VARIABLE         {AUTO_LOOT}  {0}
 #VARIABLE         {AUTO_REBUFF}  {1}
 #VARIABLE         {AUTO_REBUFF_SELF}  {1}
-#VARIABLE         {BOT_ON}  {1}
+#VARIABLE         {BOT_ON}  {0}
 #VARIABLE         {CLANSAY_SUMMON}  {1}
-#VARIABLE         {CURRENT_CHAR}  {Aldrich}
+#VARIABLE         {CURRENT_CHAR}  {Shuu}
 #VARIABLE         {GROUP_SPELLUP}  {1}
 #VARIABLE         {ame}  {0}
 #VARIABLE         {assist}  {Aldrich}
 #VARIABLE         {assist_fired}  {0}
-#VARIABLE         {avghscount}  {1452.9}
-#VARIABLE         {c_noti}  {\e[92mBSkin UP!\e[0m}
+#VARIABLE         {avghscount}  {1418.4}
+#VARIABLE         {c_noti}  {\e[92mHaste UP!\e[0m}
 #VARIABLE         {date_started}  {2020-25-01}
 #VARIABLE         {dia}  {0}
 #VARIABLE         {eme}  {0}
-#VARIABLE         {groupxp}  {251490559}
-#VARIABLE         {groupxpcount}  {24887}
-#VARIABLE         {hscount}  {17}
-#VARIABLE         {last_noti}  {\e[92mWOS up!\e[0m}
+#VARIABLE         {groupxp}  {260344022}
+#VARIABLE         {groupxpcount}  {25848}
+#VARIABLE         {hscount}  {18}
+#VARIABLE         {last_noti}  {\e[91mHASTE OUT!\e[0m}
 #VARIABLE         {lasths}  {a Diamond Clear}
+#VARIABLE         {mode}  {Normal}
 #VARIABLE         {p_dmg}  {?}
-#VARIABLE         {p_endurance}  {319}
-#VARIABLE         {p_hp}  {754}
-#VARIABLE         {p_mana}  {763}
-#VARIABLE         {p_mv}  {319}
+#VARIABLE         {p_endurance}  {308}
+#VARIABLE         {p_hp}  {580}
+#VARIABLE         {p_mana}  {727}
+#VARIABLE         {p_mv}  {308}
 #VARIABLE         {p_stamina}  {100}
 #VARIABLE         {p_xp}  {1}
 #VARIABLE         {rub}  {0}
 #VARIABLE         {sap}  {0}
-#VARIABLE         {soloxp}  {2405870}
-#VARIABLE         {soloxpcount}  {79}
-#VARIABLE         {t_last_noti}  {1581291711}
-#VARIABLE         {t_noti}  {50}
-#VARIABLE         {target}  {lizard}
-#VARIABLE         {totalxp}  {253896429}
-#VARIABLE         {totalxpcount}  {24966}
+#VARIABLE         {soloxp}  {2503965}
+#VARIABLE         {soloxpcount}  {85}
+#VARIABLE         {t_last_noti}  {1581850418}
+#VARIABLE         {t_noti}  {59}
+#VARIABLE         {target}  {preacher}
+#VARIABLE         {totalxp}  {262847987}
+#VARIABLE         {totalxpcount}  {25933}
 
 #CLASS {variables} CLOSE
