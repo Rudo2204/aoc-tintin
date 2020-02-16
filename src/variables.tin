@@ -21,6 +21,7 @@
 #VARIABLE         {last_noti}  {\e[91mHASTE OUT!\e[0m}
 #VARIABLE         {lasths}  {a Diamond Clear}
 #VARIABLE         {mode}  {Normal}
+#VARIABLE         {mounted}  {0}
 #VARIABLE         {p_dmg}  {?}
 #VARIABLE         {p_endurance}  {308}
 #VARIABLE         {p_hp}  {580}
@@ -28,6 +29,7 @@
 #VARIABLE         {p_mv}  {308}
 #VARIABLE         {p_stamina}  {100}
 #VARIABLE         {p_xp}  {1}
+#VARIABLE         {refreshmount_fired}  {0}
 #VARIABLE         {rub}  {0}
 #VARIABLE         {sap}  {0}
 #VARIABLE         {soloxp}  {2503965}

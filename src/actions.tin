@@ -83,6 +83,49 @@
     #end;
 }
 
+#NOP ==[Mount Checker]==
+#ACTION {You are mounted here, sitting astride a majestic white gelding.} {
+    #class variables open;
+    #var {mounted} {1};
+    #class variables close;
+};
+#ACTION {You mount a majestic white gelding.} {
+    #class variables open;
+    #var {mounted} {1};
+    #class variables close;
+};
+#ACTION {You dismount a majestic white gelding.} {
+    #class variables open;
+    #var {mounted} {0};
+    #class variables close;
+};
+#ACTION {You drive %1 forward in exhaustion!} {gs mount is exhausted!;}
+#ACTION {Tar Valon Stables$} {
+    #IF {"${mounted}" == "0"} {buy gelding; s; mount geld;};
+};
+#ACTION {^Inside the Stable$} {
+    #IF {"${mounted}" == "0"} {
+        #var refreshmount_fired 1;
+        buy gelding;
+        n;
+        mount geld;
+        #DELAY {60} {#var refreshmount_fired 0};
+    };
+};
+#ACTION {^Stable Yards$} {
+    #IF {"${mounted}" == "1"} {
+        #IF {"${refreshmount_fired}" == "0"} {
+            #DELAY {1} {
+                north;
+                refreshmount;
+                #var refreshmount_fired 1;
+                gsay Gelding has been refreshed!;
+                #DELAY {60} {#var refreshmount_fired 0};
+            };
+        };
+    };
+};
+
 #NOP ==[Auction Checker]==
 #ACTION {[Auto-Auc] : %1 auctioning %2, min is %3.} {bid ?}
 
@@ -114,7 +157,6 @@
 #HIGHLIGHT {Vzikronys, The Worm-Who-Walks screeches and spills out onto the floor as a mass of vermin!} {b red}
 #HIGHLIGHT {You feel the world fall out beneath you, %* has summoned you!} {b red}
 #HIGHLIGHT {You wish that your wounds would stop BLEEDING so much!} {b red}
-#ACTION {You drive %1 forward in exhaustion!} {gs mount is dead!}
 #ACTION {You feel like you can fight with some effectiveness now..} {stand}
 #ACTION {You wish that your wounds would stop BLEEDING so much!} {#IF {"${CURRENT_CHAR}" == "Shuu"} {recall};}
 

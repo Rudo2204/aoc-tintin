@@ -59,7 +59,10 @@
     };
     #ELSEIF {"%2" == "say %*"} {#regex {%2} {say %*} {say &1};};
     #ELSEIF {"%2" == "phase %*"} {#regex {%2} {phase %*} {weave 'phase door' &1};};
-    #ELSEIF {"%2" == "mounts"} {dismount; buy gelding; n; mount geld;};
+    #ELSEIF {"%2" == "mounts"} {
+        #IF {"${mounted}" == "1"} {gsay I'm already mounted;};
+        #ELSE {buy gelding; mount geld;};
+    };
     #ELSEIF {"%2" == "pay" || "%2" == "pay thae"} {give 50 coins thae};
     #ELSEIF {"%2" == "haste"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'haste' $tmp};};
     #ELSEIF {"%2" == "heal"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'heal crit' $tmp};};
