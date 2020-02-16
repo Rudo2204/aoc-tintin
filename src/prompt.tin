@@ -3,6 +3,7 @@
 
 
 #ACTION {^<%1H %2M %3V %4X %5S %6E> $} {
+    #line {gag};
     #VARIABLE {p_dmg} {?};
     #VARIABLE {p_hp} {%1};
     #VARIABLE {p_mana} {%2};
@@ -13,6 +14,7 @@
 } {1};
 
 #ACTION {^<%1H %2M %3V %4X %5%%D %6S %7E> $} {
+    #line {gag};
     #VARIABLE {p_dmg} {%5};
     #VARIABLE {p_hp} {%1};
     #VARIABLE {p_mana} {%2};
