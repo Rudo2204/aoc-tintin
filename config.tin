@@ -33,21 +33,22 @@
 #READ {src/buff_updater.tin}
 
 #EVENT {SESSION CONNECTED} {
+    #class variables open;
     #VAR {AUTO_REBUFF} {0};
+    #class variables close;
     #format {tmp} {%l} {${CURRENT_CHAR}};
+    #READ {characters/$tmp.tin};
     #class {$tmp} {open};
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {
         #VAR {mimic_vs} {0};
         #VAR {mimic_endure} {0};
         #VAR {mimic_bskin} {0};
         #VAR {mimic_fleet} {0};
-        #VAR {AUTO_REBUFF} {0};
     };
     #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
         #VAR {shuu_weave_bskin} {0};
     };
     #class {$tmp} {close};
-    #READ {characters/$tmp.tin};
     #FORMAT {session_start_time} {%t} {%s};
     #delay 1 {#split 2 2};
 };
