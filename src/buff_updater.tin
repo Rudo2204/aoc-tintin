@@ -11,6 +11,7 @@
     #ELSEIF {"%2" == "airwalk"} {_update_buff_status_ fleet on;};
     #ELSEIF {"%2" == "barkskin"} {_update_buff_status_ bskin on;};
     #ELSEIF {"%2" == "bless"} {_update_buff_status_ bless on;};
+    #ELSEIF {"%2" == "cloak of darkness"} {_update_buff_status_ cod on;};
     #ELSEIF {"%2" == "endure element"} {_update_buff_status_ endure on;};
     #ELSEIF {"%2" == "fleetfeet"} {_update_buff_status_ fleet on;};
     #ELSEIF {"%2" == "haste"} {_update_buff_status_ haste on;};
@@ -18,7 +19,9 @@
     #ELSEIF {"%2" == "improved invisibilit"} {_update_buff_status_ ii on;};
     #ELSEIF {"%2" == "magical vestment"} {_update_buff_status_ magvest on;};
     #ELSEIF {"%2" == "mechanical hand"} {_update_buff_status_ mech on;};
+    #ELSEIF {"%2" == "nature fury"} {_update_buff_status_ nf on;};
     #ELSEIF {"%2" == "sanctuary"} {_update_buff_status_ sanc on;};
+    #ELSEIF {"%2" == "sense life"} {_update_buff_status_ senselife on;};
     #ELSEIF {"%2" == "shield"} {_update_buff_status_ shield on;};
     #ELSEIF {"%2" == "vengeance shroud"} {_update_buff_status_ vs on;};
     #ELSEIF {"%2" == "war chant"} {_update_buff_status_ wc on;};
@@ -52,7 +55,7 @@
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay armor};};
     };
     #IF {"${${tmp}_bskin}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'barkskin' me;};
+        #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_weave_bskin}" == "1"} {weave 'barkskin' me;};
         #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_bskin}" == "1"} {mimic barkskin ${mimic_bskin_target};};
     };
     #IF {"${${tmp}_bless}" == "0"} {
@@ -81,15 +84,25 @@
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay ii};};
     };
+    #IF {"${${tmp}_senselife}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'sense life';};
+        #NOP #ELSE {gsay shield};
+    };
     #IF {"${${tmp}_shield}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me;};
         #NOP #ELSE {gsay shield};
+    };
+    #IF {"${${tmp}_cod}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness';};
     };
     #IF {"${${tmp}_magvest}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
     };
     #IF {"${${tmp}_mech}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'mechanical hand';};
+    };
+    #IF {"${${tmp}_nf}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury';};
     };
     #IF {"${${tmp}_vs}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
@@ -117,16 +130,17 @@
    _update_buff_status_ fleet off;
    _update_buff_status_ haste off;
    _update_buff_status_ ii off;
+   _update_buff_status_ cod off;
    _update_buff_status_ sanc off;
+   _update_buff_status_ senselife off;
    _update_buff_status_ shield off;
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {
-        _update_buff_status_ magvest off;
-        _update_buff_status_ mech off;
-        _update_buff_status_ vs off;
-        _update_buff_status_ wc off;
-        _update_buff_status_ wof off;
-        _update_buff_status_ wos off;
-    };
+   _update_buff_status_ magvest off;
+   _update_buff_status_ mech off;
+   _update_buff_status_ nf off;
+   _update_buff_status_ vs off;
+   _update_buff_status_ wc off;
+   _update_buff_status_ wof off;
+   _update_buff_status_ wos off;
 };
 
 #TICKER {auto_rebuff_self} {
@@ -147,5 +161,5 @@
             } {10};
         };
     };
-} {900};
+} {1800};
 #CLASS {buff_updater} {close};
