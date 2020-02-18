@@ -10,6 +10,7 @@
     #ELSEIF {"%2" == "armor"} {_update_buff_status_ armor on;};
     #ELSEIF {"%2" == "airwalk"} {_update_buff_status_ fleet on;};
     #ELSEIF {"%2" == "barkskin"} {_update_buff_status_ bskin on;};
+    #ELSEIF {"%2" == "{(melody of spirit)|(psalm of aptitude}|{ballad of war)}"} {_update_buff_status_ bdsong_good on;};
     #ELSEIF {"%2" == "bless"} {_update_buff_status_ bless on;};
     #ELSEIF {"%2" == "cloak of darkness"} {_update_buff_status_ cod on;};
     #ELSEIF {"%2" == "endure element"} {_update_buff_status_ endure on;};
@@ -34,7 +35,9 @@
     __set_all_buffs_off__;
     #IF {"${AUTO_REBUFF}" == "1"} {
         #UNTICKER {auto_rebuff_self};
+        color;
         affects;
+        color;
         #delay {3} {__rebuff_self__;};
         #delay {10} {
             #TICKER {auto_rebuff_self} {
@@ -121,6 +124,14 @@
     };
 };
 
+#ALIAS {__fix_buff__} {
+    __set_all_buffs_off__;
+    color;
+    affects;
+    color;
+    #delay {3} {__rebuff_self__;};
+};
+
 #ALIAS {__set_all_buffs_off__} {
    _update_buff_status_ aid off;
    _update_buff_status_ armor off;
@@ -141,6 +152,7 @@
    _update_buff_status_ wc off;
    _update_buff_status_ wof off;
    _update_buff_status_ wos off;
+   #var mounted 0;
 };
 
 #TICKER {auto_rebuff_self} {
@@ -152,7 +164,10 @@
     #IF {"${AUTO_REBUFF}" == "1"} {
         #UNTICKER {auto_rebuff_self};
         __set_all_buffs_off__;
+        look;
+        color;
         affects;
+        color;
         #delay {3} {__rebuff_self__;};
         #delay {10} {
             #TICKER {auto_rebuff_self} {
