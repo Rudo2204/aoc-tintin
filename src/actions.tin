@@ -225,6 +225,11 @@
     _update_noti_ \e[91mCOD OUT!\e[0m;
     _update_buff_status_ cod off;
 };
+#ACTION {You feel less aware of your surroundings.} {
+    #SHOWME \e[93m===SenseLife OUT!===\e[0m;
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {weave 'sense life';};
+    _update_buff_status_ senselife off;
+};
 #ACTION {You feel calm and your lust for blood lessens.} {
     #SHOWME \e[93m===Blood Lust OUT!===;
     _update_noti_ \e[93mBlood Lust OUT!;
