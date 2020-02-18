@@ -230,6 +230,11 @@
 #ALIAS {wor} {weave 'word of recall'};
 #ALIAS {wof} {weave 'wall of force';};
 #ALIAS {mv} {weave 'magical vestment';};
+#ALIAS {rv} {weave 'ravage';};
+#ALIAS {hw} {weave 'holy word';};
+#ALIAS {cp} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {mimic 'call plant' istvani;};
+};
 
 #NOP ==[Complex skills/spells]==
 #ALIAS {vs} {
