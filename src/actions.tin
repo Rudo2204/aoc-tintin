@@ -163,8 +163,9 @@
 #NOP ==[Buff Alert]==
 #NOP The glacial aura around you melts away.;
 #NOP Your Thunderlance explodes in a burst of light!;
-#ACTION {The affects of the Bard's song dissipate.} {_update_buff_status_ wof on;}
-    #SHOWME \e[91m===Bard Song OUT!===\e[0m;
+#ACTION {The affects of the Bard's song dissipate.} {
+    _update_buff_status_ bardsong_good off;
+    #SHOWME \e[91m===BardSong OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {gs psalm' OUT!;};
     #ELSE {gs bal' OUT!;};
     _update_noti_ \e[91mBardSong OUT!\e[0m;
