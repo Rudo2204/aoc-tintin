@@ -1,6 +1,9 @@
 #CLASS {macros} {kill};
 #CLASS {macros} {open};
 
+#NOP F11 is a soft rebuff (rebuff based on the current character variable)
+#MACRO {\e[23~} {__rebuff_self__;}
+#NOP F12 will be a hard rebuff (aff then rebuff)
 #MACRO {\e[24~} {__fix_buff__;}
 
 #CLASS {macros} {close};
