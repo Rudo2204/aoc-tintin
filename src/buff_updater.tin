@@ -102,7 +102,7 @@
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
     };
     #IF {"${${tmp}_mech}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'mechanical hand';};
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {mech};
     };
     #IF {"${${tmp}_nf}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury';};

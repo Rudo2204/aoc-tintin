@@ -224,7 +224,6 @@
 #ALIAS {pfc} {weave 'protection from cold'}
 #ALIAS {pfh} {weave 'protection from heat'}
 #ALIAS {cod} {weave 'cloak of darkness'}
-#ALIAS {mech} {weave 'mechanical hand'}
 #ALIAS {ca} {weave 'create animal'};
 #ALIAS {wc} {weave 'war chant'}
 #ALIAS {wor} {weave 'word of recall'};
@@ -238,6 +237,10 @@
 };
 
 #NOP ==[Complex skills/spells]==
+#ALIAS {mech} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {get book,redheart hole; hold book; weave 'mechanical hand'; hold mace; put book,redheart hole;};
+    #ELSE {weave 'mechanical hand'};
+};
 #ALIAS {vs} {
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {mimic veng %1 me;};
     #ELSE {weave 'vengeance shroud'};

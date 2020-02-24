@@ -316,8 +316,8 @@
     _update_buff_status_ magvest out;
 };
 #ACTION {Your mechanical hand opens to reveal its palm and fades away..} {
-    gs Mech OUT!;
-    weave 'mechanical hand';
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {mech};
+    #ELSE {gs Mech OUT!;};
     #SHOWME \e[91m===Mech OUT!===;
     _update_noti_ \e[91mMech OUT!\e[0m;
     _update_buff_status_ mech out;
