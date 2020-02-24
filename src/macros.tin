@@ -1,6 +1,6 @@
 #CLASS {macros} {kill};
 #CLASS {macros} {open};
 
-#MACRO {(press the F12 key)} {__fix_buff__;}
+#MACRO {\e[24~} {__fix_buff__;}
 
 #CLASS {macros} {close};
