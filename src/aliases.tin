@@ -229,6 +229,7 @@
 #ALIAS {wc} {weave 'war chant'}
 #ALIAS {wor} {weave 'word of recall'};
 #ALIAS {wof} {weave 'wall of force';};
+#ALIAS {wos} {weave 'wall of swords';};
 #ALIAS {mv} {weave 'magical vestment';};
 #ALIAS {rv} {weave 'ravage';};
 #ALIAS {hw} {weave 'holy word';};

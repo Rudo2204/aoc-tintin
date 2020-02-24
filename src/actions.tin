@@ -415,11 +415,11 @@
     _update_noti_ \e[92mWOF up!\e[0m;
     _update_buff_status_ wof on;
 };
-#ACTION {You are now protected by a wall of swords!!} {
+#ACTION {A wall of swords suddenly spins around you!} {
     #SHOWME \e[92mWOS UP!;
     _update_noti_ \e[92mWOS up!\e[0m;
     _update_buff_status_ wos on;
-};
+}
 #ACTION {You begin to absorb light.} {
     #SHOWME \e[92mVS UP!;
     _update_noti_ \e[92mVS up!\e[0m;

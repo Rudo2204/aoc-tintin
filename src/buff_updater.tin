@@ -119,7 +119,7 @@
         #NOP #ELSE {gsay <++>};
     };
     #IF {"${${tmp}_wos}" == "0"} {
-        #NOP #IF {"${CURRENT_CHAR}" == "<++>"} {weave 'wall of swords';};
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of swords';};
         #NOP #ELSE {gsay <++>};
     };
 };
