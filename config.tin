@@ -31,6 +31,7 @@
 
 #READ {src/prompt.tin}
 #READ {src/buff_updater.tin}
+#READ {src/macros.tin}
 
 #EVENT {SESSION CONNECTED} {
     #class variables open;
