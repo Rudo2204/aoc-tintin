@@ -296,7 +296,8 @@
     _update_buff_status_ wof out;
 };
 #ACTION {The wall of swords around you fades.} {
-    gs wos' OUT!;
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of swords'};
+    #ELSE {gs wos' out!;};
     #SHOWME \e[91m===WOS OUT!===;
     _update_noti_ \e[91mWOS OUT!\e[0m;
     _update_buff_status_ wos out;
