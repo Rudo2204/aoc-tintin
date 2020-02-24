@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+import re
+import sys
+import subprocess
+pattern = re.compile("\#VARIABLE\s+\{CURRENT_CHAR\}\s+\{(\w+)\}")
+
+if len(sys.argv) < 2:
+    print("Please specify character name")
+else:
+    with open('src/variables.tin', 'r') as file:
+        data = file.read()
+        file.close()
+    match = re.search(pattern, data)
+    if match:
+        sed_command = """sed -i 's/{}/{}/g' src/variables.tin""".format(match.group(1), sys.argv[1])
+        subprocess.Popen(sed_command, stdout=None, stderr=None, shell=True)
+        print(f"Successfully changed CURRENT_CHAR to {sys.argv[1]}")
