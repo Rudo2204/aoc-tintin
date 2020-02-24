@@ -1,9 +1,9 @@
 #CLASS {shuu} OPEN
 
 #VARIABLE         {shuu_aid}  {1}
-#VARIABLE         {shuu_armor}  {1}
+#VARIABLE         {shuu_armor}  {0}
 #VARIABLE         {shuu_bless}  {1}
-#VARIABLE         {shuu_bskin}  {1}
+#VARIABLE         {shuu_bskin}  {0}
 #VARIABLE         {shuu_cod}  {0}
 #VARIABLE         {shuu_endure}  {1}
 #VARIABLE         {shuu_fleet}  {0}
@@ -12,7 +12,7 @@
 #VARIABLE         {shuu_magvest}  {0}
 #VARIABLE         {shuu_mech}  {0}
 #VARIABLE         {shuu_nf}  {1}
-#VARIABLE         {shuu_sanc}  {1}
+#VARIABLE         {shuu_sanc}  {0}
 #VARIABLE         {shuu_senselife}  {1}
 #VARIABLE         {shuu_shield}  {0}
 #VARIABLE         {shuu_vs}  {0}

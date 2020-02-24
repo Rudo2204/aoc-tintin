@@ -1,0 +1,23 @@
+#CLASS {alden} OPEN
+
+#VARIABLE         {alden_aid}  {0}
+#VARIABLE         {alden_armor}  {0}
+#VARIABLE         {alden_bless}  {0}
+#VARIABLE         {alden_bskin}  {0}
+#VARIABLE         {alden_cod}  {0}
+#VARIABLE         {alden_endure}  {0}
+#VARIABLE         {alden_fleet}  {0}
+#VARIABLE         {alden_haste}  {0}
+#VARIABLE         {alden_ii}  {0}
+#VARIABLE         {alden_magvest}  {0}
+#VARIABLE         {alden_mech}  {0}
+#VARIABLE         {alden_nf}  {0}
+#VARIABLE         {alden_sanc}  {0}
+#VARIABLE         {alden_senselife}  {0}
+#VARIABLE         {alden_shield}  {0}
+#VARIABLE         {alden_vs}  {0}
+#VARIABLE         {alden_wc}  {0}
+#VARIABLE         {alden_wof}  {0}
+#VARIABLE         {alden_wos}  {0}
+
+#CLASS {alden} CLOSE

@@ -1,0 +1,23 @@
+#CLASS {fendand} OPEN
+
+#VARIABLE         {fendand_aid}  {0}
+#VARIABLE         {fendand_armor}  {0}
+#VARIABLE         {fendand_bless}  {0}
+#VARIABLE         {fendand_bskin}  {0}
+#VARIABLE         {fendand_cod}  {1}
+#VARIABLE         {fendand_endure}  {0}
+#VARIABLE         {fendand_fleet}  {0}
+#VARIABLE         {fendand_haste}  {0}
+#VARIABLE         {fendand_ii}  {0}
+#VARIABLE         {fendand_magvest}  {0}
+#VARIABLE         {fendand_mech}  {0}
+#VARIABLE         {fendand_nf}  {0}
+#VARIABLE         {fendand_sanc}  {0}
+#VARIABLE         {fendand_senselife}  {0}
+#VARIABLE         {fendand_shield}  {0}
+#VARIABLE         {fendand_vs}  {0}
+#VARIABLE         {fendand_wc}  {0}
+#VARIABLE         {fendand_wof}  {0}
+#VARIABLE         {fendand_wos}  {0}
+
+#CLASS {fendand} CLOSE
