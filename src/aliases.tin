@@ -104,6 +104,23 @@
     #class {shuu} {close};
 };
 
+#NOP ==[Crafting]==
+#ALIAS {p} {dig};
+#ALIAS {bri %w} {
+    #IF {"%1" == "ame"} {#10 craftitem brilliant cut amethyst};
+    #ELSEIF {"%1" == "eme"} {#10 craftitem brilliant cut emerald};
+    #ELSEIF {"%1" == "rub"} {#5 craftitem brilliant cut ruby};
+    #ELSEIF {"%1" == "sap"} {#5 craftitem brilliant cut sapphire};
+    #ELSEIF {"%1" == "dia"} {#5 craftitem brilliant cut diamond};
+};
+#ALIAS {star %w} {
+    #IF {"%1" == "ame"} {#10 craftitem star cut amethyst};
+    #ELSEIF {"%1" == "eme"} {#10 craftitem star cut emerald};
+    #ELSEIF {"%1" == "rub"} {#5 craftitem star cut ruby};
+    #ELSEIF {"%1" == "sap"} {#5 craftitem star cut sapphire};
+    #ELSEIF {"%1" == "dia"} {#5 craftitem star cut diamond};
+};
+
 #NOP ==[Loot]==
 #ALIAS {es} {exa corpse}
 #ALIAS {es%d} {exa %1.corpse}
