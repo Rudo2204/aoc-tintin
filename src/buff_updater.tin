@@ -54,7 +54,10 @@
 #ALIAS {__rebuff_self__} {
     #VAR mounted 0;
     #format {tmp} {%l} {${CURRENT_CHAR}};
-    #IF {"${${tmp}_aid}" == "0"} {weave 'aid' me;};
+    #IF {"${${tmp}_aid}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu|Fendand}"} {weave 'armor' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay aid};};
+    };
     #IF {"${${tmp}_armor}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'armor' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay armor};};
@@ -70,6 +73,7 @@
     #IF {"${${tmp}_endure}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_endure}" == "1"} {mimic endure ${mimic_endure_target};};
         #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {weave 'endure' me};
+        #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {#var fendand_endure 1};
         #NOP #ELSE {gsay endure};
     };
     #IF {"${${tmp}_fleet}" == "0"} {
@@ -86,7 +90,7 @@
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay sanc};};
     };
     #IF {"${${tmp}_ii}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'improved invis' me;};
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand}"} {weave 'improved invis' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay ii};};
     };
     #IF {"${${tmp}_senselife}" == "0"} {
@@ -98,7 +102,7 @@
         #NOP #ELSE {gsay shield};
     };
     #IF {"${${tmp}_cod}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness';};
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {weave 'cloak of darkness';};
     };
     #IF {"${${tmp}_magvest}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
@@ -113,7 +117,7 @@
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
     };
     #IF {"${${tmp}_wc}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'war chant';};
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {weave 'war chant';};
         #NOP #ELSE {gsay <++>};
     };
     #IF {"${${tmp}_wof}" == "0"} {
