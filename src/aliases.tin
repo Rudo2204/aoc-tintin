@@ -168,7 +168,7 @@
 #ALIAS {ud%w} {unlock door %1; open door %1; %1};
 #ALIAS {tkd} {take key; ud%1};
 #ALIAS {ent} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {o fol ent %1;};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol ent %1;};
     gs ent %1; enter %1;
 };
 #ALIAS {coffin} {
@@ -197,15 +197,22 @@
 #ALIAS {f} {flee}
 
 #NOP ==[Fighting]==
-#ALIAS {k} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill $target};
-    #ELSE {
-        #IF {"%1" != ""} {kill %1;};
-        #ELSE {kill $target;};
+#ALIAS {^o$} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Melia}"} {
+        #IF {"${p_dmg}" == "?"} {order fol kill $target;}
+        #ELSE {order fol assist;};
     };
 };
+#ALIAS {k} {
+    #IF {"%1" != ""} {kill %1;};
+    #ELSE {kill $target;};
+};
 #ALIAS {a} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol kill $target};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol assist};
+    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {
+        #IF {"${p_dmg}" != "?"} {order fol assist;};
+        assist;
+    };
     #ELSE {assist};
 } {5};
 #ALIAS {a %w} {
