@@ -185,7 +185,10 @@
     _update_noti_ \e[91mTOWER OUT!\e[0m;
 };
 #ACTION {The white aura around your body fades.} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay Sanc OUT!; weave 'sanc' me};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+        #IF {"${p_dmg}" == "?"} {weave 'sanctuary' me;};
+        #ELSE {gsay SANC OUT!;};
+    };
     #ELSE {gs sanc' OUT!;};
     _update_buff_status_ sanc off;
     #SHOWME  \e[91m===SANC OUT!===\e[0m;
@@ -197,7 +200,10 @@
     _update_noti_ \e[1m\e[4m\e[91m!!!DESSED!!!\e[0m;
 };
 #ACTION {You feel yourself exposed.} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay II OUT!; weave 'improved invis' me};
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand}"} {
+        #IF {"${p_dmg}" == "?"} {weave 'improved invis' me;};
+        #ELSE {gsay II OUT!;};
+    };
     #ELSE {gs ii' OUT!};
     _update_buff_status_ ii off;
     #SHOWME \e[91m===II OUT!===\e[0m;
@@ -210,14 +216,19 @@
     _update_noti_ \e[91mFOCUS OUT!\e[0m;
 };
 #ACTION {You no longer feel in tune with nature.} {
-    gs NATFURY OUT!;
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury'};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+        #IF {"${p_dmg}" == "?"} {weave 'nature fury';};
+        #ELSE {gsay NATFURY OUT!;};
+    };
     _update_buff_status_ nf off;
     #SHOWME \e[91m===NATFURY OUT!===\e[0m;
     _update_noti_ \e[91mNATFURY OUT!\e[0m;
 };
 #ACTION {Your body and mind return to their normal speed.} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay Haste OUT!; weave 'haste' me};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+        #IF {"${p_dmg}" == "?"} {weave 'haste' me;};
+        #ELSE {gsay Haste OUT!;};
+    };
     #ELSE {gs haste' OUT!;};
     _update_buff_status_ haste off;
     #SHOWME \e[91m===HASTE OUT!===\e[0m;
@@ -231,9 +242,11 @@
     _update_buff_status_ vs off;
 };
 #ACTION {Your cloak of darkness dissolves.} {
-    gs COD OUT!;
+    #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
+        #IF {"${p_dmg}" == "?"} {weave 'cloak of darkness';};
+        #ELSE {gsay COD OUT!;};
+    };
     #SHOWME \e[91m===COD OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'cloak of darkness';};
     _update_noti_ \e[91mCOD OUT!\e[0m;
     _update_buff_status_ cod off;
 };
@@ -243,8 +256,13 @@
     _update_buff_status_ senselife off;
 };
 #ACTION {You feel calm and your lust for blood lessens.} {
-    #SHOWME \e[93m===Blood Lust OUT!===;
-    _update_noti_ \e[93mBlood Lust OUT!;
+    #SHOWME \e[93m===Frenzy OUT!===\e[0m;
+    _update_noti_ \e[93mFrenzy OUT!\e[0m;
+};
+#ACTION {The affects of the horrifying shriek have dissipated.} {
+    #SHOWME \e[93m===Shriek Out!===\e[0m;
+    _update_buff_status_ shriek off;
+    _update_noti_ \e[93mShriek Out!\e[0m;
 };
 #ACTION {You feel less protected.} {
     #SHOWME \e[93m===Armor Out!===\e[0m;
@@ -252,25 +270,34 @@
     _update_noti_ \e[93mArmor Out!\e[0m;
 };
 #ACTION {You feel less righteous.} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {gsay Bless OUT!; weave 'bless' me};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+        #IF {"${p_dmg}" == "?"} {weave 'bless' me;};
+        #ELSE {gsay Bless OUT!;};
+    };
     #ELSE {gs bless' OUT!;};
     _update_buff_status_ bless off;
     #SHOWME \e[93m===Bless Out!===\e[0m;
     _update_noti_ \e[93mBless Out!\e[0m;
 };
 #ACTION {You feel the aiding deity reclaim its donated strength.} {
-    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {weave 'aid' me};
-    gs aid' OUT!;
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich|Fendand}"} {
+        #IF {"${p_dmg}" == "?"} {weave 'aid' me;};
+        #ELSE {gsay Aid OUT!;};
+    };
+    #ELSE {gs aid' OUT!;};
     _update_buff_status_ aid off;
     #SHOWME \e[93m===Aid Out!===\e[0m;
     _update_noti_ \e[93mAid Out!\e[0m;
 };
 #ACTION {You feel vulnerable to the elements again.} {
-    gs Endure OUT!;
-    _update_buff_status_ endure off;
-    #SHOWME \e[93m===Endure Out!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "{Shuu|Ilia}"} {weave 'endure' me};
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Ilia}"} {
+        #IF {"${p_dmg}" == "?"} {weave 'endure' me;};
+        #ELSE {gs Endure OUT!;};
+    };
     #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_endure}" == "1"} {mimic endure $mimic_endure_target};
+    #ELSE {gs Endure OUT!;};
+    #SHOWME \e[93m===Endure Out!===\e[0m;
+    _update_buff_status_ endure off;
     _update_noti_ \e[93mEndure Out!\e[0m;
 };
 #ACTION {Your body loses its fiery glow.} {
@@ -278,14 +305,21 @@
     _update_noti_ \e[91mFShield OUT!\e[0m;
 };
 #ACTION {You stop your war-like chanting.} {
+    #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
+        #IF {"${p_dmg}" == "?"} {weave 'war chant';};
+        #ELSE {gs WarChant Out!;};
+    };
     #SHOWME \e[91m===WarChant OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'war chant'};
     _update_noti_ \e[93mWarChant OUT!\e[0m;
     _update_buff_status_ wc out;
 };
 #ACTION {You no longer feel shielded.} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {
+        #IF {"${p_dmg}" == "?"} {weave 'shield' me;};
+        #ELSE {gs Shield Out!;};
+    };
+    #ELSE {gs shield' Out!;};
     #SHOWME \e[93m===Shield out!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me};
     #ELSE {gs shield' out!;};
     _update_noti_ \e[93mShield out!\e[0m;
 };
@@ -299,27 +333,39 @@
 };
 #ACTION {The wall of force around you recedes.} {
     #SHOWME \e[93m===WOF out!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force'};
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {
+        #IF {"${p_dmg}" == "?"} {weave 'wall of force';};
+        #ELSE {gs WOF Out!;};
+    };
     #ELSE {gs wof' out!;};
     _update_noti_ \e[93mWOF out!\e[0m;
     _update_buff_status_ wof out;
 };
 #ACTION {The wall of swords around you fades.} {
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of swords'};
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {
+        #IF {"${p_dmg}" == "?"} {weave 'wall of swords';};
+        #ELSE {gs WOS Out!;};
+    };
     #ELSE {gs wos' out!;};
     #SHOWME \e[91m===WOS OUT!===;
     _update_noti_ \e[91mWOS OUT!\e[0m;
     _update_buff_status_ wos out;
 };
 #ACTION {Your feet no longer glide slightly above the ground.} {
-    gs air' OUT!;
+    #IF {"${CURRENT_CHAR}" == "Ilia"} {
+        #IF {"${p_dmg}" == "?"} {weave 'fleet' me;};
+        #ELSE {gs Fleet Out!;};
+    };
+    #ELSE {gs air' OUT!;};
     #SHOWME \e[93m===Fleet OUT!===;
     _update_noti_ \e[93mFleet OUT!\e[0m;
     _update_buff_status_ fleet out;
 };
 #ACTION {The magical vest slowly fades from around your body.} {
-    gs MagVest OUT!;
-    weave 'magical vestment';
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {
+        #IF {"${p_dmg}" == "?"} {weave 'magical vestment';};
+        #ELSE {gs MagVest Out!;};
+    };
     #SHOWME \e[91m===MagVest OUT!===;
     _update_noti_ \e[91mMagVest OUT!\e[0m;
     _update_buff_status_ magvest out;
@@ -434,6 +480,15 @@
     #SHOWME \e[92mVS UP!;
     _update_noti_ \e[92mVS up!\e[0m;
     _update_buff_status_ vs on;
+};
+#ACTION {You smell blood and go into a Blood Frenzy!} {
+    #SHOWME \e[92mFrenzy UP!;
+    _update_noti_ \e[92mFrenzy up!\e[0m;
+};
+#ACTION {You let out a shriek of unimaginable horror!} {
+    #SHOWME \e[92mShriek UP!;
+    _update_noti_ \e[92mShriek up!\e[0m;
+    _update_buff_status_ shriek on;
 };
 
 #NOP ==[Game Helper]==
