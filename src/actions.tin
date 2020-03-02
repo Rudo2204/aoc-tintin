@@ -133,6 +133,15 @@
 #ACTION {You have been idle, and are pulled into a void.} {rub}
 #ACTION {You stop following %*} {group me}
 #ACTION {You are no longer a member of {Aldrich|Shuu}'s group!} {group me};
+#ACTION {%* starts following you.} {
+    #IF {"%1" == "%*zombie%*"} {group zombie;};
+    #ELSEIF {"%1" == "%*Tiger%*"} {group tiger;};
+    #ELSEIF {"%1" == "%*Wolf%*"} {group wolf;};
+    #ELSE {
+        #FORMAT {tmp} {@get_real_name{%1}};
+        group $tmp;
+    };
+};
 
 #NOP ==[Loot Alert]==
 #HIGHLIGHT {%*essence crystallizes into a soul-riven shard!} {b red}
