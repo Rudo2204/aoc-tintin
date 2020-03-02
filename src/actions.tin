@@ -71,7 +71,7 @@
 };
 #ACTION {%* beckons for you to follow.} {
     #FORMAT {tmp} {@get_real_name{%1}};
-    #IF {"${tmp}" == "{Ilisyx|Istvani|Aelloir|Lyzivex|Azil|Slif}"} {follow $tmp;};
+    #IF {"${tmp}" == "{Ilisyx|Istvani|Aelloir|Xykir|Azil|Slif}"} {follow $tmp;};
 };
 #ACTION {There were %1 coins.} {split %1}
 
