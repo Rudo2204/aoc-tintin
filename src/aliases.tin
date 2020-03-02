@@ -247,7 +247,7 @@
 #ALIAS {bd} {bash door}
 #ALIAS {id} {
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'identify' %1};
-    #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {get id cap; hold id; recite id %1; hold lexicon;};
+    #ELSEIF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {get id cap; hold id; recite id %1; hold lexicon;};
 }
 
 #NOP ==[Simple skills/spells]==
@@ -304,8 +304,14 @@
     #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {mimic endure %1 me;};
 };
 #ALIAS {heal} {
-    #IF {"%1" != ""} {weave 'heal crit' %1;};
-    #ELSE {weave 'heal crit' me};
+    #IF {"%1" != ""} {
+        #IF {"${CURRENT_CHAR}" == "Melia"} {weave 'heal serious' me};
+        #ELSE {weave 'heal crit' %1;};
+    };
+    #ELSE {
+        #IF {"${CURRENT_CHAR}" == "Melia"} {weave 'heal serious' me};
+        #ELSE {weave 'heal crit' me};
+    };
 };
 #ALIAS {sanc} {
     #IF {"%1" != ""} {weave 'sanc' %1;};
