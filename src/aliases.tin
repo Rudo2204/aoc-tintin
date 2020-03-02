@@ -227,6 +227,18 @@
     };
 };
 
+#NOP =====[Fendand shenanigans]=====
+#ALIAS {^bh$} {behead corpse; take head;};
+#ALIAS {^bh%d$} {behead %1.corpse; take head;};
+#ALIAS {^eh$} {eatb head};
+#ALIAS {^ad$} {weave 'animate dead' corpse;};
+#ALIAS {^ad%d$} {weave 'animate dead' %1.corpse;};
+#ALIAS {^bh%d.%d$} {
+    #LOCAL start %1;
+    #LOCAL cnt %2;
+    #LOOP $start $cnt cnt {behead $cnt.corpse; take head;};
+};
+
 #NOP =====[ALL OF THE SKILLS & SPELLS]======
 #NOP ==[Ultility skills/spells]==
 #ALIAS {pd} {weave 'phase door'}
@@ -271,6 +283,10 @@
 };
 #ALIAS {fs} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'fireshield';};
+    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {
+        #IF {"%1" != ""} {weave 'flamestrike %1;};
+        #ELSE {weave 'firestorm';};
+    };
     #ELSE {
         #IF {"%1" != ""} {weave 'flamestrike' %1;};
         #ELSE {weave 'flamestrike' $target;};
@@ -327,7 +343,7 @@
         #IF {"%1" != ""} {bash %1;};
         #ELSE {bash $target;};
     };
-    #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {
+    #ELSEIF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
         #IF {"%1" != ""} {weave 'blind' %1;};
         #ELSE {weave 'blind' $target;};
     };
