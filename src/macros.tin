@@ -16,4 +16,39 @@
 #NOP F12 will be a hard rebuff (aff then rebuff)
 #MACRO {\e[24~} {__fix_buff__;}
 
+#MACRO {^+} {kill $target;}
+#MACRO {^0} {ov;};
+
+#NOP direction macros
+#MACRO {^1} {west;}
+#MACRO {^2} {south;}
+#MACRO {^3} {east;}
+#MACRO {^5} {north;}
+#MACRO {^4} {down;}
+#MACRO {^6} {up;}
+
+#NOP unlock door macros
+#MACRO {^-1} {ud west;}
+#MACRO {^-2} {ud south;}
+#MACRO {^-3} {ud east;}
+#MACRO {^-5} {ud north;}
+#MACRO {^-4} {ud up;}
+#MACRO {^-6} {ud down;}
+
+#NOP open door macros
+#MACRO {^*1} {op west;}
+#MACRO {^*2} {op south;}
+#MACRO {^*3} {op east;}
+#MACRO {^*5} {op north;}
+#MACRO {^*4} {op up;}
+#MACRO {^*6} {op down;}
+
+#NOP knock door macros
+#MACRO {^/1} {kn west;}
+#MACRO {^/2} {kn south;}
+#MACRO {^/3} {kn east;}
+#MACRO {^/5} {kn north;}
+#MACRO {^/4} {kn up;}
+#MACRO {^/6} {kn down;}
+
 #CLASS {macros} {close};
