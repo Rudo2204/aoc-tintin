@@ -7,6 +7,7 @@
 #VARIABLE         {CLANSAY_SUMMON}  {1}
 #VARIABLE         {CURRENT_CHAR}  {Shuu}
 #VARIABLE         {GROUP_SPELLUP}  {1}
+#VARIABLE         {HARD_REBUFF}  {0}
 #VARIABLE         {ame}  {0}
 #VARIABLE         {assist}  {Aldrich}
 #VARIABLE         {assist_fired}  {0}
