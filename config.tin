@@ -50,6 +50,9 @@
     #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
         #VAR {shuu_weave_bskin} {0};
     };
+    #ELSEIF {"${CURRENT_CHAR}" == "Igor"} {
+        #VAR {igor_ci} {1};
+    };
     #class {$tmp} {close};
     #FORMAT {session_start_time} {%t} {%s};
     #delay 1 {#split 2 2};

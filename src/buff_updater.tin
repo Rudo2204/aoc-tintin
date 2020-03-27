@@ -7,9 +7,13 @@
 #NOP #ACTION {{^(\w+\s?(\w+)?\s?(\w+)?)\s*?\:.*\[.*\]$}};
 #ACTION {{^(\w+\s?(\w+)\s?(\w+))\s*:\s*(\-?\d+ to (\w+|1\/2-Att))\s*\[\s*(\d+)\s(hours|hour\s)\]\s.*?$}} {
     #IF {"%2" == "aid"} {_update_buff_status_ aid on;};
+    #ELSEIF {"%2" == "waking sleep"} {_update_buff_status_ woke on;};
+    #ELSEIF {"%2" == "glacial aura"} {_update_buff_status_ glacial on;};
+    #ELSEIF {"%2" == "fists of fury"} {_update_buff_status_ fof on;};
     #ELSEIF {"%2" == "armor"} {_update_buff_status_ armor on;};
     #ELSEIF {"%2" == "airwalk"} {_update_buff_status_ fleet on;};
     #ELSEIF {"%2" == "barkskin"} {_update_buff_status_ bskin on;};
+    #ELSEIF {"%2" == "affinity field"} {_update_buff_status_ afffield on;};
     #ELSEIF {"%2" == "{(melody of spirit)|(psalm of aptitude}|{ballad of war)}"} {_update_buff_status_ bdsong_good on;};
     #ELSEIF {"%2" == "bless"} {_update_buff_status_ bless on;};
     #ELSEIF {"%2" == "cloak of darkness"} {_update_buff_status_ cod on;};
@@ -21,7 +25,7 @@
     #ELSEIF {"%2" == "magical vestment"} {_update_buff_status_ magvest on;};
     #ELSEIF {"%2" == "mechanical hand"} {_update_buff_status_ mech on;};
     #ELSEIF {"%2" == "nature fury"} {_update_buff_status_ nf on;};
-    #ELSEIF {"%2" == "sanctuary"} {_update_buff_status_ sanc on;};
+    #ELSEIF {"%2" == "{sanctuary|tower of strength}"} {_update_buff_status_ sanc on;};
     #ELSEIF {"%2" == "sense life"} {_update_buff_status_ senselife on;};
     #ELSEIF {"%2" == "shield"} {_update_buff_status_ shield on;};
     #ELSEIF {"%2" == "shriek"} {_update_buff_status_ shriek on;};
@@ -32,6 +36,7 @@
 };
 
 #ACTION {{You feel slightly different(\!|\.)}} {
+    #SHOWME \e[91m===DISPELLED!===\e[0m;
     _update_noti_ \e[91mDISPELLED!\e[0m;
     __set_all_buffs_off__;
     #IF {"${AUTO_REBUFF}" == "1"} {
@@ -54,58 +59,20 @@
 #ALIAS {__rebuff_self__} {
     #VAR mounted 0;
     #format {tmp} {%l} {${CURRENT_CHAR}};
-    #IF {"${${tmp}_aid}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu|Fendand}"} {weave 'armor' me;};
-        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay aid};};
-    };
-    #IF {"${${tmp}_armor}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'armor' me;};
-        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay armor};};
-    };
-    #IF {"${${tmp}_bskin}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_weave_bskin}" == "1"} {weave 'barkskin' me;};
-        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_bskin}" == "1"} {mimic barkskin ${mimic_bskin_target};};
-    };
-    #IF {"${${tmp}_bless}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'bless' me;};
-        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay bless};};
-    };
-    #IF {"${${tmp}_endure}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_endure}" == "1"} {mimic endure ${mimic_endure_target};};
-        #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {weave 'endure' me};
-        #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {#var fendand_endure 1};
-        #NOP #ELSE {gsay endure};
-    };
-    #IF {"${${tmp}_fleet}" == "0"} {
-        #IF {"${BOT_ON}" == "1"} {gsay air;};
-        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_fleet}" == "1"} {mimic fleetfeet ${mimic_fleet_target};};
-        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay bless};};
-    };
     #IF {"${${tmp}_haste}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay haste};};
     };
+    #IF {"${${tmp}_woke}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'waking sleep';};
+    };
     #IF {"${${tmp}_sanc}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'sanc' me;};
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'sanc' me;};
+        #ELSEIF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {weave 'tower of strength' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay sanc};};
-    };
-    #IF {"${${tmp}_ii}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand}"} {weave 'improved invis' me;};
-        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay ii};};
-    };
-    #IF {"${${tmp}_senselife}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'sense life';};
-        #NOP #ELSE {gsay shield};
-    };
-    #IF {"${${tmp}_shield}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me;};
-        #NOP #ELSE {gsay shield};
     };
     #IF {"${${tmp}_cod}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {weave 'cloak of darkness';};
-    };
-    #IF {"${${tmp}_magvest}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
     };
     #IF {"${${tmp}_mech}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {mech};
@@ -116,21 +83,67 @@
     #IF {"${${tmp}_vs}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
     };
+    #IF {"${${tmp}_ii}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Ilia|Igor}"} {weave 'improved invis' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay ii};};
+    };
+    #IF {"${${tmp}_aid}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu|Fendand}"} {weave 'aid' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay aid};};
+    };
+    #IF {"${${tmp}_fof}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Fendand"} {weave 'fists of fury' me;};
+    };
+    #IF {"${${tmp}_armor}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu|Igor}"} {weave 'armor' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay armor};};
+    };
+    #IF {"${${tmp}_glacial}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Alden|Igor}"} {weave 'glacial';};
+    };
+    #IF {"${${tmp}_bskin}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_weave_bskin}" == "1"} {weave 'barkskin' me;};
+        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_bskin}" == "1"} {mimic barkskin ${mimic_bskin_target};};
+    };
+    #IF {"${${tmp}_bless}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Igor}"} {weave 'bless' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay bless};};
+    };
+    #IF {"${${tmp}_endure}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_endure}" == "1"} {mimic endure ${mimic_endure_target};};
+        #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {weave 'endure' me};
+        #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {#var fendand_endure 1};
+        #NOP #ELSE {gsay endure};
+    };
+    #IF {"${${tmp}_fleet}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Alden|Igor}"} {_update_buff_status_ fleet on;};
+        #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_fleet}" == "1"} {mimic fleetfeet ${mimic_fleet_target};};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay air};};
+    };
+    #IF {"${${tmp}_senselife}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'sense life';};
+    };
+    #IF {"${${tmp}_shield}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me;};
+        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay shield};};
+    };
+    #IF {"${${tmp}_afffield}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'affinity field';};
+    };
+    #IF {"${${tmp}_magvest}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
+    };
     #IF {"${${tmp}_wc}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {weave 'war chant';};
-        #NOP #ELSE {gsay <++>};
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Igor}"} {weave 'war chant';};
     };
     #IF {"${${tmp}_wof}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
-        #NOP #ELSE {gsay <++>};
     };
     #IF {"${${tmp}_wos}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of swords';};
-        #NOP #ELSE {gsay <++>};
     };
     #IF {"${${tmp}_shriek}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Fendand"} {shriek;};
-        #NOP #ELSE {gsay shield};
     };
 };
 
@@ -139,7 +152,7 @@
     color;
     affects;
     color;
-    #delay {3} {__rebuff_self__;};
+    #IF {"${HARD_REBUFF}" == "1"} {#delay {3} {__rebuff_self__;};};
 };
 
 #ALIAS {__set_all_buffs_off__} {
@@ -163,7 +176,12 @@
    _update_buff_status_ wof off;
    _update_buff_status_ wos off;
    _update_buff_status_ shriek off;
+   _update_buff_status_ fof off;
+   _update_buff_status_ woke off;
+   _update_buff_status_ glacial off;
+   _update_buff_status_ afffield off;
    #var mounted 0;
+   #IF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {#var mounted 1;};
 };
 
 #TICKER {auto_rebuff_self} {
@@ -175,13 +193,8 @@
     #IF {"${AUTO_REBUFF}" == "1"} {
         #IF {"${HARD_REBUFF}" == 1} {
             #UNTICKER {auto_rebuff_self};
-            __set_all_buffs_off__;
-            look;
-            color;
-            affects;
-            color;
-            #delay {3} {__rebuff_self__;};
-            #delay {10} {
+            __fix_buff__;
+            #delay {5} {
                 #TICKER {auto_rebuff_self} {
                     #NOP Quick check if we are in combat or not;
                     #IF {"${p_dmg}" == "?" && "${AUTO_REBUFF}" == "1"} {__rebuff_self__;};

@@ -103,6 +103,16 @@
     #SHOWME \e[91m===BarkSkin weave status: $shuu_weave_bskin===;
     #class {shuu} {close};
 };
+#NOP =======================================;
+#ALIAS {igor buff} {
+    weave 'detect good';
+    weave 'detect evil';
+    weave 'detect magic';
+    weave 'protection from evil';
+    weave 'pass door';
+    weave 'dream sight' me;
+    weave 'strength' me;
+};
 
 #NOP ==[Crafting]==
 #ALIAS {p} {dig};
@@ -168,40 +178,43 @@
 #ALIAS {ud%w} {unlock door %1; open door %1; %1};
 #ALIAS {tkd} {take key; ud%1};
 #ALIAS {ent} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol ent %1;};
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Igor|Fendand|Melia}"} {order fol ent %1;};
     gs ent %1; enter %1;
 };
 #ALIAS {coffin} {
-    get coffin haver;
+    get coffin jester,cap;
     drop coffin;
-    gsay ent coffin;
-    #DELAY 3 {
-        take coffin;
-        weave 'word of recall' clantown;
-        back clan;
-        put coffin haver;
-    };
+    gs ent coffin;
+    order foll enter coffin;
+    take coffin;
+    rec; south;
+    put coffin jester,cap;
 };
 #ALIAS {sigil} {
     get sigil haver;
     drop sigil;
-    gsay ent sigil;
-    #DELAY 3 {
-        take sigil;
-        weave 'word of recall';
-        put sigil haver;
-    };
+    gs ent sigil;
+    order foll enter sigil;
+    take sigil;
+    rec; south;
+    #IF {"${CURRENT_CHAR}" == "Fendand"} {put sigil haver};
+    #ELSEIF {"${CURRENT_CHAR}" == "shuu"} {put sigil jester,cap};
 };
 
 #NOP ==[NIGERUNDAYO!!!]==
-#ALIAS {f} {flee}
+#ALIAS {f} {
+    #IF {"${CURRENT_CHAR}" == "{Igor|Ilia}" && ${p_dmg} != "?"} {retreat};
+    #ELSE {flee};
+}
+#ALIAS {rt} {retreat}
 
 #NOP ==[Fighting]==
 #ALIAS {^o$} {
-    #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Melia}"} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Melia|Igor}"} {
         #IF {"${p_dmg}" == "?"} {order fol kill $target;}
         #ELSE {order fol assist;};
     };
+    #ELSE {#SEND {\o};};
 };
 #ALIAS {k} {
     #IF {"%1" != ""} {kill %1;};
@@ -209,7 +222,7 @@
 };
 #ALIAS {a} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol assist};
-    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {
+    #ELSEIF {"${CURRENT_CHAR}" == "{Fendand|Igor}"} {
         #IF {"${p_dmg}" != "?"} {order fol assist;};
         assist;
     };
@@ -246,15 +259,22 @@
 #ALIAS {locate} {weave 'locate'}
 #ALIAS {bd} {bash door}
 #ALIAS {id} {
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'identify' %1};
-    #ELSEIF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {get id cap; hold id; recite id %1; hold lexicon;};
+    #VAR {db_xsel} {1};
+    #IF {"${CURRENT_CHAR}" == "{Aldrich|Igor}"} {weave 'identify' %1};
+    #ELSEIF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {get id jester,cap; hold id; recite id %1; hold lexicon;};
+    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {get id haversack; hold id; recite id %1; hold nekro;};
 }
+#ALIAS {rec} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {recall %1};
+    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {weave 'word of recall'; hold nekro;};
+};
 
 #NOP ==[Simple skills/spells]==
 #ALIAS {summon} {weave 'summon'};
 #ALIAS {nf} {weave 'nature fury';};
 #ALIAS {hm} {weave 'harmony'}
 #ALIAS {sense} {weave 'sense life'}
+#ALIAS {fof} {weave 'fists of fury'}
 #ALIAS {pfe} {weave 'protection from evil'}
 #ALIAS {pfg} {weave 'protection from good'}
 #ALIAS {pfc} {weave 'protection from cold'}
@@ -263,16 +283,36 @@
 #ALIAS {ca} {weave 'create animal'};
 #ALIAS {wc} {weave 'war chant'}
 #ALIAS {wor} {weave 'word of recall'};
-#ALIAS {wof} {weave 'wall of force';};
 #ALIAS {wos} {weave 'wall of swords';};
 #ALIAS {mv} {weave 'magical vestment';};
 #ALIAS {rv} {weave 'ravage';};
 #ALIAS {hw} {weave 'holy word';};
-#ALIAS {cp} {
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {mimic 'call plant' istvani;};
+#ALIAS {tower} {weave 'tower of strength';};
+#ALIAS {syno} {weave 'syno' me;};
+#ALIAS {em} {weave 'energy storm';};
+#ALIAS {ws} {weave 'waking sleep';};
+#ALIAS {^eqa$} {
+    weave 'earthquake';
 };
 
 #NOP ==[Complex skills/spells]==
+#ALIAS {wof} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
+    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {weave 'wall of fire';};
+    #ELSE {#SEND {\wof;}};
+};
+#ALIAS {mb} {
+    #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'mental balance';};
+    #ELSE {#SEND {mb};};
+};
+#ALIAS {so} {
+    #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'slow' $target;};
+    #ELSE {#SEND {so};};
+};
+#ALIAS {cp} {
+    #IF {"${CURRENT_CHAR}" == "Aldrich"} {mimic 'call plant' istvani;};
+    #ELSE {weave 'call plant';};
+};
 #ALIAS {mech} {
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {get book,redheart hole; hold book; weave 'mechanical hand'; hold infernoct; put book,redheart hole;};
     #ELSE {weave 'mechanical hand'};
@@ -342,7 +382,11 @@
         #IF {"%1" != ""} {constrict %1;};
         #ELSE {constrict $target;};
     };
-    #ELSE {#SHOWME \e[91mBut you are not playing Aldrich!\e[0m};
+    #ELSEIF {"${CURRENT_CHAR}" == "{Alden|Igor}"} {
+        #IF {"%1" != ""} {charge %1;};
+        #ELSE {charge $target;};
+    };
+    #ELSE {#SHOWME \e[91mThis command is not available for the current char!\e[0m};
 };
 #ALIAS {b} {
     #IF {"${CURRENT_CHAR}" == "Ilia"} {

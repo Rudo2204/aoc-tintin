@@ -9,16 +9,16 @@
     gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
 }
 #ACTION {You see the glint of a heartstone!!} {
+    #ACTION {^(Terrible) : %* Heartstone$} {#var lasths %1};
     gs I POPED A HEARTSTONE!!!;
     #math hscount (${hscount} + 1);
     #math avghscount ((${totalxpcount}/${hscount}*10)*0.1);
     gs Heartstone counter: ${hscount}, avg mobs per hs: ${avghscount};
 
-    #ACTION {(Terrible) : %* Heartstone} {#var lasths %1};
     inventory;
     #DELAY 3 {
+        #UNACTION {(Terrible) : %%* Heartstone}
         gs The hearstone I just poped is ${lasths} one!;
-        #UNACTION {(Terrible) : %* Heartstone}
     };
 }
 #HIGHLIGHT {You see the glint of a heartstone!!} {bold red underscore}
@@ -61,12 +61,12 @@
 #NOP ==[Group Helper]==
 #ACTION {You are now a member of %*'s group.} {
     #FORMAT {assist} {@get_real_name{%1}};
-    #IF {"${assist}" == "{Shuu|Aldrich}"} {#VAR assist $CURRENT_CHAR;};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+        #var {assist} {none};
+        gs gs 'shuu trigs' to check my trigs;
+    };
     #ELSE {
         #SHOWME {\e[91m===== CURRENT ASSITING: $assist =====};
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {
-            gs gs 'shuu trigs' to check my trigs;
-        };
     }
 };
 #ACTION {%* beckons for you to follow.} {
@@ -101,10 +101,10 @@
 };
 #ACTION {You drive %1 forward in exhaustion!} {gs mount is exhausted!;}
 #ACTION {Tar Valon Stables$} {
-    #IF {"${mounted}" == "0"} {buy gelding; s; mount geld;};
+    #IF {"${mounted}" == "0" && "${CURRENT_CHAR}" != "${assist}"} {buy gelding; s; mount geld;};
 };
 #ACTION {^Inside the Stable$} {
-    #IF {"${mounted}" == "0"} {
+    #IF {"${mounted}" == "0" && "${CURRENT_CHAR}" != "${assist}"} {
         #var refreshmount_fired 1;
         buy gelding;
         n;
@@ -113,7 +113,7 @@
     };
 };
 #ACTION {^Stable Yards$} {
-    #IF {"${mounted}" == "1"} {
+    #IF {"${mounted}" == "1" && "${CURRENT_CHAR}" != "${assist}"} {
         #IF {"${refreshmount_fired}" == "0"} {
             #DELAY {1} {
                 north;
@@ -137,6 +137,8 @@
 }
 
 #NOP ==[Misc]==
+#HIGHLIGHT {You have become more proficient at %*!} {cyan}
+#HIGHLIGHT {You have become more adept at %*!} {cyan}
 #ACTION {You have been idle, and are pulled into a void.} {rub}
 #ACTION {You stop following %*} {group me}
 #ACTION {You are no longer a member of {Aldrich|Shuu}'s group!} {group me};
@@ -144,6 +146,7 @@
     #IF {"%1" == "%*zombie%*"} {group zombie;};
     #ELSEIF {"%1" == "%*Tiger%*"} {group tiger;};
     #ELSEIF {"%1" == "%*Wolf%*"} {group wolf;};
+    #ELSEIF {"%1" == "%*gelding%*"} {};
     #ELSE {
         #FORMAT {tmp} {@get_real_name{%1}};
         group $tmp;
@@ -177,8 +180,73 @@
 #ACTION {You wish that your wounds would stop BLEEDING so much!} {#IF {"${CURRENT_CHAR}" == "Shuu"} {recall};}
 
 #NOP ==[Buff Alert]==
-#NOP The glacial aura around you melts away.;
 #NOP Your Thunderlance explodes in a burst of light!;
+#ACTION {Your mind feels less balanced.} {
+    #SHOWME  \e[91m===MentalBalance OUT!===\e[0m;
+    _update_noti_ \e[91mMBalance OUT!\e[0m;
+    #IF {"${CURRENT_CHAR}" == "Igor"} {
+        #IF {"${p_dmg}" == "?"} {weave 'mental bal';};
+        #ELSE {gsay MentalBalance OUT!;};
+    };
+}
+#ACTION {Your weapon detaches itself and your arm is restored to its original form.} {
+    #IF {"${igor_ci}" == "0"} {graft def;};
+    graft arid;
+};
+#ACTION {You fail to graft %*, injuring yourself in the attempt.} {
+    #IF {"%1" == "a sharpened battle-spear with an obsidian runestone, 'The Arid Avenger'"} {graft arid;};
+    #ELSEIF {"%1" == "a brilliant steel bastard sword known as, 'Defender'"} {graft defender;};
+};
+#ACTION {The glacial aura around you melts away.} {
+    #SHOWME  \e[91m===Glacial OUT!===\e[0m;
+    _update_noti_ \e[91mGlacial OUT!\e[0m;
+    _update_buff_status_ glacial off;
+    #IF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {
+        #IF {"${p_dmg}" == "?"} {weave 'glacial';};
+        #ELSE {gsay Glacial OUT!;};
+    };
+};
+#ACTION {The affinity field around you dissipates.} {
+    #SHOWME  \e[91m===AffField OUT!===\e[0m;
+    _update_noti_ \e[91mAffField OUT!\e[0m;
+    _update_buff_status_ afffield off;
+    #IF {"${CURRENT_CHAR}" == "Igor"} {
+        #IF {"${p_dmg}" == "?"} {weave 'affinity field';};
+        #ELSE {gsay AffField OUT!;};
+    };
+};
+#ACTION {You feel less alert.} {
+    #SHOWME  \e[91m===WOKE OUT!===\e[0m;
+    _update_buff_status_ woke off;
+    _update_noti_ \e[91mWOKE OUT!\e[0m;
+    #IF {"${CURRENT_CHAR}" == "Igor"} {
+        #IF {"${p_dmg}" == "?"} {weave 'waking sleep';};
+        #ELSE {gsay WakingSleep OUT!;};
+    };
+};
+#ACTION {You morph smoothly back into your normal form.} {
+    #IF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {
+        #SHOWME  \e[91m===DForm OUT!===\e[0m;
+        _update_noti_ \e[91mDForm OUT!\e[0m;
+        #IF {"${p_dmg}" == "?"} {dragonform};
+        #ELSE {gsay DForm OUT!};
+    };
+    #ELSEIF {"${CURRENT_CHAR}" == "Ilia"} {
+        #SHOWME  \e[91m===WForm OUT!===\e[0m;
+        _update_noti_ \e[91mWForm OUT!\e[0m;
+        #IF {"${p_dmg}" == "?"} {wraithform};
+        #ELSE {gsay WForm OUT!};
+    };
+};
+#ACTION {Your fists lose their ethereal glow.} {
+    _update_buff_status_ fof off;
+    #SHOWME  \e[91m===FOF OUT!===\e[0m;
+    _update_noti_ \e[91mFOF OUT!\e[0m;
+    #IF {"${CURRENT_CHAR}" == "Fendand"} {
+        #IF {"${p_dmg}" == "?"} {weave 'fists of fury';};
+        #ELSE {gsay FOF OUT!;};
+    };
+};
 #ACTION {The affects of the Bard's song dissipate.} {
     _update_buff_status_ bardsong_good off;
     #SHOWME \e[91m===BardSong OUT!===\e[0m;
@@ -187,9 +255,13 @@
     _update_noti_ \e[91mBardSong OUT!\e[0m;
 };
 #ACTION {The tower of mortal will around you fades.} {
-    #SHOWME  \e[91m===TOWER OUT!===\e[0m;
-    gs TOWER OUT!;
+    _update_buff_status_ sanc off;
     _update_noti_ \e[91mTOWER OUT!\e[0m;
+    #SHOWME  \e[91m===TOWER OUT!===\e[0m;
+    #IF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {
+        #IF {"${p_dmg}" == "?"} {weave 'tower of strength';};
+        #ELSE {gsay sanc' OUT!;};
+    };
 };
 #ACTION {The white aura around your body fades.} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
@@ -207,7 +279,7 @@
     _update_noti_ \e[1m\e[4m\e[91m!!!DESSED!!!\e[0m;
 };
 #ACTION {You feel yourself exposed.} {
-    #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand}"} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Igor}"} {
         #IF {"${p_dmg}" == "?"} {weave 'improved invis' me;};
         #ELSE {gsay II OUT!;};
     };
@@ -277,7 +349,7 @@
     _update_noti_ \e[93mArmor Out!\e[0m;
 };
 #ACTION {You feel less righteous.} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Alden|Igor}"} {
         #IF {"${p_dmg}" == "?"} {weave 'bless' me;};
         #ELSE {gsay Bless OUT!;};
     };
@@ -312,7 +384,7 @@
     _update_noti_ \e[91mFShield OUT!\e[0m;
 };
 #ACTION {You stop your war-like chanting.} {
-    #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
+    #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Igor}"} {
         #IF {"${p_dmg}" == "?"} {weave 'war chant';};
         #ELSE {gs WarChant Out!;};
     };
@@ -385,115 +457,135 @@
     _update_buff_status_ mech out;
 };
 
+#ACTION {An affinity field slowly forms around you.} {
+    #SHOWME \e[92mAffField UP!\e[0m;
+    _update_noti_ \e[92mAffField UP!\e[0m;
+    _update_buff_status_ afffield on;
+};
+#ACTION {You encase yourself in a glacial aura!} {
+    #SHOWME \e[92mGlacial UP!\e[0m;
+    _update_noti_ \e[92mGlacial UP!\e[0m;
+    _update_buff_status_ glacial on;
+};
+#ACTION {You feel more alert.} {
+    #SHOWME \e[92mWOKE UP!\e[0m;
+    _update_noti_ \e[92mWOKE UP!\e[0m;
+    _update_buff_status_ woke on;
+};
+#ACTION {You now have fists of fury!} {
+    #SHOWME \e[92mFOF UP!\e[0m;
+    _update_noti_ \e[92mFOF UP!\e[0m;
+    _update_buff_status_ fof on;
+};
 #ACTION {You feel your awareness improve.} {
-    #SHOWME \e[92mSenseLife UP!;
+    #SHOWME \e[92mSenseLife UP!\e[0m;
     _update_noti_ \e[92mSenseLife UP!\e[0m;
     _update_buff_status_ senselife on;
 };
 #ACTION {Your body is surrounded by a mist of opaque light.} {
-    #SHOWME \e[92mCOD UP!;
+    #SHOWME \e[92mCOD UP!\e[0m;
     _update_noti_ \e[92mCOD UP!\e[0m;
     _update_buff_status_ cod on;
 };
 #ACTION {Your skin turns into bark!} {
-    #SHOWME \e[92mBSkin UP!;
+    #SHOWME \e[92mBSkin UP!\e[0m;
     _update_noti_ \e[92mBSkin UP!\e[0m;
     _update_buff_status_ bskin on;
 };
 #ACTION {Your feet feel swift.} {
-    #SHOWME \e[92mFleet UP!;
+    #SHOWME \e[92mFleet UP!\e[0m;
     _update_noti_ \e[92mFleet UP!\e[0m;
     _update_buff_status_ fleet on;
 };
 #ACTION {You create a large metallic hand and flex it into a fist!} {
-    #SHOWME \e[92mMech UP!;
+    #SHOWME \e[92mMech UP!\e[0m;
     _update_noti_ \e[92mMech UP!\e[0m;
     _update_buff_status_ mech on;
 };
 #ACTION {You wear a shirt of glowing armor on your body.} {
-    #SHOWME \e[92mMagVest UP!;
+    #SHOWME \e[92mMagVest UP!\e[0m;
     _update_noti_ \e[92mMagVest UP!\e[0m;
     _update_buff_status_ magvest on;
 };
-#ACTION {You begin a low, rhythmic chanting.} {
-    #SHOWME \e[92mWarChant UP!;
+#ACTION {{You begin a low, rhythmic chanting.|Your body becomes attuned to .*?'s chanting!}} {
+    #SHOWME \e[92mWarChant UP!\e[0m;
     _update_noti_ \e[92mWarChant UP!\e[0m;
     _update_buff_status_ wc on;
 };
 #ACTION {You feel strengthened by the power of the Creator!} {
-    #SHOWME \e[92mAid UP!;
+    #SHOWME \e[92mAid UP!\e[0m;
     _update_noti_ \e[92mAid UP!\e[0m;
     _update_buff_status_ aid on;
 };
 #ACTION {You feel shielded.} {
-    #SHOWME \e[92mShield up!;
+    #SHOWME \e[92mShield up!\e[0m;
     _update_noti_ \e[92mShield up!\e[0m;
     _update_buff_status_ shield on;
 };
 #ACTION {You start glowing.} {
-    #SHOWME \e[92mSanc UP!;
+    #SHOWME \e[92mSanc UP!\e[0m;
     _update_noti_ \e[92mSanc UP!\e[0m;
     _update_buff_status_ sanc on;
 };
 #ACTION {You feel fast!} {
-    #SHOWME \e[92mHaste UP!;
+    #SHOWME \e[92mHaste UP!\e[0m;
     _update_noti_ \e[92mHaste UP!\e[0m;
     _update_buff_status_ haste on;
 };
 #ACTION {You vanish.} {
-    #SHOWME \e[92mII UP!;
+    #SHOWME \e[92mII UP!\e[0m;
     _update_noti_ \e[92mII UP!\e[0m;
     _update_buff_status_ ii on;
 };
 #ACTION {You become the ultimate embodiment of the destructive power of nature!} {
-    #SHOWME \e[92mNF UP!;
+    #SHOWME \e[92mNF UP!\e[0m;
     _update_noti_ \e[92mNF UP!\e[0m;
     _update_buff_status_ nf on;
 };
 #ACTION {You feel as if you can breathe under water!} {
-    #SHOWME \e[92mBWater UP!;
+    #SHOWME \e[92mBWater UP!\e[0m;
 };
 #ACTION {You begin to focus your energies into yourself.} {
-    #SHOWME \e[92mFocus UP!;
+    #SHOWME \e[92mFocus UP!\e[0m;
     _update_noti_ \e[92mFocus UP!\e[0m;
     _update_buff_status_ focus on;
 };
 #ACTION {You feel someone protecting you.} {
-    #SHOWME \e[92mArmor up!;
+    #SHOWME \e[92mArmor up!\e[0m;
     _update_noti_ \e[92mArmor up!\e[0m;
     _update_buff_status_ armor on;
 };
 #ACTION {You feel righteous.} {
-    #SHOWME \e[92mBless up!;
+    #SHOWME \e[92mBless up!\e[0m;
     _update_noti_ \e[92mBless up!\e[0m;
     _update_buff_status_ bless on;
 };
 #ACTION {You feel a shield of energy surround your body.} {
-    #SHOWME \e[92mEndure up!;
+    #SHOWME \e[92mEndure up!\e[0m;
     _update_noti_ \e[92mEndure up!\e[0m;
     _update_buff_status_ endure on;
 };
 #ACTION {A wall of force surrounds you!} {
-    #SHOWME \e[92mWOF up!;
+    #SHOWME \e[92mWOF up!\e[0m;
     _update_noti_ \e[92mWOF up!\e[0m;
     _update_buff_status_ wof on;
 };
 #ACTION {A wall of swords suddenly spins around you!} {
-    #SHOWME \e[92mWOS UP!;
+    #SHOWME \e[92mWOS UP!\e[0m;
     _update_noti_ \e[92mWOS up!\e[0m;
     _update_buff_status_ wos on;
 }
 #ACTION {You begin to absorb light.} {
-    #SHOWME \e[92mVS UP!;
+    #SHOWME \e[92mVS UP!\e[0m;
     _update_noti_ \e[92mVS up!\e[0m;
     _update_buff_status_ vs on;
 };
 #ACTION {You smell blood and go into a Blood Frenzy!} {
-    #SHOWME \e[92mFrenzy UP!;
+    #SHOWME \e[92mFrenzy UP!\e[0m;
     _update_noti_ \e[92mFrenzy up!\e[0m;
 };
 #ACTION {You let out a shriek of unimaginable horror!} {
-    #SHOWME \e[92mShriek UP!;
+    #SHOWME \e[92mShriek UP!\e[0m;
     _update_noti_ \e[92mShriek up!\e[0m;
     _update_buff_status_ shriek on;
 };
@@ -502,6 +594,7 @@
 #ACTION {You are knocked from your feet and fall hard to the ground!} {stand}
 #ACTION {You are knocked from your mount and fall hard to the ground!} {stand}
 #ACTION {You awaken from your deep sleep.} {
+    wake; stand;
     #FORMAT {tmp} {%t} {%s};
 }
 
