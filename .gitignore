@@ -1,1 +1,8 @@
 ignore/
+characters/
+log_query_result.txt
+logs/
+src/manual_mapping.tin
+src/port_mapper.tin
+src/status_update.py
+src/tabs.tin
