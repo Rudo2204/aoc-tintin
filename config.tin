@@ -51,7 +51,7 @@
         #VAR {shuu_weave_bskin} {0};
     };
     #ELSEIF {"${CURRENT_CHAR}" == "Igor"} {
-        #VAR {igor_ci} {1};
+        #VAR {igor_ci} {0};
     };
     #class {$tmp} {close};
     #FORMAT {session_start_time} {%t} {%s};
