@@ -50,4 +50,14 @@
 #ALIAS {go zedd} {.14n2e2s2u}
 #ALIAS {go argos} {.4s2e4s6e3se2sw2se4s7wnw4n2es2ese2sw2sw}
 
+#NOP ==[Jlindan]==
+#ALIAS {go lithijin} {.e2s2wns2esns2w}
+
+#NOP ==[Kingdom Fire and Ice]==
+#ALIAS {go pbear} {.wswnwwnwnwne}
+#ALIAS {go ice} {.wswnwwnwsess}
+
+#NOP ==[Gorgon's groom]===
+#ALIAS {go medusa} {.2nsw2esw2ns}
+
 #CLASS {speedwalks} {CLOSE}
