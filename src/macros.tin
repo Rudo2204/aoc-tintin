@@ -1,6 +1,11 @@
 #CLASS {macros} {kill};
 #CLASS {macros} {open};
 
+#NOP F8 is to toggle DB_LOG
+#MACRO {\e[19~} {
+    #IF {"${DB_LOG}" == "0"} {#VAR {DB_LOG} {1};};
+    #ELSE {#VAR {DB_LOG} {0};};
+};
 #NOP F9 is to toggle AUTO_REBUFF var
 #MACRO {\e[20~} {
     #IF {"${AUTO_REBUFF}" == "0"} {#VAR {AUTO_REBUFF} {1};};

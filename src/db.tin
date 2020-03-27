@@ -1,0 +1,29 @@
+#CLASS {db} {kill};
+#CLASS {db} {open};
+
+#VAR {db_xsel} {0};
+
+#ALIAS {^qeq %*} {
+    #SCRIPT {db_result} {python3.7 /home/rudo/src/crawl/qeq.py %1;};
+    #FOREACH {$db_result[%*]} {tmp} {#ECHO $tmp;};
+};
+
+#ACTION {Object '%*', Item type:} {
+    #IF {"${DB_LOG}" == "1"} {
+        #VAR db_timestamp {};
+        #VAR db_hex {};
+        #FORMAT {db_timestamp} {%t} {%Y-%m-%dT%H:%M:%S};
+        #SCRIPT {db_hex} {hexdump -n 4 -e '2/2 "%%04X" 1 "\n"' /dev/random | tr '[:upper:]' '[:lower:]'};
+        #LOG {overwrite} {logs/db/buffer_dump/$db_hex[1]_$db_timestamp.txt};
+        #DELAY {0.001} {#LOG off;};
+        #DELAY {2} {
+            #IF {"${db_xsel}" == "1"} {
+                #SCRIPT {tmp} {python3.7 -c "import subprocess;f = open('logs/db/buffer_dump/$db_hex[1]_$db_timestamp.txt', 'r+');process = subprocess.Popen('xsel', stdout=subprocess.PIPE, stderr=None, shell=True);xsel = process.communicate()[0].decode('ascii').strip('\n');content = f.read();f.seek(0, 0);f.write(xsel + '\n\n' + content);f.close()"};
+                #SCRIPT {tmp} {echo "N/A" | xsel -ib};
+                #VAR {db_xsel} {0};
+            };
+        };
+    };
+};
+
+#CLASS {db} {close};
