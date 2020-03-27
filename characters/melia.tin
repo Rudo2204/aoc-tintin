@@ -1,12 +1,13 @@
 #CLASS {melia} OPEN
 
-#VARIABLE         {melia_aid}  {0}
+#VARIABLE         {melia_aid}  {1}
 #VARIABLE         {melia_armor}  {0}
-#VARIABLE         {melia_bless}  {0}
+#VARIABLE         {melia_bless}  {1}
 #VARIABLE         {melia_bskin}  {0}
 #VARIABLE         {melia_cod}  {0}
 #VARIABLE         {melia_endure}  {0}
 #VARIABLE         {melia_fleet}  {0}
+#VARIABLE         {melia_fof}  {0}
 #VARIABLE         {melia_haste}  {0}
 #VARIABLE         {melia_ii}  {0}
 #VARIABLE         {melia_magvest}  {0}
@@ -15,6 +16,7 @@
 #VARIABLE         {melia_sanc}  {0}
 #VARIABLE         {melia_senselife}  {0}
 #VARIABLE         {melia_shield}  {0}
+#VARIABLE         {melia_shriek}  {0}
 #VARIABLE         {melia_vs}  {0}
 #VARIABLE         {melia_wc}  {0}
 #VARIABLE         {melia_wof}  {0}

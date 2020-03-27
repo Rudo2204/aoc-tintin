@@ -1,0 +1,25 @@
+#CLASS {ilia} OPEN
+
+#VARIABLE         {ilia_aid}  {0}
+#VARIABLE         {ilia_armor}  {0}
+#VARIABLE         {ilia_bless}  {0}
+#VARIABLE         {ilia_bskin}  {0}
+#VARIABLE         {ilia_cod}  {0}
+#VARIABLE         {ilia_endure}  {0}
+#VARIABLE         {ilia_fleet}  {0}
+#VARIABLE         {ilia_fof}  {0}
+#VARIABLE         {ilia_haste}  {0}
+#VARIABLE         {ilia_ii}  {0}
+#VARIABLE         {ilia_magvest}  {0}
+#VARIABLE         {ilia_mech}  {0}
+#VARIABLE         {ilia_nf}  {0}
+#VARIABLE         {ilia_sanc}  {0}
+#VARIABLE         {ilia_senselife}  {0}
+#VARIABLE         {ilia_shield}  {0}
+#VARIABLE         {ilia_shriek}  {0}
+#VARIABLE         {ilia_vs}  {0}
+#VARIABLE         {ilia_wc}  {0}
+#VARIABLE         {ilia_wof}  {0}
+#VARIABLE         {ilia_wos}  {0}
+
+#CLASS {ilia} CLOSE
