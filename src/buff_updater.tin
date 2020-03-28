@@ -194,7 +194,7 @@
         #IF {"${HARD_REBUFF}" == 1} {
             #UNTICKER {auto_rebuff_self};
             __fix_buff__;
-            #delay {5} {
+            #delay {10} {
                 #TICKER {auto_rebuff_self} {
                     #NOP Quick check if we are in combat or not;
                     #IF {"${p_dmg}" == "?" && "${AUTO_REBUFF}" == "1"} {__rebuff_self__;};
