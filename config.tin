@@ -49,6 +49,7 @@
     };
     #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
         #VAR {shuu_weave_bskin} {0};
+        #VAR {shuu_use_focus} {0};
     };
     #ELSEIF {"${CURRENT_CHAR}" == "Igor"} {
         #VAR {igor_ci} {0};

@@ -288,6 +288,13 @@
     #SHOWME \e[91m===II OUT!===\e[0m;
     _update_noti_ \e[91mII OUT!\e[0m;
 };
+#ACTION {You do not have enough moves to focus now!} {
+    _update_buff_status_ focus off;
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {#var shuu_use_focus 0; #4 weave 'vigorize crit' me; #var shuu_use_focus 1;};
+};
+#ACTION {OK, you stop focusing...} {
+    _update_buff_status_ focus off;
+};
 #ACTION {You lose your focus.} {
     gs FOCUS OUT!;
     #SHOWME \e[91m===FOCUS OUT!===\e[0m;
@@ -548,6 +555,9 @@
 #ACTION {You begin to focus your energies into yourself.} {
     #SHOWME \e[92mFocus UP!\e[0m;
     _update_noti_ \e[92mFocus UP!\e[0m;
+    _update_buff_status_ focus on;
+};
+#ACTION {You already have your energies invested.} {
     _update_buff_status_ focus on;
 };
 #ACTION {You feel someone protecting you.} {

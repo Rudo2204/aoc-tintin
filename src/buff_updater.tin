@@ -33,6 +33,7 @@
     #ELSEIF {"%2" == "war chant"} {_update_buff_status_ wc on;};
     #ELSEIF {"%2" == "wall of force"} {_update_buff_status_ wof on;};
     #ELSEIF {"%2" == "wall of swords"} {_update_buff_status_ wos on;};
+    #ELSEIF {"%2" == "focus"} {_update_buff_status_ focus on;};
 };
 
 #ACTION {{You feel slightly different(\!|\.)}} {
@@ -59,6 +60,9 @@
 #ALIAS {__rebuff_self__} {
     #VAR mounted 0;
     #format {tmp} {%l} {${CURRENT_CHAR}};
+    #IF {"${${tmp}_focus}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {#IF {"${shuu_use_focus}" == "1"} {focus mana;};};
+    };
     #IF {"${${tmp}_haste}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay haste};};
@@ -180,6 +184,7 @@
    _update_buff_status_ woke off;
    _update_buff_status_ glacial off;
    _update_buff_status_ afffield off;
+   _update_buff_status_ focus off;
    #var mounted 0;
    #IF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {#var mounted 1;};
 };
