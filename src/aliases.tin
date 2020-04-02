@@ -440,8 +440,14 @@
     #ELSE {weave 'dispel magic' $target};
 };
 #ALIAS {vig} {
-    #IF {"%1" != ""} {weave 'vigorize serious' %1;};
-    #ELSE {weave 'vigorize serious' me};
+    #IF {"%1" != ""} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'vigorize crit' %1;};
+        #ELSE {weave 'vigorize serious' %1;};
+    };
+    #ELSE {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'vigorize crit' me;};
+        #ELSE {weave 'vigorize serious' me;};
+    };
 };
 #ALIAS {des} {
     #IF {"%1" != ""} {weave 'des' %1;};
