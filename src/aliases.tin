@@ -115,7 +115,12 @@
 };
 
 #NOP ==[Crafting]==
-#ALIAS {p} {dig};
+#ALIAS {p} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {dig %1};
+    #ELSEIF {"${CURRENT_CHAR}" == "Igor"} {chisel %1};
+    #ELSE {#SEND {p}};
+}
+
 #ALIAS {bri %w} {
     #IF {"%1" == "ame"} {#10 craftitem brilliant cut amethyst};
     #ELSEIF {"%1" == "eme"} {#10 craftitem brilliant cut emerald};
