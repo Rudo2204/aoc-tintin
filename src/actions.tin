@@ -148,6 +148,7 @@
     #IF {"%1" == "%*zombie%*"} {group zombie;};
     #ELSEIF {"%1" == "%*Tiger%*"} {group tiger;};
     #ELSEIF {"%1" == "%*Wolf%*"} {group wolf;};
+    #ELSEIF {"%1" == "%*phantom warhorse%*"} {group phantom;};
     #ELSEIF {"%1" == "%*gelding%*"} {};
     #ELSE {
         #FORMAT {tmp} {@get_real_name{%1}};
@@ -163,9 +164,11 @@
 #HIGHLIGHT {A gold coin is floating here.} {\e[36m}
 #HIGHLIGHT {An air bubble%*} {b red}
 #HIGHLIGHT {A small pile of gem shards sits here%*} {\e[91m}
+#HIGHLIGHT {A small pile of pebbles sits here%*} {\e[91m}
 #HIGHLIGHT {One miserable gold sovereign is lying here.} {\e[91m}
 #HIGHLIGHT {You manage to %* the last of the %*} {\e[91m}
 #HIGHLIGHT {You spot something shiny!  Dig more!} {b red}
+#HIGHLIGHT {There is something here worth chiseling!} {b red}
 #HIGHLIGHT {%*you manage to salvage part of %* body!} {b red}
 #HIGHLIGHT {The corpse of the Spiralborn decays in your hands.} {b red}
 
@@ -193,10 +196,11 @@
 }
 #ACTION {Your weapon detaches itself and your arm is restored to its original form.} {
     #IF {"${igor_ci}" == "0"} {graft def;};
-    graft arid;
+    graft whip;
 };
 #ACTION {You fail to graft %*, injuring yourself in the attempt.} {
     #IF {"%1" == "a sharpened battle-spear with an obsidian runestone, 'The Arid Avenger'"} {graft arid;};
+    #ELSEIF {"%1" == "a tendriled whip of screaming souls"} {graft whip;};
     #ELSEIF {"%1" == "a brilliant steel bastard sword known as, 'Defender'"} {graft defender;};
 };
 #ACTION {The glacial aura around you melts away.} {
@@ -606,6 +610,7 @@
 #ACTION {You are knocked from your feet and fall hard to the ground!} {stand}
 #ACTION {You are knocked from your mount and fall hard to the ground!} {stand}
 #ACTION {You awaken from your deep sleep.} {
+    #VAR mb 0;
     wake; stand;
     #FORMAT {tmp} {%t} {%s};
 }
