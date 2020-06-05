@@ -61,6 +61,12 @@
 #ALIAS {go medusa} {.2nsw2esw2ns}
 
 #NOP ==[Citadel of Stars]==
-#ALIAS {go cos} {esduwnsdunnsnndde}
+#ALIAS {go cos} {.esduwnsdunnsnndde}
+
+#NOP ==[Ice Mountain]==
+#ALIAS {go icem} {.16w10sw2sese2nw2s4w2sw3n}
+
+#NOP ==[Keziah]==
+#ALIAS {go keziah} {.9n3en2eu4es2enes}
 
 #CLASS {speedwalks} {CLOSE}
