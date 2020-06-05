@@ -266,7 +266,7 @@
 #ALIAS {id} {
     #VAR {db_xsel} {1};
     #IF {"${CURRENT_CHAR}" == "{Aldrich|Igor}"} {weave 'identify' %1};
-    #ELSEIF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {get id jester,cap; hold id; recite id %1; hold lexicon;};
+    #ELSEIF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {get id haversack; hold id; recite id %1; hold bowl,wind;};
     #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {get id haversack; hold id; recite id %1; hold nekro;};
 }
 #ALIAS {rec} {
