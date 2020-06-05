@@ -130,8 +130,10 @@
 #ACTION {[Auto-Auc] : %1 auctioning %2, min is %3.} {
     #IF {"%1" == "${CURRENT_CHAR}"} {};
     #ELSE {
-        #VAR {db_xsel} {1};
-        #SCRIPT {tmp} {echo "%2" | xsel -ib};
+        #IF {"${DB_LOG}" == "1"} {
+            #VAR {db_xsel} {1};
+            #SCRIPT {tmp} {echo "%2" | xsel -ib};
+        };
         #SEND {bid ?};
     };
 }
