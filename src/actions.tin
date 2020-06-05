@@ -296,16 +296,20 @@
 };
 #ACTION {You do not have enough moves to focus now!} {
     _update_buff_status_ focus off;
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {#var shuu_use_focus 0; #4 weave 'vigorize crit' me; #var shuu_use_focus 1;};
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {#var shuu_use_focus 0; #4 weave 'vigorize crit' me; #var shuu_use_focus 1; focus mana;};
 };
 #ACTION {OK, you stop focusing...} {
     _update_buff_status_ focus off;
+};
+#ACTION {You can't manage to focus your energy just yet...} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {focus mana;};
 };
 #ACTION {You lose your focus.} {
     gs FOCUS OUT!;
     #SHOWME \e[91m===FOCUS OUT!===\e[0m;
     _update_buff_status_ focus off;
     _update_noti_ \e[91mFOCUS OUT!\e[0m;
+    #IF {"${shuu_use_focus}" == "1"} {focus mana;};
 };
 #ACTION {You no longer feel in tune with nature.} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
