@@ -256,7 +256,7 @@
     };
 };
 #ACTION {The affects of the Bard's song dissipate.} {
-    _update_buff_status_ bardsong_good off;
+    _update_buff_status_ bdsonggood off;
     #SHOWME \e[91m===BardSong OUT!===\e[0m;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {gs psalm' OUT!;};
     #ELSE {gs bal' OUT!;};

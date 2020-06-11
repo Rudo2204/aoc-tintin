@@ -14,7 +14,7 @@
     #ELSEIF {"%2" == "airwalk"} {_update_buff_status_ fleet on;};
     #ELSEIF {"%2" == "barkskin"} {_update_buff_status_ bskin on;};
     #ELSEIF {"%2" == "affinity field"} {_update_buff_status_ afffield on;};
-    #ELSEIF {"%2" == "{(melody of spirit)|(psalm of aptitude}|{ballad of war)}"} {_update_buff_status_ bdsong_good on;};
+    #ELSEIF {"%2" == "{(melody of spirit)|(psalm of aptitude)|(ballad of war)}"} {_update_buff_status_ bdsonggood on;};
     #ELSEIF {"%2" == "bless"} {_update_buff_status_ bless on;};
     #ELSEIF {"%2" == "cloak of darkness"} {_update_buff_status_ cod on;};
     #ELSEIF {"%2" == "endure element"} {_update_buff_status_ endure on;};
