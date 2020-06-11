@@ -49,6 +49,7 @@
 #ALIAS {go tv} {.4s2w3s10e4se2sw2se4s10e4nw2n2e2n2wsw3n2e4ne3nenwn}
 #ALIAS {go zedd} {.14n2e2s2u}
 #ALIAS {go argos} {.4s2e4s6e3se2sw2se4s7wnw4n2es2ese2sw2sw}
+#ALIAS {go hawkwing} {.9e2nws2wnw2s3ws2w2sw3sese2sw3sds}
 
 #NOP ==[Jlindan]==
 #ALIAS {go lithijin} {.e2s2wns2esns2w}
