@@ -113,6 +113,12 @@
     weave 'dream sight' me;
     weave 'strength' me;
 };
+#ALIAS {tap %1 %2} {
+    weave 'mental tap' %2 '%1';
+} {5};
+#ALIAS {tap '%*' %2} {
+    weave 'mental tap' %2 '%1';
+} {4};
 
 #NOP ==[Crafting]==
 #ALIAS {p} {
