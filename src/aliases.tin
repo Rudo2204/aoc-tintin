@@ -302,6 +302,8 @@
 #ALIAS {syno} {weave 'syno' me;};
 #ALIAS {em} {weave 'energy storm';};
 #ALIAS {ws} {weave 'waking sleep';};
+#ALIAS {cw} {weave 'control weather';};
+#ALIAS {is} {weave 'icestorm';};
 #ALIAS {^eqa$} {
     weave 'earthquake';
 };
@@ -449,6 +451,18 @@
 #ALIAS {dm} {
     #IF {"%1" != ""} {weave 'dispel magic' %1;};
     #ELSE {weave 'dispel magic' $target};
+};
+#ALIAS {cl} {
+    #IF {"%1" != ""} {weave 'call light' %1;};
+    #ELSE {weave 'call light' $target};
+};
+#ALIAS {il} {
+    #IF {"%1" != ""} {weave 'icelance' %1;};
+    #ELSE {weave 'icelance' $target};
+};
+#ALIAS {dsil} {
+    #IF {"%1" != ""} {weave 'dispel silence' %1;};
+    #ELSE {weave 'dispel silence' $target};
 };
 #ALIAS {vig} {
     #IF {"%1" != ""} {

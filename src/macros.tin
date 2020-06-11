@@ -24,6 +24,11 @@
 #MACRO {^+} {kill $target;}
 #MACRO {^0} {ov;};
 
+#NOP PVP Shuu
+#MACRO {^7} {cl;}
+#MACRO {^8} {il;}
+#MACRO {^9} {is;}
+
 #NOP direction macros
 #MACRO {^1} {west;}
 #MACRO {^2} {south;}
