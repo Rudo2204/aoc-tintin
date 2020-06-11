@@ -50,6 +50,7 @@
     #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
         #VAR {shuu_weave_bskin} {1};
         #VAR {shuu_use_focus} {0};
+        #VAR {shuu_recall} {1};
     };
     #ELSEIF {"${CURRENT_CHAR}" == "Igor"} {
         #VAR {igor_ci} {0};
