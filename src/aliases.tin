@@ -456,6 +456,10 @@
     #IF {"%1" != ""} {weave 'call light' %1;};
     #ELSE {weave 'call light' $target};
 };
+#ALIAS {wot} {
+    #IF {"%1" != ""} {weave 'wall of thorn' %1;};
+    #ELSE {weave 'wall of thorn' $target};
+};
 #ALIAS {il} {
     #IF {"%1" != ""} {weave 'icelance' %1;};
     #ELSE {weave 'icelance' $target};

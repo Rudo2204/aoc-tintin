@@ -141,6 +141,7 @@
 #NOP ==[Misc]==
 #HIGHLIGHT {You have become more proficient at %*!} {cyan}
 #HIGHLIGHT {You have become more adept at %*!} {cyan}
+#HIGHLIGHT {%* is surrounded by a twisting wall of deadly, razor sharp thorns!} {cyan}
 #ACTION {You have been idle, and are pulled into a void.} {rub}
 #ACTION {You stop following %*} {group me}
 #ACTION {You are no longer a member of {Aldrich|Shuu}'s group!} {group me};
