@@ -29,7 +29,7 @@
 #ACTION {You clan-say '%1'} {__log_line_to_chat__;};
 #ACTION {%1 clan-says '%2'} {
     #FORMAT {tmp} {@get_real_name{%1}};
-    #IF {"%2" == "clanrank"} {follow $tmp;};
+    #IF {"%2" == "xxxclanrankxxx"} {follow $tmp;};
     #ELSEIF {"%2" == "summon"} {
         #IF {"${CLANSAY_SUMMON}" == "1"} {weave 'summon' $tmp;};
     };

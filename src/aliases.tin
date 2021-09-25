@@ -233,7 +233,7 @@
 };
 #ALIAS {a} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {order fol assist};
-    #ELSEIF {"${CURRENT_CHAR}" == "{Fendand|Igor}"} {
+    #ELSEIF {"${CURRENT_CHAR}" == "{Fendand|Igor|Ilia|Melia}"} {
         #IF {"${p_dmg}" != "?"} {order fol assist;};
         assist;
     };

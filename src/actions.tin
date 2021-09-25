@@ -189,6 +189,15 @@
 
 #NOP ==[Buff Alert]==
 #NOP Your Thunderlance explodes in a burst of light!;
+#ACTION {Your soul loses contact with your pulsating lightning bow.} {
+    #SHOWME  \e[91m===Lbow OUT!===\e[0m;
+    _update_noti_ \e[91mLbow OUT!\e[0m;
+    _update_buff_status_ lbow off;
+    #IF {"${CURRENT_CHAR}" == "Ilia"} {
+        #IF {"${p_dmg}" == "?"} {weave 'lightning bow';};
+        #ELSE {gsay lbow OUT!;};
+    };
+}
 #ACTION {Your mind feels less balanced.} {
     #SHOWME  \e[91m===MentalBalance OUT!===\e[0m;
     _update_noti_ \e[91mMBalance OUT!\e[0m;
@@ -476,7 +485,23 @@
     _update_noti_ \e[91mMech OUT!\e[0m;
     _update_buff_status_ mech out;
 };
+#ACTION {Your regeneration process ceases.} {
+    #SHOWME \e[91m===Regen OUT!===;
+    _update_noti_ \e[91mRegen OUT!\e[0m;
+    _update_buff_status_ regen out;
+    #IF {"${CURRENT_CHAR}" == "Ilia"} {regen};
+}
 
+#ACTION {You begin the regeneration process.} {
+    #SHOWME \e[92mRegen UP!\e[0m;
+    _update_noti_ \e[92mRegen UP!\e[0m;
+    _update_buff_status_ regen on;
+}
+#ACTION {You gasp at the raw power woven together in the lightning bow you now wield!} {
+    #SHOWME \e[92mLbow UP!\e[0m;
+    _update_noti_ \e[92mLbow UP!\e[0m;
+    _update_buff_status_ lbow on;
+}
 #ACTION {An affinity field slowly forms around you.} {
     #SHOWME \e[92mAffField UP!\e[0m;
     _update_noti_ \e[92mAffField UP!\e[0m;

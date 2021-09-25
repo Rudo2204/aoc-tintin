@@ -1,45 +1,45 @@
 #CLASS {variables} OPEN
 
-#VARIABLE         {AUTO_LOOT}  {0}
+#VARIABLE         {AUTO_LOOT}  {1}
 #VARIABLE         {AUTO_REBUFF}  {0}
 #VARIABLE         {AUTO_REBUFF_SELF}  {1}
 #VARIABLE         {BOT_ON}  {0}
 #VARIABLE         {CLANSAY_SUMMON}  {1}
-#VARIABLE         {CURRENT_CHAR}  {Shuu}
+#VARIABLE         {CURRENT_CHAR}  {Ilia}
 #VARIABLE         {DB_LOG}  {0}
 #VARIABLE         {GROUP_SPELLUP}  {1}
 #VARIABLE         {HARD_REBUFF}  {0}
 #VARIABLE         {ame}  {0}
 #VARIABLE         {assist}  {none}
 #VARIABLE         {assist_fired}  {0}
-#VARIABLE         {avghscount}  {1767.2}
-#VARIABLE         {c_noti}  {\e[92mAid UP!\e[0m}
+#VARIABLE         {avghscount}  {2021.8}
+#VARIABLE         {c_noti}  {\e[92mFleet UP!\e[0m}
 #VARIABLE         {date_started}  {2020-25-01}
 #VARIABLE         {dia}  {0}
 #VARIABLE         {eme}  {0}
-#VARIABLE         {groupxp}  {845198583}
-#VARIABLE         {groupxpcount}  {60991}
-#VARIABLE         {hscount}  {34}
-#VARIABLE         {last_noti}  {\e[93mAid Out!\e[0m}
-#VARIABLE         {lasths}  {8719}
+#VARIABLE         {groupxp}  {2148999356}
+#VARIABLE         {groupxpcount}  {87636}
+#VARIABLE         {hscount}  {46}
+#VARIABLE         {last_noti}  {\e[92mSanc UP!\e[0m}
+#VARIABLE         {lasths}  {57861}
 #VARIABLE         {mode}  {Normal}
-#VARIABLE         {mounted}  {0}
+#VARIABLE         {mounted}  {1}
 #VARIABLE         {p_dmg}  {?}
-#VARIABLE         {p_endurance}  {322}
-#VARIABLE         {p_hp}  {547}
-#VARIABLE         {p_mana}  {1121}
-#VARIABLE         {p_mv}  {322}
+#VARIABLE         {p_endurance}  {356}
+#VARIABLE         {p_hp}  {1102}
+#VARIABLE         {p_mana}  {392}
+#VARIABLE         {p_mv}  {356}
 #VARIABLE         {p_stamina}  {100}
-#VARIABLE         {p_xp}  {1}
+#VARIABLE         {p_xp}  {87324}
 #VARIABLE         {refreshmount_fired}  {0}
 #VARIABLE         {rub}  {0}
 #VARIABLE         {sap}  {0}
-#VARIABLE         {soloxp}  {174339915}
-#VARIABLE         {soloxpcount}  {3030}
-#VARIABLE         {t_last_noti}  {1585319086}
-#VARIABLE         {t_noti}  {343}
-#VARIABLE         {target}  {loren}
-#VARIABLE         {totalxp}  {1019538498}
-#VARIABLE         {totalxpcount}  {64021}
+#VARIABLE         {soloxp}  {311351699}
+#VARIABLE         {soloxpcount}  {5607}
+#VARIABLE         {t_last_noti}  {1632556121}
+#VARIABLE         {t_noti}  {317}
+#VARIABLE         {target}  {2.}
+#VARIABLE         {totalxp}  {2460351055}
+#VARIABLE         {totalxpcount}  {93243}
 
 #CLASS {variables} CLOSE

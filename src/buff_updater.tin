@@ -34,6 +34,8 @@
     #ELSEIF {"%2" == "wall of force"} {_update_buff_status_ wof on;};
     #ELSEIF {"%2" == "wall of swords"} {_update_buff_status_ wos on;};
     #ELSEIF {"%2" == "focus"} {_update_buff_status_ focus on;};
+    #ELSEIF {"%2" == "lightning bow"} {_update_buff_status_ lbow on;};
+    #ELSEIF {"%2" == "regen"} {_update_buff_status_ regen on;};
 };
 
 #ACTION {{You feel slightly different(\!|\.)}} {
@@ -61,6 +63,12 @@
 #ALIAS {__rebuff_self__} {
     #VAR mounted 0;
     #format {tmp} {%l} {${CURRENT_CHAR}};
+    #IF {"${${tmp}_regen}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Ilia"} {regen};
+    };
+    #IF {"${${tmp}_lbow}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Ilia"} {weave 'lightning bow'};
+    };
     #IF {"${${tmp}_focus}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {#IF {"${shuu_use_focus}" == "1"} {focus mana;};};
     };
@@ -185,6 +193,8 @@
    _update_buff_status_ woke off;
    _update_buff_status_ glacial off;
    _update_buff_status_ afffield off;
+   _update_buff_status_ regen off;
+   _update_buff_status_ lbow off;
    #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_use_focus}" == "1"} {_update_buff_status_ focus on;};
    #ELSE {_update_buff_status_ focus off;};
    #var mounted 0;
