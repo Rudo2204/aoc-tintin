@@ -309,6 +309,12 @@
 };
 
 #NOP ==[Complex skills/spells]==
+#ALIAS {v} {
+    #IF {"${CURRENT_CHAR}" == "Ilia"} {
+        #IF {"${p_dmg}" == "?"} {volley $target};
+        #ELSE {volley};
+    };
+};
 #ALIAS {wof} {
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
     #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {weave 'wall of fire';};
