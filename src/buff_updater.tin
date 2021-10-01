@@ -5,7 +5,7 @@
 
 #NOP Can use this also;
 #NOP #ACTION {{^(\w+\s?(\w+)?\s?(\w+)?)\s*?\:.*\[.*\]$}};
-#ACTION {{^(\w+\s?(\w+)\s?(\w+))\s*:\s*(\-?\d+ to (\w+|1\/2-Att))\s*\[(\d+) power\]\s*\[\s*(\d+)\s(hours|hour\s)\]\s.*?$}} {
+#ACTION {{^(\w+\s?(\w+)\s?(\w+))\s*:\s*(\-?\d+ to (\w+|1\/2-Att))\s*\[\s?(\d+) power\]\s*\[\s*(\d+)\s(hours|hour\s)\]\s.*?$}} {
     #IF {"%2" == "aid"} {_update_buff_status_ aid on;};
     #ELSEIF {"%2" == "waking sleep"} {_update_buff_status_ woke on;};
     #ELSEIF {"%2" == "glacial aura"} {_update_buff_status_ glacial on;};
