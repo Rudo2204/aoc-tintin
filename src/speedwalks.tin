@@ -38,36 +38,36 @@
 }
 
 #NOP ==[All of the speedwalks]==
-#ALIAS {back candrel} {.es2esene4s2e9s}
-#ALIAS {back clan} {.6s5e; enter portal; .2s}
-#ALIAS {back coffin} {.wn3wus2w; gsay ent gate; #delay 3 {enter gate; .ws2w2s2w4s};}
-#ALIAS {back zedd} {.2d2n2w14s}
-#ALIAS {go candrel} {.9n2w4nwswn2wnw}
-#ALIAS {go coffin} {.4n2e2n2en4end3ese}
-#ALIAS {go karaonwa} {.4s2e3s6e4se2sw2se4s8w22n7w}
-#ALIAS {go thae} {.4s2w2s; give 50 coins thae}
-#ALIAS {go tv} {.4s2w3s10e4se2sw2se4s10e4nw2n2e2n2wsw3n2e4ne3nenwn}
-#ALIAS {go zedd} {.14n2e2s2u}
-#ALIAS {go argos} {.4s2e4s6e3se2sw2se4s7wnw4n2es2ese2sw2sw}
-#ALIAS {go hawkwing} {.9e2nws2wnw2s3ws2w2sw3sese2sw3sds}
+#ALIAS {^back candrel$} {.es2esene4s2e9s}
+#ALIAS {^back clan$} {.6s5e; enter portal; .2s}
+#ALIAS {^back coffin$} {.wn3wus2w; gsay ent gate; #delay 2 {enter gate; .ws2w2s2w4s};}
+#ALIAS {^back zedd$} {.2d2n2w14s}
+#ALIAS {^go candrel$} {.9n2w4nwswn2wnw}
+#ALIAS {^go coffin$} {.4n2e2n2en4end3ese}
+#ALIAS {^go karaonwa$} {.4s2e3s6e4se2sw2se4s8w22n7w}
+#ALIAS {^go thae$} {.4s2w2s; give 50 coins thae}
+#ALIAS {^go tv$} {.4s2w3s10e4se2sw2se4s10e4nw2n2e2n2wsw3n2e4ne3nenwn}
+#ALIAS {^go zedd$} {.14n2e2s2u}
+#ALIAS {^go argos$} {.4s2e4s6e3se2sw2se4s7wnw4n2es2ese2sw2sw}
+#ALIAS {^go hawkwing$} {.9e2nws2wnw2s3ws2w2sw3sese2sw3sds}
 
 #NOP ==[Jlindan]==
-#ALIAS {go lithijin} {.e2s2wns2esns2w}
+#ALIAS {^go lithijin$} {.e2s2wns2esns2w}
 
 #NOP ==[Kingdom Fire and Ice]==
-#ALIAS {go pbear} {.wswnwwnwnwne}
-#ALIAS {go ice} {.wswnwwnwsess}
+#ALIAS {^go pbear$} {.wswnwwnwnwne}
+#ALIAS {^go ice$} {.wswnwwnwsess}
 
 #NOP ==[Gorgon's groom]===
-#ALIAS {go medusa} {.2nsw2esw2ns}
+#ALIAS {^go medusa$} {.2nsw2esw2ns}
 
 #NOP ==[Citadel of Stars]==
-#ALIAS {go cos} {.esduwnsdunnsnndde}
+#ALIAS {^go cos$} {.esduwnsdunnsnndde}
 
 #NOP ==[Ice Mountain]==
-#ALIAS {go icem} {.16w10sw2sese2nw2s4w2sw3n}
+#ALIAS {^go icem$} {.16w10sw2sese2nw2s4w2sw3n}
 
 #NOP ==[Keziah]==
-#ALIAS {go keziah} {.9n3en2eu4es2enes}
+#ALIAS {^go keziah$} {.9n3en2eu4es2enes}
 
 #CLASS {speedwalks} {CLOSE}
