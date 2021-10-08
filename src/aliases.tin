@@ -1,7 +1,7 @@
 #CLASS {aliases} {kill};
 #CLASS {aliases} {open};
 
-#ALIAS {save vars} {
+#ALIAS {^save vars$} {
     #CLASS variables write {src/variables.tin};
     #format {tmp} {%l} {${CURRENT_CHAR}};
     #CLASS {$tmp} {write} {characters/$tmp.tin};
@@ -214,7 +214,7 @@
 
 #NOP ==[NIGERUNDAYO!!!]==
 #ALIAS {f} {
-    #IF {"${CURRENT_CHAR}" == "{Igor|Ilia}" && ${p_dmg} != "?"} {retreat};
+    #IF {"${CURRENT_CHAR}" == "{Igor|Ilia|Noma}" && ${p_dmg} != "?"} {retreat};
     #ELSE {flee};
 }
 #ALIAS {rt} {retreat}
@@ -342,7 +342,7 @@
 };
 #ALIAS {fs} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'fireshield';};
-    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {
+    #ELSEIF {"${CURRENT_CHAR}" == "{Fendand|Noma}"} {
         #IF {"%1" != ""} {weave 'flamestrike %1;};
         #ELSE {weave 'firestorm';};
     };
@@ -405,6 +405,10 @@
         #IF {"%1" != ""} {charge %1;};
         #ELSE {charge $target;};
     };
+    #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {
+        #IF {"%1" != ""} {weave curse %1;};
+        #ELSE {weave curse $target;};
+    };
     #ELSE {#SHOWME \e[91mThis command is not available for the current char!\e[0m};
 };
 #ALIAS {b} {
@@ -415,6 +419,10 @@
     #ELSEIF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
         #IF {"%1" != ""} {weave 'blind' %1;};
         #ELSE {weave 'blind' $target;};
+    };
+    #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {
+        #IF {"%1" != ""} {backstab %1;};
+        #ELSE {backstab $target;};
     };
     #ELSE {#SHOWME \e[91mThis command is not available for the current character!\e[0m};
 };
