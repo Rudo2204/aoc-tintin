@@ -95,6 +95,7 @@
     };
     #IF {"${${tmp}_vs}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
+        #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {weave veng};
     };
     #IF {"${${tmp}_ii}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Ilia|Igor}"} {weave 'improved invis' me;};
@@ -147,7 +148,7 @@
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
     };
     #IF {"${${tmp}_wc}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Igor}"} {weave 'war chant';};
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Igor|Noma}"} {weave 'war chant';};
     };
     #IF {"${${tmp}_wof}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
