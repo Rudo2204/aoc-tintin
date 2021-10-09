@@ -178,6 +178,7 @@
 };
 
 #NOP ==[World interaction]==
+#ALIAS {ef} {enter fis}
 #ALIAS {op} {open door}
 #ALIAS {dk} {drop key}
 #ALIAS {ud} {unlock door}
@@ -314,6 +315,9 @@
         #IF {"${p_dmg}" == "?"} {volley $target};
         #ELSE {volley};
     };
+    #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {
+        weave blind $target;
+    };
 };
 #ALIAS {wof} {
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
@@ -342,7 +346,7 @@
 };
 #ALIAS {fs} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'fireshield';};
-    #ELSEIF {"${CURRENT_CHAR}" == "{Fendand|Noma}"} {
+    #ELSEIF {"${CURRENT_CHAR}" == "{Fendand}"} {
         #IF {"%1" != ""} {weave 'flamestrike %1;};
         #ELSE {weave 'firestorm';};
     };
