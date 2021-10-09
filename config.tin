@@ -1,16 +1,15 @@
 #VARIABLE {chat_file} {logs/chat.log}
 #VARIABLE {status_file} {logs/status.log}
 
-#CONFIG {256 COLORS}  {ON}
+#CONFIG {COLOR MODE}  {ANSI}
 #CONFIG {AUTO TAB}  {5000}
 #CONFIG {BUFFER SIZE}  {100000}
 #CONFIG {CHARSET}  {ASCII}
-#CONFIG {COLOR PATCH}  {ON}
-#CONFIG {COMMAND COLOR}  {<fcf>}
+#CONFIG {COLOR PATCH}  {OFF}
 #CONFIG {COMMAND ECHO}  {ON}
 #CONFIG {CONNECT RETRY}  {15}
 #CONFIG {HISTORY SIZE}  {1000}
-#CONFIG {LOG}  {PLAIN}
+#CONFIG {LOG MODE}  {RAW}
 #CONFIG {PACKET PATCH}  {0.00}
 #CONFIG {REPEAT CHAR}  {!}
 #CONFIG {REPEAT ENTER}  {OFF}
@@ -62,6 +61,6 @@
 
 #SESSION aoc {aoc.pandapub.com} {4000}
 
-#FORMAT {log_file} {logs/active/%t.log} {%Y-%m-%d};
-#LOG {APPEND} {$log_file};
+#nop #FORMAT {log_file} {logs/%t.log} {%Y-%m-%d};
+#nop #LOG {APPEND} {$log_file};
 #FORMAT {start_time} {%T};
