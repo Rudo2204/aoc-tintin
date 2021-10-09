@@ -14,7 +14,8 @@
 
 #ALIAS {clc} {
     clear;
-    #DELAY 1 {#split 2 2; __update_prompt__};
+    __update_prompt__;
+    #DELAY 2 {#split 2 2};
 };
 
 #NOP ==[Specific character aliases]==
