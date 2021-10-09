@@ -24,8 +24,8 @@
     #VARIABLE {p_endurance} {%7};
 } {1};
 
-#PROMPT {^<%1H %2M %3V %4X %5S %6E> $} {<\e[91m${p_hp}H \e[92m${p_mana}M \e[93m${p_mv}V \e[36m${p_xp}X \e[36m${p_dmg}%D \e[91m${p_stamina}S \e[36m${p_endurance}E\e[0m> - Target: \e[91m$target\e[0m - Assist: $assist - Mode: \e[93m$mode\e[0m} {} {};
+#PROMPT {^<%1H %2M %3V %4X %5S %6E> $} {<\e[91m${p_hp}H \e[92m${p_mana}M \e[93m${p_mv}V \e[36m${p_xp}X \e[36m${p_dmg}%D \e[91m${p_stamina}S \e[36m${p_endurance}E\e[0m> - Target: \e[91m$target\e[0m - Assist: $assist - Mode: \e[93m$mode\e[0m} {-2} {};
 
-#PROMPT {^<%1H %2M %3V %4X %5%%D %6S %7E> $} {<\e[91m${p_hp}H \e[92m${p_mana}M \e[93m${p_mv}V \e[36m${p_xp}X \e[36m${p_dmg}%D \e[91m${p_stamina}S \e[36m${p_endurance}E\e[0m> - Target: \e[91m$target\e[0m - Assist: $assist\e[0m - \e[93mMode: $mode} {} {};
+#PROMPT {^<%1H %2M %3V %4X %5%%D %6S %7E> $} {<\e[91m${p_hp}H \e[92m${p_mana}M \e[93m${p_mv}V \e[36m${p_xp}X \e[36m${p_dmg}%D \e[91m${p_stamina}S \e[36m${p_endurance}E\e[0m> - Target: \e[91m$target\e[0m - Assist: $assist\e[0m - \e[93mMode: $mode} {-2} {};
 
 #CLASS {prompt} {close};
