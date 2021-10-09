@@ -223,7 +223,7 @@
 #NOP ==[Fighting]==
 #ALIAS {^o$} {
     #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Melia|Igor}"} {
-        #IF {"${p_dmg}" == "?"} {order fol kill $target;}
+        #IF {"${p_dmg}" == "?"} {order fol kill $target};
         #ELSE {order fol assist;};
     };
     #ELSE {#SEND {\o};};

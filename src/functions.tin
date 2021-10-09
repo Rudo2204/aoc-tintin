@@ -21,7 +21,7 @@
     #format {tmp} {%l} {${CURRENT_CHAR}};
     #CLASS {$tmp} {open};
     #IF {"%2" == "on"} {#var {${tmp}_%1} {1};};
-    #ELSE {#var {${tmp}_%1} {0};}
+    #ELSE {#var {${tmp}_%1} {0};};
     #CLASS {$tmp} {close};
 };
 
