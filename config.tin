@@ -1,7 +1,7 @@
 #VARIABLE {chat_file} {logs/chat.log}
 #VARIABLE {status_file} {logs/status.log}
 
-#CONFIG {COLOR MODE}  {ANSI}
+#CONFIG {COLOR MODE}  {AUTO}
 #CONFIG {AUTO TAB}  {5000}
 #CONFIG {BUFFER SIZE}  {100000}
 #CONFIG {CHARSET}  {ASCII}
