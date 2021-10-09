@@ -1,25 +1,31 @@
 #CLASS {igor} OPEN
 
+#VARIABLE         {igor_afffield}  {0}
 #VARIABLE         {igor_aid}  {0}
-#VARIABLE         {igor_armor}  {0}
+#VARIABLE         {igor_armor}  {1}
+#VARIABLE         {igor_bdsonggood}  {0}
 #VARIABLE         {igor_bless}  {0}
 #VARIABLE         {igor_bskin}  {0}
+#VARIABLE         {igor_ci}  {0}
 #VARIABLE         {igor_cod}  {0}
 #VARIABLE         {igor_endure}  {0}
 #VARIABLE         {igor_fleet}  {1}
+#VARIABLE         {igor_focus}  {0}
 #VARIABLE         {igor_fof}  {0}
+#VARIABLE         {igor_glacial}  {1}
 #VARIABLE         {igor_haste}  {0}
-#VARIABLE         {igor_ii}  {0}
+#VARIABLE         {igor_ii}  {1}
 #VARIABLE         {igor_magvest}  {0}
 #VARIABLE         {igor_mech}  {0}
 #VARIABLE         {igor_nf}  {0}
 #VARIABLE         {igor_sanc}  {1}
-#VARIABLE         {igor_senselife}  {0}
+#VARIABLE         {igor_senselife}  {1}
 #VARIABLE         {igor_shield}  {0}
 #VARIABLE         {igor_shriek}  {0}
 #VARIABLE         {igor_vs}  {0}
-#VARIABLE         {igor_wc}  {0}
+#VARIABLE         {igor_wc}  {1}
 #VARIABLE         {igor_wof}  {0}
+#VARIABLE         {igor_woke}  {0}
 #VARIABLE         {igor_wos}  {0}
 
 #CLASS {igor} CLOSE

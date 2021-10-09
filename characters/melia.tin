@@ -1,25 +1,29 @@
 #CLASS {melia} OPEN
 
+#VARIABLE         {melia_afffield}  {0}
 #VARIABLE         {melia_aid}  {1}
 #VARIABLE         {melia_armor}  {0}
 #VARIABLE         {melia_bless}  {1}
 #VARIABLE         {melia_bskin}  {0}
 #VARIABLE         {melia_cod}  {0}
-#VARIABLE         {melia_endure}  {0}
+#VARIABLE         {melia_endure}  {1}
 #VARIABLE         {melia_fleet}  {0}
+#VARIABLE         {melia_focus}  {0}
 #VARIABLE         {melia_fof}  {0}
-#VARIABLE         {melia_haste}  {0}
-#VARIABLE         {melia_ii}  {0}
+#VARIABLE         {melia_glacial}  {0}
+#VARIABLE         {melia_haste}  {1}
+#VARIABLE         {melia_ii}  {1}
 #VARIABLE         {melia_magvest}  {0}
 #VARIABLE         {melia_mech}  {0}
 #VARIABLE         {melia_nf}  {0}
-#VARIABLE         {melia_sanc}  {0}
+#VARIABLE         {melia_sanc}  {1}
 #VARIABLE         {melia_senselife}  {0}
 #VARIABLE         {melia_shield}  {0}
 #VARIABLE         {melia_shriek}  {0}
 #VARIABLE         {melia_vs}  {0}
 #VARIABLE         {melia_wc}  {0}
 #VARIABLE         {melia_wof}  {0}
+#VARIABLE         {melia_woke}  {0}
 #VARIABLE         {melia_wos}  {0}
 
 #CLASS {melia} CLOSE
