@@ -14,7 +14,6 @@
 
 #ALIAS {clc} {
     clear;
-    __update_prompt__;
     #DELAY 2 {#split 2 2};
 };
 
@@ -177,6 +176,17 @@
         };
     };
 };
+#ALIAS {sc} {
+    #UNACTION {Your feet feel swift.};
+    score;
+    #DELAY {2} {
+        #ACTION {Your feet feel swift.} {
+            #SHOWME \e[92mFleet UP!;
+            _update_noti_ \e[92mFleet UP!\e[0m;
+            _update_buff_status_ fleet on;
+        };
+    };
+};
 
 #NOP ==[World interaction]==
 #ALIAS {ef} {enter fis}
@@ -271,15 +281,15 @@
 #ALIAS {kn} {weave 'knock'}
 #ALIAS {locate} {weave 'locate'}
 #ALIAS {bd} {bash door}
-#ALIAS {id} {
+#ALIAS {^id} {
     #VAR {db_xsel} {1};
-    #IF {"${CURRENT_CHAR}" == "{Aldrich|Igor}"} {weave 'identify' %1};
-    #ELSEIF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {get id haversack; hold id; recite id %1; hold bowl,wind;};
-    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {get id haversack; hold id; recite id %1; hold nekro;};
+    #IF {"${CURRENT_CHAR}" == "{Aldrich|Igor|Shuu}"} {weave 'identify' %1};
+    #ELSEIF {"${CURRENT_CHAR}" == "Melia"} {get id haversack; hold id; recite id %1; hold bowl,wind;};
 }
 #ALIAS {rec} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {recall %1};
-    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {weave 'word of recall'; hold nekro;};
+    #ELSEIF {"${CURRENT_CHAR}" == "Fendand"} {weave 'word of recall'; hold 1.;};
+    #ELSE {hold recall; recite recall %1; hold 1.};
 };
 
 #NOP ==[Simple skills/spells]==
