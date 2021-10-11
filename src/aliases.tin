@@ -283,7 +283,7 @@
 #ALIAS {bd} {bash door}
 #ALIAS {id} {
     #VAR {db_xsel} {1};
-    #IF {"${CURRENT_CHAR}" == "{Aldrich|Igor|Shuu}"} {weave 'identify' %1};
+    #IF {"${CURRENT_CHAR}" == "{Aldrich|Igor|Shuu|Noma}"} {weave 'identify' %1};
     #ELSEIF {"${CURRENT_CHAR}" == "Melia"} {get id haversack; hold id; recite id %1; hold bowl,wind;};
 }
 #ALIAS {rec} {

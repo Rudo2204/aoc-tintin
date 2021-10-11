@@ -243,13 +243,13 @@
     };
 };
 #ACTION {You morph smoothly back into your normal form.} {
-    #IF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {
+    #IF {"${CURRENT_CHAR}" == "{Igor|Alden|Noma}"} {
         #SHOWME  \e[91m===DForm OUT!===\e[0m;
         _update_noti_ \e[91mDForm OUT!\e[0m;
         #IF {"${p_dmg}" == "?"} {dragonform};
         #ELSE {gsay DForm OUT!};
     };
-    #ELSEIF {"${CURRENT_CHAR}" == "Ilia"} {
+    #ELSEIF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {
         #SHOWME  \e[91m===WForm OUT!===\e[0m;
         _update_noti_ \e[91mWForm OUT!\e[0m;
         #IF {"${p_dmg}" == "?"} {wraithform};
@@ -268,8 +268,10 @@
 #ACTION {The affects of the Bard's song dissipate.} {
     _update_buff_status_ bdsonggood off;
     #SHOWME \e[91m===BardSong OUT!===\e[0m;
-    #IF {"${CURRENT_CHAR}" == "{Shuu|Aldrich}"} {gs psalm' OUT!;};
-    #ELSE {gs bal' OUT!;};
+    #IF {"${CURRENT_CHAR}" == "Noma"} {
+        sing psalm me;
+    };
+    #ELSE {gs psalm' OUT!;};
     _update_noti_ \e[91mBardSong OUT!\e[0m;
 };
 #ACTION {The tower of mortal will around you fades.} {
