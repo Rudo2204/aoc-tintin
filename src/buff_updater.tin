@@ -113,7 +113,7 @@
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay armor};};
     };
     #IF {"${${tmp}_glacial}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Alden|Igor}"} {weave 'glacial';};
+        #IF {"${CURRENT_CHAR}" == "{Alden|Igor|Noma}"} {weave 'glacial';};
     };
     #IF {"${${tmp}_bskin}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_weave_bskin}" == "1"} {weave 'barkskin' me;};

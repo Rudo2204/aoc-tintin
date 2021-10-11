@@ -5,41 +5,41 @@
 #VARIABLE {AUTO_REBUFF_SELF} {1}
 #VARIABLE {BOT_ON} {0}
 #VARIABLE {CLANSAY_SUMMON} {1}
-#VARIABLE {CURRENT_CHAR} {Shuu}
+#VARIABLE {CURRENT_CHAR} {Noma}
 #VARIABLE {DB_LOG} {0}
 #VARIABLE {GROUP_SPELLUP} {1}
 #VARIABLE {HARD_REBUFF} {0}
 #VARIABLE {ame} {0}
-#VARIABLE {assist} {none}
+#VARIABLE {assist} {Noma}
 #VARIABLE {assist_fired} {0}
 #VARIABLE {avghscount} {2021.8}
-#VARIABLE {c_noti} {\e[91mVS OUT!\e[0m}
+#VARIABLE {c_noti} {\e[91mGlacial OUT!\e[0m}
 #VARIABLE {date_started} {2020-25-01}
 #VARIABLE {dia} {0}
 #VARIABLE {eme} {0}
 #VARIABLE {groupxp} {2148913441}
 #VARIABLE {groupxpcount} {87621}
 #VARIABLE {hscount} {46}
-#VARIABLE {last_noti} {\e[93mWarChant OUT!\e[0m}
+#VARIABLE {last_noti} {\e[92mGlacial UP!\e[0m}
 #VARIABLE {lasths} {57861}
 #VARIABLE {mode} {Normal}
 #VARIABLE {mounted} {0}
 #VARIABLE {p_dmg} {?}
-#VARIABLE {p_endurance} {353}
-#VARIABLE {p_hp} {456}
-#VARIABLE {p_mana} {797}
-#VARIABLE {p_mv} {353}
+#VARIABLE {p_endurance} {321}
+#VARIABLE {p_hp} {328}
+#VARIABLE {p_mana} {295}
+#VARIABLE {p_mv} {321}
 #VARIABLE {p_stamina} {100}
-#VARIABLE {p_xp} {1035678}
+#VARIABLE {p_xp} {406}
 #VARIABLE {refreshmount_fired} {0}
 #VARIABLE {rub} {0}
 #VARIABLE {sap} {0}
-#VARIABLE {soloxp} {316269190}
-#VARIABLE {soloxpcount} {5606}
-#VARIABLE {t_last_noti} {1633764064}
-#VARIABLE {t_noti} {30348}
-#VARIABLE {target} {mage}
-#VARIABLE {totalxp} {2465182631}
-#VARIABLE {totalxpcount} {93227}
+#VARIABLE {soloxp} {354640827}
+#VARIABLE {soloxpcount} {5996}
+#VARIABLE {t_last_noti} {1633889264}
+#VARIABLE {t_noti} {3971}
+#VARIABLE {target} {2.}
+#VARIABLE {totalxp} {2503554268}
+#VARIABLE {totalxpcount} {93617}
 
 #CLASS {variables} CLOSE
