@@ -67,9 +67,6 @@
     #IF {"${${tmp}_regen}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Ilia"} {regen};
     };
-    #IF {"${${tmp}_lbow}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Ilia"} {weave 'lightning bow'};
-    };
     #IF {"${${tmp}_focus}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {#IF {"${shuu_use_focus}" == "1"} {focus mana;};};
     };
@@ -83,7 +80,11 @@
     #IF {"${${tmp}_sanc}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'sanc' me;};
         #ELSEIF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {weave 'tower of strength' me;};
+        #ELSEIF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {wraithform;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay sanc};};
+    };
+    #IF {"${${tmp}_lbow}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Ilia"} {weave 'lightning bow'};
     };
     #IF {"${${tmp}_ll}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'lords light'};
