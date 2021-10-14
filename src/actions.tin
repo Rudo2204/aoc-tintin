@@ -493,7 +493,18 @@
     _update_buff_status_ regen out;
     #IF {"${CURRENT_CHAR}" == "Ilia"} {regen};
 }
+#ACTION {The Lords Light fades from your body.} {
+    #SHOWME \e[91m===LLight OUT!===;
+    _update_noti_ \e[91mLLight OUT!\e[0m;
+    _update_buff_status_ ll out;
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'lords light'};
+}
 
+#ACTION {The air glows with holy light} {
+    #SHOWME \e[92mLLight UP!\e[0m;
+    _update_noti_ \e[92mLLight UP!\e[0m;
+    _update_buff_status_ ll on;
+}
 #ACTION {You begin the regeneration process.} {
     #SHOWME \e[92mRegen UP!\e[0m;
     _update_noti_ \e[92mRegen UP!\e[0m;

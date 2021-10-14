@@ -293,6 +293,9 @@
 };
 
 #NOP ==[Simple skills/spells]==
+#ALIAS {ward} {weave 'ward'};
+#ALIAS {woi} {weave 'wall of ice'};
+#ALIAS {ll} {weave 'lords light'};
 #ALIAS {edo} {weave 'dark endownment'};
 #ALIAS {db} {weave 'death blade'};
 #ALIAS {ci} {weave 'create ins'};

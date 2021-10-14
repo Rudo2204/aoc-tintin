@@ -36,6 +36,7 @@
     #ELSEIF {"%2" == "focus"} {_update_buff_status_ focus on;};
     #ELSEIF {"%2" == "lightning bow"} {_update_buff_status_ lbow on;};
     #ELSEIF {"%2" == "regen"} {_update_buff_status_ regen on;};
+    #ELSEIF {"%2" == "lords light"} {_update_buff_status_ ll on;};
 };
 
 #ACTION {{You feel slightly different(\!|\.)}} {
@@ -84,6 +85,9 @@
         #ELSEIF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {weave 'tower of strength' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay sanc};};
     };
+    #IF {"${${tmp}_ll}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'lords light'};
+    };
     #IF {"${${tmp}_cod}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {weave 'cloak of darkness';};
     };
@@ -106,7 +110,7 @@
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay aid};};
     };
     #IF {"${${tmp}_fof}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Fendand"} {weave 'fists of fury' me;};
+        #IF {"${CURRENT_CHAR}" == "{Fendand|Melia|Rosa}"} {weave 'fists of fury';};
     };
     #IF {"${${tmp}_armor}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu|Igor}"} {weave 'armor' me;};
@@ -116,7 +120,7 @@
         #IF {"${CURRENT_CHAR}" == "{Alden|Igor|Noma}"} {weave 'glacial';};
     };
     #IF {"${${tmp}_bskin}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_weave_bskin}" == "1"} {weave 'barkskin' me;};
+        #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_weave_bskin}" == "1"} {weave 'barkskin';};
         #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_bskin}" == "1"} {mimic barkskin ${mimic_bskin_target};};
     };
     #IF {"${${tmp}_bless}" == "0"} {
@@ -196,6 +200,7 @@
    _update_buff_status_ afffield off;
    _update_buff_status_ regen off;
    _update_buff_status_ lbow off;
+   _update_buff_status_ ll off;
    #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_use_focus}" == "1"} {_update_buff_status_ focus on;};
    #ELSE {_update_buff_status_ focus off;};
    #var mounted 0;
