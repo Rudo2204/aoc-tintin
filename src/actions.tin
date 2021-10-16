@@ -498,14 +498,14 @@
 #ACTION {Your body loses its fiery glow.} {
     #SHOWME \e[91m===FShield OUT!===;
     _update_noti_ \e[91mFShield OUT!\e[0m;
-    _update_buff_status_ fshield out;
+    _update_buff_status_ fs out;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}" && "${mode}" == "Normal"} {weave 'fireshield'};
 };
 
 #ACTION {You feel a fiery film envelop your body.} {
     #SHOWME \e[92mFShield UP!\e[0m;
     _update_noti_ \e[92mFShield UP!\e[0m;
-    _update_buff_status_ fshield on;
+    _update_buff_status_ fs on;
 }
 #ACTION {The air glows with holy light} {
     #SHOWME \e[92mLLight UP!\e[0m;

@@ -20,7 +20,7 @@
     #ELSEIF {"%2" == "endure element"} {_update_buff_status_ endure on;};
     #ELSEIF {"%2" == "fleetfeet"} {_update_buff_status_ fleet on;};
     #ELSEIF {"%2" == "haste"} {_update_buff_status_ haste on;};
-    #ELSEIF {"%2" == "fireshield"} {_update_buff_status_ fshield on;};
+    #ELSEIF {"%2" == "fireshield"} {_update_buff_status_ fs on;};
     #NOP the following is correct, do not add the extra 'y';
     #ELSEIF {"%2" == "improved invisibilit"} {_update_buff_status_ ii on;};
     #ELSEIF {"%2" == "magical vestment"} {_update_buff_status_ magvest on;};
@@ -74,6 +74,9 @@
     #IF {"${${tmp}_haste}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay haste};};
+    };
+    #IF {"${${tmp}_fs}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'fireshield';};
     };
     #IF {"${${tmp}_woke}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'waking sleep';};
@@ -204,6 +207,7 @@
    _update_buff_status_ regen off;
    _update_buff_status_ lbow off;
    _update_buff_status_ ll off;
+   _update_buff_status_ fs off;
    #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_use_focus}" == "1"} {_update_buff_status_ focus on;};
    #ELSE {_update_buff_status_ focus off;};
    #var mounted 0;
