@@ -410,10 +410,6 @@
     _update_buff_status_ endure off;
     _update_noti_ \e[93mEndure Out!\e[0m;
 };
-#ACTION {Your body loses its fiery glow.} {
-    #SHOWME \e[91m===FShield OUT!===\e[0m;
-    _update_noti_ \e[91mFShield OUT!\e[0m;
-};
 #ACTION {You stop your war-like chanting.} {
     #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Igor}"} {
         #IF {"${p_dmg}" == "?"} {weave 'war chant';};
@@ -499,7 +495,18 @@
     _update_buff_status_ ll out;
     #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'lords light'};
 }
+#ACTION {Your body loses its fiery glow.} {
+    #SHOWME \e[91m===FShield OUT!===;
+    _update_noti_ \e[91mFShield OUT!\e[0m;
+    _update_buff_status_ fshield out;
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}" && "${mode}" == "Normal"} {weave 'fireshield'};
+};
 
+#ACTION {You feel a fiery film envelop your body.} {
+    #SHOWME \e[92mFShield UP!\e[0m;
+    _update_noti_ \e[92mFShield UP!\e[0m;
+    _update_buff_status_ fshield on;
+}
 #ACTION {The air glows with holy light} {
     #SHOWME \e[92mLLight UP!\e[0m;
     _update_noti_ \e[92mLLight UP!\e[0m;

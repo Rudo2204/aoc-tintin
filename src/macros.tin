@@ -45,7 +45,7 @@
         weave 'heal crit' me;
     }
 }
-#MACRO {^/} {
+#MACRO {^*} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         dm;
     }

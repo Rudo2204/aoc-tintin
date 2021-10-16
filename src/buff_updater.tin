@@ -20,6 +20,7 @@
     #ELSEIF {"%2" == "endure element"} {_update_buff_status_ endure on;};
     #ELSEIF {"%2" == "fleetfeet"} {_update_buff_status_ fleet on;};
     #ELSEIF {"%2" == "haste"} {_update_buff_status_ haste on;};
+    #ELSEIF {"%2" == "fireshield"} {_update_buff_status_ fshield on;};
     #NOP the following is correct, do not add the extra 'y';
     #ELSEIF {"%2" == "improved invisibilit"} {_update_buff_status_ ii on;};
     #ELSEIF {"%2" == "magical vestment"} {_update_buff_status_ magvest on;};
@@ -140,7 +141,8 @@
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay air};};
     };
     #IF {"${${tmp}_senselife}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'sense life';};
+        #IF {"${CURRENT_CHAR}" == "{Shuu}"} {#VAR shuu_senselife 1;};
+        #NOP #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu}"} {weave 'sense life';};
     };
     #IF {"${${tmp}_shield}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me;};
