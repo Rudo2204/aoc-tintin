@@ -313,10 +313,12 @@
     #IF {"${CURRENT_CHAR}" == "Shuu"} {#var shuu_use_focus 0; #4 weave 'vigorize crit' me; #var shuu_use_focus 1; focus mana;};
 };
 #ACTION {OK, you stop focusing...} {
+    #SHOWME \e[91m===FOCUS OUT!===\e[0m;
+    _update_noti_ \e[91mFOCUS OUT!\e[0m;
     _update_buff_status_ focus off;
 };
 #ACTION {You can't manage to focus your energy just yet...} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {focus mana;};
+    #IF {"${CURRENT_CHAR}" == "Shuu" && "${mode}" == "Normal"} {focus mana;};
 };
 #ACTION {You lose your focus.} {
     gs FOCUS OUT!;
