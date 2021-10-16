@@ -28,32 +28,33 @@
 #MACRO {^7} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         cl;
-    }
+    };
 }
 #MACRO {^8} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         il;
-    }
+    };
 }
 #MACRO {^9} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         is;
-    }
+    };
 }
 #MACRO {^/} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
-        weave 'heal crit' me;
-    }
+        #IF {"${shuu_focus}" == "1"} {weave 'harmony';};
+        #ELSE {weave 'heal crit' me;};
+    };
 }
 #MACRO {^*} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         dm;
-    }
+    };
 }
 #MACRO {^.} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         wot;
-    }
+    };
 }
 
 #NOP direction macros
