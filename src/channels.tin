@@ -50,42 +50,91 @@
 };
 #ACTION {%1 group-says '%2'} {
     #FORMAT {tmp} {@get_real_name{%1}};
-    #IF {"%2" == "ent %*"} {#regex {%2} {ent %*} {enter &1};};
-    #ELSEIF {"%2" == "sit"} {sit};
-    #ELSEIF {"%2" == "stand"} {stand};
-    #ELSEIF {"%2" == "wake"} {wake};
+    #IF {"%2" == "ent %*"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSE {#regex {%2} {ent %*} {enter &1};};
+    };
+    #ELSEIF {"%2" == "sit"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSE {sit;};
+    };
+    #ELSEIF {"%2" == "stand"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSE {stand;};
+    };
+    #ELSEIF {"%2" == "wake"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSE {wake;};
+    };
     #ELSEIF {"%2" == "recall"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {recall; south; south;};
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {recall; south; south;};
         #ELSEIF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'word of recall'; south; south;};
     };
     #ELSEIF {"%2" == "say %*"} {#regex {%2} {say %*} {say &1};};
     #ELSEIF {"%2" == "phase %*"} {#regex {%2} {phase %*} {weave 'phase door' &1};};
     #ELSEIF {"%2" == "mounts"} {
         #IF {"${CURRENT_CHAR}" == "{Alden|Igor}"} {#var mounted 1; dragonform; gsay I'm a dragon!};
-        #IF {"${mounted}" == "1"} {gsay I'm already mounted;};
+        #ELSEIF {"${mounted}" == "1"} {gsay I'm already mounted;};
         #ELSE {buy gelding; mount geld;};
     };
     #ELSEIF {"%2" == "pay" || "%2" == "pay thae"} {give 50 coins thae};
-    #ELSEIF {"%2" == "aid"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Aldrich|Fendand}"} {weave 'aid' $tmp};};
-    #ELSEIF {"%2" == "{ee|endure}"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'endure' $tmp};};
-    #ELSEIF {"%2" == "haste"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'haste' $tmp};};
-    #ELSEIF {"%2" == "heal"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich}"} {weave 'heal crit' $tmp};};
-    #ELSEIF {"%2" == "bw"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'breath' $tmp};};
-    #ELSEIF {"%2" == "ii"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Igor}"} {weave 'improved invis' $tmp};};
-    #ELSEIF {"%2" == "vig"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Aldrich|Fendand|Melia}"} {vig $tmp};};
-    #ELSEIF {"%2" == "sanc"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'sanc' $tmp};};
-    #ELSEIF {"%2" == "bless"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Igor|Alden}"} {weave 'bless' $tmp};};
-    #ELSEIF {"%2" == "summon"} {#IF {"${GROUP_SPELLUP}" == "1"} {weave 'summon' $tmp};};
-    #ELSEIF {"%2" == "armor"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Aldrich|Shuu|Igor}"} {weave 'armor' $tmp};};
-    #ELSEIF {"%2" == "shield"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' $tmp};};
-    #ELSEIF {"%2" == "haste %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {haste %*} {weave 'haste' &1};};};
-    #ELSEIF {"%2" == "vig %*"} {#IF {"${GROUP_SPELLUP}" == "1"} {#REGEX {%2} {vig %*} {vig &1;};};};
-    #ELSEIF {"%2" == "heal %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich}"} {#REGEX {%2} {heal %*} {weave 'heal crit' &1};};};
-    #ELSEIF {"%2" == "bw %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {bw %*} {weave 'breath' &1};};};
-    #ELSEIF {"%2" == "ii %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Igor}"} {#REGEX {%2} {ii %*} {weave 'ii' &1};};};
-    #ELSEIF {"%2" == "sanc %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Melia}"} {#REGEX {%2} {sanc %*} {weave 'sanc' &1};};};
-    #ELSEIF {"%2" == "summon %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich|Alden|Melia|Igor}"} {#REGEX {%2} {summon %*} {weave 'summon' &1};};};
-    #ELSEIF {"%2" == "des %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
+    #ELSEIF {"%2" == "aid"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Aldrich|Fendand}"} {weave 'aid' $tmp};
+    };
+    #ELSEIF {"%2" == "{ee|endure}"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'endure' $tmp};
+    };
+    #ELSEIF {"%2" == "haste"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'haste' $tmp};
+    };
+    #ELSEIF {"%2" == "heal"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich}"} {weave 'heal crit' $tmp};
+    };
+    #ELSEIF {"%2" == "bw"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'breath' $tmp};
+    };
+    #ELSEIF {"%2" == "ii"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Igor}"} {weave 'improved invis' $tmp};
+    };
+    #ELSEIF {"%2" == "vig"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Aldrich|Fendand|Melia}"} {vig $tmp};
+    };
+    #ELSEIF {"%2" == "sanc"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'sanc' $tmp};
+    };
+    #ELSEIF {"%2" == "bless"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Igor|Alden}"} {weave 'bless' $tmp};
+    };
+    #ELSEIF {"%2" == "summon"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1"} {weave 'summon' $tmp};
+    };
+    #ELSEIF {"%2" == "armor"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Aldrich|Shuu|Igor}"} {weave 'armor' $tmp};
+    };
+    #ELSEIF {"%2" == "shield"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' $tmp};
+    };
+    #ELSEIF {"%2" == "haste %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {haste %*} {weave 'haste' &1};};};
+    #ELSEIF {"%2" == "vig %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal"} {#REGEX {%2} {vig %*} {vig &1;};};};
+    #ELSEIF {"%2" == "heal %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich}"} {#REGEX {%2} {heal %*} {weave 'heal crit' &1};};};
+    #ELSEIF {"%2" == "bw %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal" && "${CURRENT_CHAR}" == "Shuu"} {#REGEX {%2} {bw %*} {weave 'breath' &1};};};
+    #ELSEIF {"%2" == "ii %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal" && "${CURRENT_CHAR}" == "{Shuu|Igor}"} {#REGEX {%2} {ii %*} {weave 'ii' &1};};};
+    #ELSEIF {"%2" == "sanc %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal" && "${CURRENT_CHAR}" == "{Shuu|Melia}"} {#REGEX {%2} {sanc %*} {weave 'sanc' &1};};};
+    #ELSEIF {"%2" == "summon %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich|Alden|Melia|Igor}"} {#REGEX {%2} {summon %*} {weave 'summon' &1};};};
+    #ELSEIF {"%2" == "des %*"} {#IF {"${GROUP_SPELLUP}" == "1" && "${mode}" == "Normal" && "${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
         #REGEX {%2} {des %*} {weave 'desecrate' &1};
     };};
     __log_line_to_chat__;
