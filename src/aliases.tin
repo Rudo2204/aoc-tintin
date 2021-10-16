@@ -18,6 +18,9 @@
 };
 
 #NOP ==[Specific character aliases]==
+#ALIAS {mode} {
+    #VAR {mode} {%1};
+}
 #ALIAS {aldr mode} {
     #IF {"%1" != ""} {
         #var {mode} {%1};
@@ -55,16 +58,6 @@
         #SHOWME \e[93m===No mode changed!===
     };
 };
-#ALIAS {aldr mvs} {
-    #class {aldrich} {open};
-    #IF {"%1" == ""} {
-        #IF {"${mimic_vs}" == "1"} {#var {mimic_vs} {0}};
-        #ELSE {#var {mimic_vs} {1}};
-    };
-    #ELSE {#var {mimic_vs_target} {%1}};
-    #SHOWME \e[91m===VS mimic status: $mimic_vs, target: $mimic_vs_target!===\e[0m;
-    #class {aldrich} {close};
-};
 #ALIAS {aldr me} {
     #class {aldrich} {open};
     #IF {"%1" == ""} {
@@ -96,23 +89,6 @@
     #class {aldrich} {close};
 };
 #NOP =======================================;
-#ALIAS {shuu bskin} {
-    #class {shuu} {open};
-    #IF {"${shuu_weave_bskin}" == "1"} {#var {shuu_weave_bskin} {0}};
-    #ELSE {#var {shuu_weave_bskin} {1}};
-    #SHOWME \e[91m===BarkSkin weave status: $shuu_weave_bskin===;
-    #class {shuu} {close};
-};
-#NOP =======================================;
-#ALIAS {igor buff} {
-    weave 'detect good';
-    weave 'detect evil';
-    weave 'detect magic';
-    weave 'protection from evil';
-    weave 'pass door';
-    weave 'dream sight' me;
-    weave 'strength' me;
-};
 #ALIAS {tap %1 %2} {
     weave 'mental tap' %2 '%1';
 } {5};
