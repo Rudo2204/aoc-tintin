@@ -53,7 +53,7 @@
 }
 #MACRO {^.} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
-        wot;
+        si;
     };
 }
 
