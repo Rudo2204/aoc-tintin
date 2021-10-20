@@ -7,6 +7,8 @@
 #NOP #ACTION {{^(\w+\s?(\w+)?\s?(\w+)?)\s*?\:.*\[.*\]$}};
 #ACTION {{^(\w+\s?(\w+)\s?(\w+))\s*:\s*(\-?\d+ to (\w+|1\/2-Att))\s*\[\s?(\d+) power\]\s*\[\s*(\d+)\s(hours|hour\s)\]\s.*?$}} {
     #IF {"%2" == "aid"} {_update_buff_status_ aid on;};
+    #ELSEIF {"%2" == "flame blade"} {_update_buff_status_ fb on;};
+    #ELSEIF {"%2" == "wall of swords"} {_update_buff_status_ wos on;};
     #ELSEIF {"%2" == "waking sleep"} {_update_buff_status_ woke on;};
     #ELSEIF {"%2" == "glacial aura"} {_update_buff_status_ glacial on;};
     #ELSEIF {"%2" == "fists of fury"} {_update_buff_status_ fof on;};
@@ -102,6 +104,9 @@
     #IF {"${${tmp}_nf}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury';};
     };
+    #IF {"${${tmp}_fb}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {#IF {"${mode}" == "PVP"} {fb;}};
+    };
     #IF {"${${tmp}_vs}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
         #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {weave veng};
@@ -149,7 +154,7 @@
     };
     #IF {"${${tmp}_shield}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'shield' me;};
-        #ELSE {#IF {"${BOT_ON}" == "1"} {gsay shield};};
+        #nop #ELSE {#IF {"${BOT_ON}" == "1"} {gsay shield};};
     };
     #IF {"${${tmp}_afffield}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'affinity field';};

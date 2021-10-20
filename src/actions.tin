@@ -189,6 +189,16 @@
 
 #NOP ==[Buff Alert]==
 #NOP Your Thunderlance explodes in a burst of light!;
+#ACTION {You gasp at the raw power woven together in the ancient Scimitar of Flames you now wield!} {
+    #SHOWME \e[92mFBlade UP!\e[0m;
+    _update_noti_ \e[92mFBlade UP!\e[0m;
+    _update_buff_status_ fb on;
+}
+#ACTION {Your FlameBlade explodes in a burst of light!} {
+    #SHOWME  \e[91m===FBlade OUT!===\e[0m;
+    _update_noti_ \e[91mFBlade OUT!\e[0m;
+    _update_buff_status_ fb off;
+}
 #ACTION {Your soul loses contact with your pulsating lightning bow.} {
     #SHOWME  \e[91m===Lbow OUT!===\e[0m;
     _update_noti_ \e[91mLbow OUT!\e[0m;

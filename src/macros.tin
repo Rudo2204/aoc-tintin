@@ -22,7 +22,7 @@
 #MACRO {\e[24~} {__fix_buff__;}
 
 #MACRO {^+} {kill $target;}
-#MACRO {^0} {ov;};
+#MACRO {^0} {where;};
 
 #NOP PVP Shuu
 #MACRO {^7} {

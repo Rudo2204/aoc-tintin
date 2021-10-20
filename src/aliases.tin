@@ -304,6 +304,14 @@
 
 #NOP ==[Complex skills/spells]==
 #ALIAS {v} {
+    #IF {"${CURRENT_CHAR}" == "Shuu"} {
+        weave 'flame b';
+    };
+    #ELSE {
+        weave 'fire ball' $target;
+    };
+};
+#ALIAS {v} {
     #IF {"${CURRENT_CHAR}" == "Ilia"} {
         #IF {"${p_dmg}" == "?"} {volley $target};
         #ELSE {volley};
