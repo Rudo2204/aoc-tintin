@@ -104,9 +104,6 @@
     #IF {"${${tmp}_nf}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury';};
     };
-    #IF {"${${tmp}_fb}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {#IF {"${mode}" == "PVP"} {fb;}};
-    };
     #IF {"${${tmp}_vs}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
         #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {weave veng};
