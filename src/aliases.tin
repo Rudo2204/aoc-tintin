@@ -303,7 +303,7 @@
 };
 
 #NOP ==[Complex skills/spells]==
-#ALIAS {v} {
+#ALIAS {fb} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         weave 'flame b';
     };
