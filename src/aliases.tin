@@ -271,6 +271,7 @@
 };
 
 #NOP ==[Simple skills/spells]==
+#ALIAS {fa} {weave 'free act'};
 #ALIAS {ward} {weave 'ward'};
 #ALIAS {woi} {weave 'wall of ice'};
 #ALIAS {ll} {weave 'lords light'};
