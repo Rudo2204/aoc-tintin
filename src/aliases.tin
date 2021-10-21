@@ -480,6 +480,14 @@
     #IF {"%1" != ""} {weave 'aid' %1;};
     #ELSE {weave 'aid' me};
 };
+#ALIAS {ds} {
+    #IF {"%1" != ""} {weave 'dispel silence' %1;};
+    #ELSE {weave 'dispel silence' me};
+};
+#ALIAS {cb} {
+    #IF {"%1" != ""} {weave 'cure blind' %1;};
+    #ELSE {weave 'cure blind' me};
+};
 #ALIAS {ed} {
     #IF {"%1" != ""} {weave 'energy drain' %1;};
     #ELSE {weave 'energy drain' $target};
@@ -507,10 +515,6 @@
 #ALIAS {il} {
     #IF {"%1" != ""} {weave 'icelance' %1;};
     #ELSE {weave 'icelance' $target};
-};
-#ALIAS {dsil} {
-    #IF {"%1" != ""} {weave 'dispel silence' %1;};
-    #ELSE {weave 'dispel silence' $target};
 };
 #ALIAS {vig} {
     #IF {"%1" != ""} {
