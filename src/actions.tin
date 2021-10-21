@@ -197,7 +197,7 @@
     #SHOWME  \e[91m===TLance OUT!===\e[0m;
     _update_noti_ \e[91mTLance OUT!\e[0m;
     _update_buff_status_ tlance off;
-    #IF {"${mode}" == "Normal"}" == "1"} {
+    #IF {"${mode}" == "Normal" == "1"} {
         #IF {"${p_dmg}" == "?"} {weave 'thunderlance'};
     };
 }
