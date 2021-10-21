@@ -40,6 +40,7 @@
     #ELSEIF {"%2" == "lightning bow"} {_update_buff_status_ lbow on;};
     #ELSEIF {"%2" == "regen"} {_update_buff_status_ regen on;};
     #ELSEIF {"%2" == "lords light"} {_update_buff_status_ ll on;};
+    #ELSEIF {"%2" == "thunderlance"} {_update_buff_status_ tlance on;};
 };
 
 #ACTION {{You feel slightly different(\!|\.)}} {
@@ -103,6 +104,9 @@
     };
     #IF {"${${tmp}_nf}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'nature fury';};
+    };
+    #IF {"${${tmp}_tlance}" == "0"} {
+        #IF {"${CURRENT_CHAR}" == "Alden"} {weave 'thunderlance';};
     };
     #IF {"${${tmp}_vs}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
@@ -210,6 +214,7 @@
    _update_buff_status_ lbow off;
    _update_buff_status_ ll off;
    _update_buff_status_ fs off;
+   _update_buff_status_ tlance off;
    #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_use_focus}" == "1"} {_update_buff_status_ focus on;};
    #ELSE {_update_buff_status_ focus off;};
    #var mounted 0;

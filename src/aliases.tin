@@ -20,6 +20,8 @@
 #NOP ==[Specific character aliases]==
 #ALIAS {mode} {
     #VAR {mode} {%1};
+    #SHOWME {\e[91m===== Mode changed to: $mode =====};
+    __update_prompt__;
 }
 #ALIAS {aldr mode} {
     #IF {"%1" != ""} {
