@@ -21,6 +21,24 @@
 #ALIAS {mode} {
     #VAR {mode} {%1};
     #SHOWME {\e[91m===== Mode changed to: $mode =====};
+    #IF {"$mode" == "Normal"} {
+        #UNMACRO {^-} {wot;};
+        #MACRO {^-1} {udw;};
+        #MACRO {^-2} {uds;};
+        #MACRO {^-3} {ude;};
+        #MACRO {^-5} {udn;};
+        #MACRO {^-4} {udu;};
+        #MACRO {^-6} {udd;};
+    };
+    #ELSEIF {"$mode" == "PVP"} {
+        #MACRO {^-} {wot;};
+        #UNMACRO {^-1} {udw;};
+        #UNMACRO {^-2} {uds;};
+        #UNMACRO {^-3} {ude;};
+        #UNMACRO {^-5} {udn;};
+        #UNMACRO {^-4} {udu;};
+        #UNMACRO {^-6} {udd;};
+    };
     __update_prompt__;
 }
 #ALIAS {aldr mode} {
@@ -484,7 +502,7 @@
 };
 #ALIAS {wot} {
     #IF {"%1" != ""} {weave 'wall of thorn' %1;};
-    #ELSE {weave 'wall of thorn' $target};
+    #ELSE {weave 'wall of thorn' $target;};
 };
 #ALIAS {il} {
     #IF {"%1" != ""} {weave 'icelance' %1;};

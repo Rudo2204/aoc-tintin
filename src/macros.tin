@@ -65,12 +65,6 @@
 #MACRO {^4} {down;}
 #MACRO {^6} {up;}
 
-#NOP unlock open door macros
-#MACRO {^-1} {udw;}
-#MACRO {^-2} {uds;}
-#MACRO {^-3} {ude;}
-#MACRO {^-5} {udn;}
-#MACRO {^-4} {udu;}
-#MACRO {^-6} {udd;}
+#NOP unlock open door macros are in alias "mode"
 
 #CLASS {macros} {close};
