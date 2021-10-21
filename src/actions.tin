@@ -569,7 +569,7 @@
     _update_noti_ \e[91mLLight OUT!\e[0m;
     _update_buff_status_ ll out;
     #IF {"${mode}" == "Normal"} {
-        #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}" && && "${p_dmg}" == "?"} {weave 'lords light'};
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}" && "${p_dmg}" == "?"} {weave 'lords light'};
         #ELSE {gs LordsLight out!;};
     };
 }
