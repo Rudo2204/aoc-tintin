@@ -145,7 +145,7 @@
         #NOP #ELSE {gsay endure};
     };
     #IF {"${${tmp}_fleet}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Alden|Igor}"} {_update_buff_status_ fleet on;};
+        #IF {"${CURRENT_CHAR}" == "{Alden|Igor|Shuu}"} {_update_buff_status_ fleet on;};
         #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_fleet}" == "1"} {mimic fleetfeet ${mimic_fleet_target};};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay air};};
     };
