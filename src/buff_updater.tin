@@ -50,9 +50,7 @@
     __set_all_buffs_off__;
     #IF {"${AUTO_REBUFF}" == "1"} {
         #UNTICKER {auto_rebuff_self};
-        color;
         affects;
-        color;
         #delay {3} {__rebuff_self__;};
         #delay {10} {
             #TICKER {auto_rebuff_self} {
@@ -179,9 +177,7 @@
 
 #ALIAS {__fix_buff__} {
     __set_all_buffs_off__;
-    color;
     affects;
-    color;
     #IF {"${HARD_REBUFF}" == "1"} {#delay {3} {__rebuff_self__;};};
 };
 
