@@ -182,6 +182,9 @@
 #HIGHLIGHT {Vzikronys, The Worm-Who-Walks screeches and spills out onto the floor as a mass of vermin!} {b red}
 #HIGHLIGHT {You feel the world fall out beneath you, %* has summoned you!} {b red}
 #HIGHLIGHT {You wish that your wounds would stop BLEEDING so much!} {b red}
+#HIGHLIGHT {You wish that your wounds would stop BLEEDING so much!} {red}
+#HIGHLIGHT {Your Fireshield makes} {b cyan}
+
 #nop #ACTION {You feel like you can fight with some effectiveness now..} {stand}
 #ACTION {You wish that your wounds would stop BLEEDING so much!} {
     #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_recall}" == "1"} {recall};
