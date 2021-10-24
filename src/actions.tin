@@ -286,7 +286,7 @@
     #SHOWME  \e[91m===FOF OUT!===\e[0m;
     _update_noti_ \e[91mFOF OUT!\e[0m;
     #IF {"${mode}" == "Normal"} {
-        #IF {"${p_dmg}" == "?" && "${CURRENT_CHAR}" == "Fendand"} {weave 'fists of fury';};
+        #IF {"${p_dmg}" == "?" && "${CURRENT_CHAR}" == "{Fendand|Rosa}"} {weave 'fists of fury';};
         #ELSE {gsay FOF OUT!;};
     };
 };
@@ -565,7 +565,7 @@
     #SHOWME \e[91m===Regen OUT!===;
     _update_noti_ \e[91mRegen OUT!\e[0m;
     _update_buff_status_ regen out;
-    #IF {"${CURRENT_CHAR}" == "Ilia"} {regen};
+    #IF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {regen;};
 }
 #ACTION {The Lords Light fades from your body.} {
     #SHOWME \e[91m===LLight OUT!===;

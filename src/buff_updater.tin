@@ -67,7 +67,7 @@
     #VAR mounted 0;
     #format {tmp} {%l} {${CURRENT_CHAR}};
     #IF {"${${tmp}_regen}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Ilia"} {regen};
+        #IF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {regen};
     };
     #IF {"${${tmp}_focus}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Shuu"} {#IF {"${shuu_use_focus}" == "1"} {focus mana;};};

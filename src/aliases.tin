@@ -22,7 +22,8 @@
     #VAR {mode} {%1};
     #SHOWME {\e[91m===== Mode changed to: $mode =====};
     #IF {"$mode" == "Normal"} {
-        #UNMACRO {^-} {wot;};
+        #UNMACRO {^-};
+        #UNMACRO {^.};
         #MACRO {^-1} {udw;};
         #MACRO {^-2} {uds;};
         #MACRO {^-3} {ude;};
@@ -32,6 +33,7 @@
     };
     #ELSEIF {"$mode" == "PVP"} {
         #MACRO {^-} {wot;};
+        #MACRO {^.} {si;};
         #UNMACRO {^-1} {udw;};
         #UNMACRO {^-2} {uds;};
         #UNMACRO {^-3} {ude;};
