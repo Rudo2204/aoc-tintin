@@ -7,6 +7,9 @@
 #NOP #ACTION {{^(\w+\s?(\w+)?\s?(\w+)?)\s*?\:.*\[.*\]$}};
 #ACTION {{^(\w+\s?(\w+)\s?(\w+))\s*:\s*(\-?\d+ to (\w+|1\/2-Att))\s*\[\s?(\d+) power\]\s*\[\s*(\d+)\s(hours|hour\s)\]\s.*?$}} {
     #IF {"%2" == "aid"} {_update_buff_status_ aid on;};
+    #ELSEIF {"%2" == "polymorph person"} {
+        #IF {"$CURRENT_CHAR" == "{Ilia|Rosa}"} {_update_buff_status_ sanc on;};
+    };
     #ELSEIF {"%2" == "flame blade"} {_update_buff_status_ fb on;};
     #ELSEIF {"%2" == "wall of swords"} {_update_buff_status_ wos on;};
     #ELSEIF {"%2" == "waking sleep"} {_update_buff_status_ woke on;};
