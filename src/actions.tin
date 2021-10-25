@@ -595,6 +595,9 @@
     _update_noti_ \e[92mLLight UP!\e[0m;
     _update_buff_status_ ll on;
 }
+#ACTION {You are already regenerating.} {
+    _update_buff_status_ regen on;
+}
 #ACTION {You begin the regeneration process.} {
     #SHOWME \e[92mRegen UP!\e[0m;
     _update_noti_ \e[92mRegen UP!\e[0m;
