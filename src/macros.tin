@@ -63,6 +63,21 @@
         dm;
     };
 }
+#MACRO {^=} {
+    #IF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {
+        corner $target;
+    };
+}
+#MACRO {^[} {
+    #IF {"${CURRENT_CHAR}" == "{Fendand|Rosa}"} {
+        kick $target;
+    };
+}
+#MACRO {^]} {
+    #IF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {
+        berserk $target;
+    };
+}
 
 #NOP direction macros
 #MACRO {^1} {west;}
