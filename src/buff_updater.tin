@@ -50,6 +50,14 @@
     #SHOWME \e[91m===DISPELLED!===\e[0m;
     _update_noti_ \e[91mDISPELLED!\e[0m;
     __set_all_buffs_off__;
+    #IF {"${mode}" == "PVP"} {
+        #IF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {
+            #local hpmath {};
+            #math {hpmath} {$p_hp > 300};
+            #IF {"${hpmath}" == "1"} {wraithform;};
+            #ELSE {#SHOWME \e[91mNot re-wraith because of low hp!\e[0m};
+        };
+    };
     #IF {"${AUTO_REBUFF}" == "1"} {
         #UNTICKER {auto_rebuff_self};
         affects;
