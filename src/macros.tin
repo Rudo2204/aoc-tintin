@@ -29,15 +29,24 @@
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         cl;
     };
+    #ELSEIF {"${CURRENT_CHAR}" == "Rosa"} {
+        whirl;
+    };
 }
 #MACRO {^8} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         il;
     };
+    #IF {"${CURRENT_CHAR}" == "Rosa"} {
+        focus hp;
+    };
 }
 #MACRO {^9} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         is;
+    };
+    #ELSEIF {"${CURRENT_CHAR}" == "Rosa"} {
+        focus move;
     };
 }
 #MACRO {^/} {
@@ -45,15 +54,13 @@
         #IF {"${shuu_focus}" == "1"} {weave 'harmony';};
         #ELSE {weave 'heal crit' me;};
     };
-}
-#MACRO {^*} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {
-        dm;
+    #ELSEIF {"${CURRENT_CHAR}" == "Rosa"} {
+        so;
     };
 }
-#MACRO {^.} {
-    #IF {"${CURRENT_CHAR}" == "Shuu"} {
-        si;
+#MACRO {^*} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Rosa}"} {
+        dm;
     };
 }
 

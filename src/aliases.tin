@@ -32,8 +32,19 @@
         #MACRO {^-6} {udd;};
     };
     #ELSEIF {"$mode" == "PVP"} {
-        #MACRO {^-} {wot;};
-        #MACRO {^.} {si;};
+        #MACRO {^-} {
+            #IF {"${CURRENT_CHAR}" == "Shuu"} {
+                wot;
+            };
+            #ELSEIF {"${CURRENT_CHAR}" == "Rosa"} {
+                focus release;
+            };
+        };
+        #MACRO {^.} {
+            #IF {"${CURRENT_CHAR}" == "Shuu"} {
+                si;
+            };
+        }
         #UNMACRO {^-1} {udw;};
         #UNMACRO {^-2} {uds;};
         #UNMACRO {^-3} {ude;};
@@ -41,7 +52,7 @@
         #UNMACRO {^-4} {udu;};
         #UNMACRO {^-6} {udd;};
     };
-    __update_prompt__;
+    #SEND {};
 }
 #ALIAS {aldr mode} {
     #IF {"%1" != ""} {
@@ -353,7 +364,7 @@
     #ELSE {#SEND {mb};};
 };
 #ALIAS {so} {
-    #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'slow' $target;};
+    #IF {"${CURRENT_CHAR}" == "{Igor|Rosa}"} {weave 'slow' $target;};
     #ELSE {#SEND {so};};
 };
 #ALIAS {ed} {
