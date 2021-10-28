@@ -44,6 +44,9 @@
             #IF {"${CURRENT_CHAR}" == "Shuu"} {
                 si;
             };
+            #ELSEIF {"${CURRENT_CHAR}" == "Rosa"} {
+                mimic '${wz_mimic}" $target;
+            };
         }
         #UNMACRO {^-1} {udw;};
         #UNMACRO {^-2} {uds;};
@@ -271,6 +274,13 @@
         #SHOWME {\e[91m===== CURRENT TARGET: $target =====};
     };
 };
+#ALIAS {m} {
+    #IF {"%1" == ""} {#ECHO {\e[91m===== DID NOT CHANGE MIMIC SPELL! =====};};
+    #ELSE {
+        #VAR {wz_mimic} {%1};
+        #SHOWME {\e[91m===== CURRENT MIMIC: '$wz_mimic' =====};
+    };
+};
 
 #NOP =====[Fendand shenanigans]=====
 #ALIAS {^bh$} {behead corpse; take head;};
@@ -302,7 +312,6 @@
 };
 
 #NOP ==[Simple skills/spells]==
-#ALIAS {fa} {weave 'free act'};
 #ALIAS {ward} {weave 'ward'};
 #ALIAS {woi} {weave 'wall of ice'};
 #ALIAS {ll} {weave 'lords light'};
@@ -311,7 +320,6 @@
 #ALIAS {ci} {weave 'create ins'};
 #ALIAS {summon} {weave 'summon'};
 #ALIAS {nf} {weave 'nature fury';};
-#ALIAS {hm} {weave 'harmony'}
 #ALIAS {sense} {weave 'sense life'}
 #ALIAS {fof} {weave 'fists of fury'}
 #ALIAS {pfe} {weave 'protection from evil'}
@@ -320,7 +328,6 @@
 #ALIAS {pfh} {weave 'protection from heat'}
 #ALIAS {cod} {weave 'cloak of darkness'}
 #ALIAS {ca} {weave 'create animal'};
-#ALIAS {wc} {weave 'war chant'}
 #ALIAS {wor} {weave 'word of recall'};
 #ALIAS {wos} {weave 'wall of swords';};
 #ALIAS {mv} {weave 'magical vestment';};
@@ -337,6 +344,40 @@
 };
 
 #NOP ==[Complex skills/spells]==
+#ALIAS {hm} {
+    #IF {"${CURRENT_CHAR}" == "Rosa"} {mimic harmony $target;};
+    #ELSE {weave harmony};
+};
+#ALIAS {wc} {
+    #IF {"${CURRENT_CHAR}" == "Rosa"} {mimic 'war chant' %1;};
+    #ELSE {weave 'war chant'};
+};
+#ALIAS {vs} {
+    #IF {"${CURRENT_CHAR}" == "{Rosa|Aldrich}"} {mimic veng %1;};
+    #ELSE {weave 'vengeance shroud'};
+};
+#ALIAS {bs} {
+    #IF {"${CURRENT_CHAR}" == "{Rosa|Aldrich}"} {mimic barkskin %1;};
+    #ELSE {weave 'barkskin'};
+};
+#ALIAS {fa} {
+    #IF {"${CURRENT_CHAR}" == "{Rosa|Aldrich}"} {mimic 'free act' %1;};
+    #ELSE {weave 'free act'};
+};
+#ALIAS {haste} {
+    #IF {"${CURRENT_CHAR}" == "{Rosa|Aldrich}"} {mimic 'haste' %1;};
+    #ELSE {
+        #IF {"%1" != ""} {weave 'haste' %1;};
+        #ELSE {weave 'haste' me};
+    };
+};
+#ALIAS {armor} {
+    #IF {"${CURRENT_CHAR}" == "{Rosa|Aldrich}"} {mimic 'armor' %1;};
+    #ELSE {
+        #IF {"%1" != ""} {weave 'armor' %1;};
+        #ELSE {weave 'armor' me};
+    };
+};
 #ALIAS {fb} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         weave 'flame b';
@@ -379,10 +420,6 @@
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {get book,redheart hole; hold book; weave 'mechanical hand'; hold infernoct; put book,redheart hole;};
     #ELSE {weave 'mechanical hand'};
 };
-#ALIAS {vs} {
-    #IF {"${CURRENT_CHAR}" == "Aldrich"} {mimic veng %1 me;};
-    #ELSE {weave 'vengeance shroud'};
-};
 #ALIAS {fs} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'fireshield';};
     #ELSEIF {"${CURRENT_CHAR}" == "{Fendand}"} {
@@ -418,14 +455,6 @@
 #ALIAS {sanc} {
     #IF {"%1" != ""} {weave 'sanc' %1;};
     #ELSE {weave 'sanc' me};
-};
-#ALIAS {haste} {
-    #IF {"%1" != ""} {weave 'haste' %1;};
-    #ELSE {weave 'haste' me};
-};
-#ALIAS {armor} {
-    #IF {"%1" != ""} {weave 'armor' %1;};
-    #ELSE {weave 'armor' me};
 };
 #ALIAS {ii} {
     #IF {"%1" != ""} {weave 'improved invis' %1;};

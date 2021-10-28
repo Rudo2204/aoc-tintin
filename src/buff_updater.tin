@@ -113,7 +113,7 @@
         #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {weave veng};
     };
     #IF {"${${tmp}_ii}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Ilia|Igor}"} {weave 'improved invis' me;};
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Ilia|Igor|Rosa}"} {weave 'improved invis' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay ii};};
     };
     #IF {"${${tmp}_aid}" == "0"} {
