@@ -47,7 +47,7 @@
             #ELSEIF {"${CURRENT_CHAR}" == "Rosa"} {
                 mimic '${wz_mimic}' $target;
             };
-        }
+        };
         #UNMACRO {^-1} {udw;};
         #UNMACRO {^-2} {uds;};
         #UNMACRO {^-3} {ude;};
