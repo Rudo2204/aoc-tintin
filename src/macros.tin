@@ -78,6 +78,16 @@
         berserk $target;
     };
 }
+#MACRO {^;} {
+    #IF {"${CURRENT_CHAR}" == "Rosa"} {
+        order clone sit;
+    };
+}
+#MACRO {^'} {
+    #IF {"${CURRENT_CHAR}" == "Rosa"} {
+        order fol stand;
+    };
+}
 
 #NOP direction macros
 #MACRO {^1} {west;}
