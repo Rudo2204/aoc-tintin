@@ -213,8 +213,9 @@
 #ALIAS {ud%w} {unlock door %1; open door %1; %1};
 #ALIAS {tkd} {take key; ud%1};
 #ALIAS {ent} {
-    #IF {"${CURRENT_CHAR}" == "{Shuu|Igor|Fendand|Melia|Rosa}"} {order fol ent %1; enter %1;};
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Igor|Fendand|Melia|Rosa}"} {order fol ent %1;};
     #IF {"$mode" == "Normal"} {gs ent %1;};
+    enter %1;
 };
 #ALIAS {coffin} {
     get coffin jester,cap;
@@ -488,7 +489,7 @@
         #IF {"%1" != ""} {bash %1;};
         #ELSE {bash $target;};
     };
-    #ELSEIF {"${CURRENT_CHAR}" == "{Aldrich|Fendand}"} {
+    #ELSEIF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Karu}"} {
         #IF {"%1" != ""} {weave 'blind' %1;};
         #ELSE {weave 'blind' $target;};
     };

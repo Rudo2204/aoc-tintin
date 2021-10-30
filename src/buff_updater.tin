@@ -83,7 +83,7 @@
         #IF {"${CURRENT_CHAR}" == "Shuu"} {#IF {"${shuu_use_focus}" == "1"} {focus mana;};};
     };
     #IF {"${${tmp}_haste}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'haste' me;};
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Karu}"} {weave 'haste' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay haste};};
     };
     #IF {"${${tmp}_fs}" == "0"} {
@@ -94,7 +94,7 @@
     };
     #IF {"${${tmp}_sanc}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {weave 'sanc' me;};
-        #ELSEIF {"${CURRENT_CHAR}" == "{Igor|Alden}"} {weave 'tower of strength' me;};
+        #ELSEIF {"${CURRENT_CHAR}" == "{Igor|Alden|Karu}"} {weave 'tower of strength' me;};
         #ELSEIF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {wraithform;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay sanc};};
     };
@@ -121,7 +121,7 @@
         #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {weave veng};
     };
     #IF {"${${tmp}_ii}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Ilia|Igor|Rosa}"} {weave 'improved invis' me;};
+        #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Ilia|Igor|Rosa|Karu}"} {weave 'improved invis' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay ii};};
     };
     #IF {"${${tmp}_aid}" == "0"} {
@@ -132,7 +132,7 @@
         #IF {"${CURRENT_CHAR}" == "{Fendand|Melia|Rosa}"} {weave 'fists of fury';};
     };
     #IF {"${${tmp}_armor}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu|Igor}"} {weave 'armor' me;};
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Shuu|Igor|Karu}"} {weave 'armor' me;};
         #ELSE {#IF {"${BOT_ON}" == "1"} {gsay armor};};
     };
     #IF {"${${tmp}_glacial}" == "0"} {
@@ -169,10 +169,10 @@
         #IF {"${CURRENT_CHAR}" == "Igor"} {weave 'affinity field';};
     };
     #IF {"${${tmp}_magvest}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'magical vestment';};
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Karu}"} {weave 'magical vestment';};
     };
     #IF {"${${tmp}_wc}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Igor|Noma}"} {weave 'war chant';};
+        #IF {"${CURRENT_CHAR}" == "{Aldrich|Fendand|Igor|Noma|Karu}"} {weave 'war chant';};
     };
     #IF {"${${tmp}_wof}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
