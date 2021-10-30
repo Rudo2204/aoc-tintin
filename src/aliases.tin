@@ -383,7 +383,7 @@
         weave 'flame b';
     };
     #ELSE {
-        weave 'fire ball' $target;
+        weave 'fireball' $target;
     };
 };
 #ALIAS {v} {
