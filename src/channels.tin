@@ -103,6 +103,10 @@
         #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
         #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'breath' $tmp};
     };
+    #ELSEIF {"%2" == "cb"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'cure blind' $tmp};
+    };
     #ELSEIF {"%2" == "ii"} {
         #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
         #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Igor}"} {weave 'improved invis' $tmp};
