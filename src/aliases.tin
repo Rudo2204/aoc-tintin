@@ -395,6 +395,9 @@
     #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {
         weave blind $target;
     };
+    #ELSEIF {"${CURRENT_CHAR}" == "Karu"} {
+        weave disruption $target;
+    };
 };
 #ALIAS {wof} {
     #IF {"${CURRENT_CHAR}" == "Aldrich"} {weave 'wall of force';};
