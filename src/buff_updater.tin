@@ -118,7 +118,7 @@
     };
     #IF {"${${tmp}_vs}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_vs}" == "1"} {mimic veng ${mimic_vs_target};};
-        #ELSEIF {"${CURRENT_CHAR}" == "Noma"} {weave veng};
+        #ELSEIF {"${CURRENT_CHAR}" == "{Noma|Shuu}"} {weave veng};
     };
     #IF {"${${tmp}_ii}" == "0"} {
         #IF {"${CURRENT_CHAR}" == "{Shuu|Fendand|Ilia|Igor|Rosa|Karu}"} {weave 'improved invis' me;};
