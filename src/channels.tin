@@ -111,6 +111,10 @@
         #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
         #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'deaths door' $tmp};
     };
+    #ELSEIF {"%2" == "ds"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'dispel sil' $tmp};
+    };
     #ELSEIF {"%2" == "dispel"} {
         #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
         #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich}"} {weave 'dispel magic' $tmp};
