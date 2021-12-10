@@ -134,7 +134,7 @@
             #VAR {db_xsel} {1};
             #SCRIPT {tmp} {echo "%2" | xsel -ib};
         };
-        #SEND {bid ?};
+        #IF {"${mode}" == "Normal"} {#SEND {bid ?};};
     };
 }
 

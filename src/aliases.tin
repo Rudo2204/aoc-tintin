@@ -363,7 +363,7 @@
 };
 #ALIAS {fa} {
     #IF {"${CURRENT_CHAR}" == "{Rosa|Aldrich}"} {mimic 'free act' %1;};
-    #ELSE {weave 'free act'};
+    #ELSE {weave 'free act' %1;};
 };
 #ALIAS {haste} {
     #IF {"${CURRENT_CHAR}" == "{Rosa|Aldrich}"} {mimic 'haste' %1;};

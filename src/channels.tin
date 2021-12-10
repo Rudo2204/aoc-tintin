@@ -91,6 +91,26 @@
         #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
         #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'haste' $tmp};
     };
+    #ELSEIF {"%2" == "hope"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'hope'};
+    };
+    #ELSEIF {"%2" == "cou"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'courage' $tmp};
+    };
+    #ELSEIF {"%2" == "rc"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'remove curse' $tmp};
+    };
+    #ELSEIF {"%2" == "rp"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'remove poison' $tmp};
+    };
+    #ELSEIF {"%2" == "dd"} {
+        #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
+        #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "Shuu"} {weave 'deaths door' $tmp};
+    };
     #ELSEIF {"%2" == "dispel"} {
         #IF {"${mode}" == "PVP"} {#SHOWME \e[91mNot working because of PVP mode!\e[0m};
         #ELSEIF {"${GROUP_SPELLUP}" == "1" && "${CURRENT_CHAR}" == "{Shuu|Fendand|Aldrich}"} {weave 'dispel magic' $tmp};
