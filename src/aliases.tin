@@ -439,6 +439,33 @@
     #IF {"%1" != ""} {weave 'waterwalk' %1;};
     #ELSE {weave 'waterwalk' me};
 };
+#ALIAS {rp} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {
+        #IF {"%1" != ""} {weave 'remove poi' %1;};
+        #ELSE {weave 'remove poi' me};
+    };
+    #ELSE {#SEND {rp};};
+};
+#ALIAS {hope} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {
+        weave hope;
+    };
+    #ELSE {#SEND {hope};};
+};
+#ALIAS {cou} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {
+        #IF {"%1" != ""} {weave 'courage' %1;};
+        #ELSE {weave 'courage' me};
+    };
+    #ELSE {#SEND {courage};};
+};
+#ALIAS {dd} {
+    #IF {"${CURRENT_CHAR}" == "{Shuu|Melia}"} {
+        #IF {"%1" != ""} {weave 'deaths door' %1;};
+        #ELSE {weave 'deaths door' me};
+    };
+    #ELSE {#SEND {dd};};
+};
 #ALIAS {endure} {
     #IF {"${CURRENT_CHAR}" == "Shuu"} {
         #IF {"%1" != ""} {weave 'endure' %1;};

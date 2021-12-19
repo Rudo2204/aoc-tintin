@@ -72,19 +72,31 @@
     #IF {"${CURRENT_CHAR}" == "{Fendand|Rosa}"} {
         kick $target;
     };
+    #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
+        rage $target;
+    };
 }
 #MACRO {^]} {
     #IF {"${CURRENT_CHAR}" == "{Ilia|Rosa}"} {
         berserk $target;
+    };
+    #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
+        use twig $target;
     };
 }
 #MACRO {^;} {
     #IF {"${CURRENT_CHAR}" == "Rosa"} {
         order clone sit;
     };
+    #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
+        order fol sit;
+    };
 }
 #MACRO {^'} {
     #IF {"${CURRENT_CHAR}" == "Rosa"} {
+        order fol stand;
+    };
+    #ELSEIF {"${CURRENT_CHAR}" == "Shuu"} {
         order fol stand;
     };
 }
