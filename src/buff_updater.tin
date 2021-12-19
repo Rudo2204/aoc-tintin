@@ -139,7 +139,7 @@
         #IF {"${CURRENT_CHAR}" == "{Alden|Igor|Noma}"} {weave 'glacial';};
     };
     #IF {"${${tmp}_bskin}" == "0"} {
-        #IF {"${CURRENT_CHAR}" == "Shuu" && "${shuu_weave_bskin}" == "1"} {weave 'barkskin';};
+        #IF {"${CURRENT_CHAR}" == "Shuu"} {weave 'barkskin';};
         #ELSEIF {"${CURRENT_CHAR}" == "Aldrich" && "${mimic_bskin}" == "1"} {mimic barkskin ${mimic_bskin_target};};
     };
     #IF {"${${tmp}_bless}" == "0"} {
