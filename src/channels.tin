@@ -33,6 +33,9 @@
     #ELSEIF {"%2" == "summon"} {
         #IF {"${CLANSAY_SUMMON}" == "1"} {weave 'summon' $tmp;};
     };
+    #ELSEIF {"%2" == "heal"} {
+        #IF {"${mode}" == "Normal"} {weave 'heal' $tmp;};
+    };
     __log_line_to_chat__;
 };
 
