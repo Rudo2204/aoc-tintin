@@ -1,0 +1,6 @@
+#CLASS {noma} OPEN
+
+#VARIABLE {noma_aid} {0}
+#VARIABLE {noma_regen} {0}
+
+#CLASS {noma} CLOSE
