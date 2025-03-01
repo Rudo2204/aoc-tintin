@@ -1,5 +1,3 @@
-cd ~/src/aoc-tintin
-
 # No existing discworld session? Then create one
 if [[ ! $(tmux ls -F '#S') =~ aoc ]]; then
     # Flag that we've just created a session
